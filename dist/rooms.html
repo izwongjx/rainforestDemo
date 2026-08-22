@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooms | Rain Forest Hotel</title>
+  <style>
+    .rooms-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .rooms-hero-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .intro-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--clay);
+      border: 1px solid rgba(92, 70, 51, 0.2);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .rooms-page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      padding-bottom: 4rem;
+    }
+    
+    .direct-booking-banner {
+      background-color: var(--forest);
+      color: var(--cream);
+      padding: 5rem 2rem;
+      border-radius: 24px;
+      text-align: center;
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .direct-booking-banner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      margin: 0;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    
+    .direct-booking-banner p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+    
+    @media (min-width: 768px) {
+      .rooms-hero-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 6rem;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/main-CFoJirnL.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-Ds_75Rjw.css">
+</head>
+<body>
+
+  <!-- Header Placeholder -->
+  <div class="header-wrapper">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-text">Rain Forest Hotel</a>
+      
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/rooms.html" class="nav-link">Rooms</a>
+        <a href="/location.html" class="nav-link">Location</a>
+        <a href="/reviews.html" class="nav-link">Reviews</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="https://wa.me/60126183387" target="_blank" class="nav-whatsapp-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" style="display:none;">☰</button>
+      </div>
+    </div>
+  </header>
+  
+</div>
+
+    <main>
+    <!-- Section 1: Split Hero Header -->
+    <section class="section-padding" style="background-color: var(--cream); padding-top: 12rem;">
+      <div class="container">
+        <div class="rooms-hero-grid">
+          <div class="reveal">
+            <span class="intro-badge">Chinatown Basecamp</span>
+            <h1 style="font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem); color: var(--forest); margin-bottom: 2rem; line-height: 1.1;">
+              The Spaces.
+            </h1>
+            <p style="font-family: var(--font-body); font-size: 1.1rem; line-height: 1.7; color: var(--ink); margin-bottom: 1.5rem; font-weight: 300;">
+              Simple, clean, and exceptionally quiet. We designed our rooms to strip away the dynamic algorithm rates and corporate bloat, giving you an honest, comfortable sleep in the center of Chinatown.
+            </p>
+            <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.7; color: var(--clay); font-weight: 300; margin-bottom: 0;">
+              All our private rooms feature robust air conditioning, fresh linens, and instant access to our peaceful green courtyard. Pick the space that fits your trip best.
+            </p>
+          </div>
+          <div class="reveal">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Boutique hotel room bed detail" class="rooms-hero-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Rooms Catalog Grid -->
+    <section class="section-padding" style="background-color: var(--cream); padding-top: 2rem;">
+      <div class="container">
+        <div class="rooms-page-grid">
+
+          <div class="room-card reveal">
+            <div style="position: absolute; top: 1rem; left: 1rem; background-color: var(--forest); color: var(--cream); font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; padding: 0.4rem 0.9rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; z-index: 1; box-shadow: 0 4px 8px rgba(0,0,0,0.15);">Popular Choice</div>
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Single Room with Shared Bathroom" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Single Room with Shared Bathroom</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="50" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 50</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                1 Guest &nbsp;•&nbsp; 12 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; Shared Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-1.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-card reveal">
+            
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Standard Double Room" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Standard Double Room</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="90" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 90</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                2 Guests &nbsp;•&nbsp; 18 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-2.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-card reveal">
+            
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Standard Twin Room" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Standard Twin Room</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="95" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 95</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                2 Guests &nbsp;•&nbsp; 18 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-3.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-card reveal">
+            
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 4" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Room 4</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="100" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 100</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                2 Guests &nbsp;•&nbsp; 18 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-4.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-card reveal">
+            
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 5" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Room 5</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="100" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 100</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                2 Guests &nbsp;•&nbsp; 18 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-5.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-card reveal">
+            
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 6" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Room 6</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="100" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 100</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                2 Guests &nbsp;•&nbsp; 18 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-6.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-card reveal">
+            
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 7" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Room 7</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="100" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 100</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                2 Guests &nbsp;•&nbsp; 18 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-7.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-card reveal">
+            
+            <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 8" class="room-card-img" />
+            <div class="room-card-content">
+              <!-- Header Row: Title and Price -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; width: 100%;">
+                <h3 style="margin: 0; font-size: 1.2rem; font-family: var(--font-display); color: var(--ink); font-weight: 600; line-height: 1.25;">Room 8</h3>
+                <div style="text-align: right; flex-shrink: 0;">
+                  <span class="room-price" data-price-myr="100" style="font-size: 1.15rem; font-weight: 700; color: var(--forest); display: block; margin: 0;">MYR 100</span>
+                  <span style="font-size: 0.6rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--clay); font-weight: 600; display: block; margin-top: 0.1rem;">/ NIGHT</span>
+                </div>
+              </div>
+              <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink); margin-bottom: 0.5rem; text-align: right;"></div>
+              
+              <!-- Specs Row (Capacity & Size) -->
+              <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-body); margin-bottom: 0.35rem; font-weight: 500;">
+                2 Guests &nbsp;•&nbsp; 18 m²
+              </div>
+
+              <!-- Amenities Row (Light & Spaced) -->
+              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
+                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              </div>
+              
+              <!-- Discover Button -->
+              <div style="margin-top: auto; width: 100%;">
+                <a href="/room-8.html" class="btn-discover">Discover</a>
+              </div>
+            </div>
+          </div>
+</div>
+
+        <!-- Section 3: Direct Booking Callout Banner -->
+        <div class="direct-booking-banner reveal">
+          <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.2em; color: var(--rattan); font-size: 0.75rem; font-weight: 600;">Direct Booking</span>
+          <h2>Reserve Your Stay Instantly</h2>
+          <p>We manage all bookings directly via WhatsApp to keep our costs down, cut out hidden third-party fees, and ensure you get the absolute best local rate.</p>
+          <div>
+            <a href="https://wa.me/60126183387" target="_blank" class="nav-whatsapp-btn" style="padding: 0.9rem 2.25rem; font-size: 1rem; font-weight: 600; box-shadow: 0 10px 20px rgba(37,211,102,0.2);">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--ink); color: var(--cream); padding: 4rem 0 2rem; margin-top: auto;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <div>
+          <h3 style="color: var(--cream); font-size: 1.5rem; margin-bottom: 1rem;">Rain Forest Hotel</h3>
+          <p>122, Jalan Petaling<br>50000 Kuala Lumpur<br>Malaysia</p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Contact</h4>
+          <p>WhatsApp: <a href="https://wa.me/60126183387" style="color: var(--forest);">+60 12-618 3387</a></p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Links</h4>
+          <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><a href="/rooms.html">Rooms</a></li>
+            <li><a href="/location.html">Location</a></li>
+            <li><a href="/reviews.html">Reviews</a></li>
+            <li><a href="/contact.html">Contact & Policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid rgba(251, 246, 236,0.2); padding-top: 2rem; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
+        <p>&copy; 2026 Rain Forest Hotel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  
+</body>
+</html>
+

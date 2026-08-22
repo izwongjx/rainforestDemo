@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews | Rain Forest Hotel</title>
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+  <style>
+    .reviews-hero-section {
+      background-color: var(--forest);
+      color: var(--cream);
+      padding: 11rem 0 4.5rem;
+      text-align: center;
+    }
+    
+    .reviews-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      text-align: left;
+    }
+    
+    @media (min-width: 768px) {
+      .reviews-hero-grid {
+        grid-template-columns: auto auto;
+        justify-content: center;
+        gap: 4.5rem;
+      }
+    }
+    
+    .overall-rating-card {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+    
+    @media (min-width: 768px) {
+      .overall-rating-card {
+        align-items: flex-end;
+        text-align: right;
+      }
+    }
+    
+    .overall-score {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin: 0;
+    }
+    
+    /* Grid */
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      padding-bottom: 5rem;
+    }
+    
+    .review-card {
+      background-color: var(--cream);
+      padding: 2.25rem 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(92, 70, 51, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 300px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+    }
+    
+    .review-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      width: 100%;
+    }
+    
+    .reviewer-name {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin: 0;
+    }
+    
+    .reviewer-origin {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--clay);
+      opacity: 0.85;
+      margin-top: 0.15rem;
+    }
+    
+    .review-source-badge {
+      background-color: rgba(156, 122, 91, 0.12);
+      color: var(--clay);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .stars {
+      color: #f5a623;
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 3px;
+    }
+    
+    .stars svg {
+      fill: #f5a623;
+      width: 16px;
+      height: 16px;
+    }
+    
+    .review-quote {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--ink);
+      opacity: 0.85;
+      font-weight: 300;
+      flex-grow: 1;
+      margin: 0 0 1.5rem;
+    }
+    
+    .review-card-footer {
+      border-top: 1px solid rgba(92, 70, 51, 0.08);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    
+    .review-date {
+      font-family: var(--font-body);
+      font-size: 0.775rem;
+      color: var(--clay);
+      font-weight: 400;
+    }
+    
+    .sub-ratings {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .sub-rating-chip {
+      background-color: transparent;
+      border: 1px solid rgba(60, 91, 69, 0.15);
+      color: var(--forest);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Placeholder -->
+  <div class="header-wrapper">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-text">Rain Forest Hotel</a>
+      
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/rooms.html" class="nav-link">Rooms</a>
+        <a href="/location.html" class="nav-link">Location</a>
+        <a href="/reviews.html" class="nav-link">Reviews</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="https://wa.me/60126183387" target="_blank" class="nav-whatsapp-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" style="display:none;">☰</button>
+      </div>
+    </div>
+  </header>
+  
+</div>
+
+      <main>
+    <!-- Side-by-Side Header & Rating -->
+    <section class="reviews-hero-section">
+      <div class="container">
+        <div class="reviews-hero-grid">
+          <!-- Left Column: Title & Subtitle -->
+          <div class="reveal" style="max-width: 500px;">
+            <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--cream); margin: 0 0 1.25rem; line-height: 1.1;">Guest Reviews</h1>
+            <p style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 300; line-height: 1.65; color: var(--cream); opacity: 0.9; margin: 0;">
+              Don't just take our word for it. See what international travelers have to say about their boutique heritage stay at Rainforest.
+            </p>
+          </div>
+          <!-- Right Column: Overall Rating Block -->
+          <div class="overall-rating-card reveal">
+            <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+              <span class="overall-score" style="font-size: 4rem;">4.8</span>
+              <span style="font-family: var(--font-body); font-size: 1.25rem; color: var(--rattan); font-weight: 600;">/ 5</span>
+            </div>
+            <div class="stars" style="margin-bottom: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span style="font-family: var(--font-body); font-size: 0.75rem; color: var(--cream); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.95;">778 Overall Reviews</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review Grid -->
+    <section class="section-padding" style="background-color: var(--cream); padding-top: 4rem;">
+      <div class="container">
+        <div class="review-grid">
+          
+          <!-- Card 1 (Sarah Jenkins) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Sarah Jenkins</h3>
+                  <div class="reviewer-origin">GB • United Kingdom</div>
+                </div>
+                <span class="review-source-badge">Google</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"Absolutely loved the tropical vibes! It didn't feel like a budget hotel at all. The location is super convenient and the staff gave us amazing food recommendations."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">August 2026</span>
+              <div class="sub-ratings">
+                <!-- no specific sub ratings -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Card 2 (Kenji Sato) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Kenji Sato</h3>
+                  <div class="reviewer-origin">JP • Japan</div>
+                </div>
+                <span class="review-source-badge">Booking.com</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"Very clean and comfortable. The natural wood design is very relaxing after walking around KL all day. Fast Wi-Fi and easy check-in process via WhatsApp."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">July 2026</span>
+              <div class="sub-ratings">
+                <!-- no specific sub ratings -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Card 3 (Maria Garcia) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Maria Garcia</h3>
+                  <div class="reviewer-origin">ES • Spain</div>
+                </div>
+                <span class="review-source-badge">Google</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg" style="color: #f5a623;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"Great value for money. The eco-room was a bit small but perfectly designed. We loved the nearby night markets!"</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">June 2026</span>
+              <div class="sub-ratings">
+                <span class="sub-rating-chip">Value 4.0</span>
+                <span class="sub-rating-chip">Location 5.0</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Card 4 (Erika Williams) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Erika Williams</h3>
+                  <div class="reviewer-origin">US • United States</div>
+                </div>
+                <span class="review-source-badge">Google</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"So friendly! We appreciated their little breakfast and Water being available. AC works very well. Even though the rooms are windowless they decorate nicely and it's affordable. Public Bathrooms could be a little cleaner. Overall we really enjoyed and stayed twice."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">July 2026</span>
+              <div class="sub-ratings">
+                <span class="sub-rating-chip">Service 5.0</span>
+                <span class="sub-rating-chip">Rooms 4.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 (David Miller) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">David Miller</h3>
+                  <div class="reviewer-origin">AU • Australia</div>
+                </div>
+                <span class="review-source-badge">Google</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"Perfect base for exploring Kuala Lumpur. The staff was incredibly welcoming and organized a walking tour of Chinatown for us. The room was cozy, cool, and clean. Shared bathrooms were always tidy."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">August 2026</span>
+              <div class="sub-ratings">
+                <span class="sub-rating-chip">Service 5.0</span>
+                <span class="sub-rating-chip">Location 5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 (Chao Chen) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Chao Chen</h3>
+                  <div class="reviewer-origin">SG • Singapore</div>
+                </div>
+                <span class="review-source-badge">Booking.com</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"An absolute gem! The courtyard cafe serves the best local coffee, and the heritage restoration of the building is stunning. Loved the high ceilings. Walking distance to MRT made travel so easy."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">June 2026</span>
+              <div class="sub-ratings">
+                <span class="sub-rating-chip">Rooms 5.0</span>
+                <span class="sub-rating-chip">Location 5.0</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- View More Link Container -->
+        <div style="text-align: center; margin-top: 4.5rem; display: flex; justify-content: center;">
+          <a href="https://www.google.com/search?q=Rain+Forest+Hotel+Kuala+Lumpur+Reviews" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background-color: #ffffff; color: var(--forest); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 0.95rem 2.25rem; border-radius: 9999px; text-decoration: none; border: 1px solid rgba(60, 91, 69, 0.25); transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(92, 70, 51, 0.08);" onmouseover="this.style.backgroundColor='var(--forest)'; this.style.color='var(--cream)'; this.style.borderColor='var(--forest)';" onmouseout="this.style.backgroundColor='#ffffff'; this.style.color='var(--forest)'; this.style.borderColor='rgba(60, 91, 69, 0.25)';">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.113-5.186 4.113-3.48 0-6.3-2.82-6.3-6.3s2.82-6.3 6.3-6.3c1.554 0 2.973.567 4.07 1.498l3.056-3.056C19.103 2.507 15.89 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 11.24-4.555 11.24-11.24 0-.765-.067-1.503-.198-2.215H12.24z"/></svg>
+            View More on Google
+          </a>
+        </div>
+
+      </div>
+    </section></main>
+
+  <footer style="background-color: var(--ink); color: var(--cream); padding: 4rem 0 2rem; margin-top: auto;">
+    <div class="container">
+      <div style="text-align: center; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
+        <p>&copy; 2026 Rain Forest Hotel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/js/main.js"></script>
+
+  
+</body>
+</html>
+

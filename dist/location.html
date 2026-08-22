@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Location | Rain Forest Hotel</title>
+  <style>
+    .location-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+      padding-top: 10rem;
+      padding-bottom: 3.5rem;
+    }
+    
+    @media (min-width: 992px) {
+      .location-hero-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 5rem;
+      }
+    }
+    
+    .location-hero-img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      border: 1px solid rgba(92, 70, 51, 0.12);
+    }
+    
+    /* Travel Journal Card Grid */
+    .journal-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding-bottom: 3rem;
+    }
+    
+    @media (min-width: 768px) {
+      .journal-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+    }
+    
+    @media (min-width: 1200px) {
+      .journal-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+      }
+    }
+    
+    .journal-card {
+      background-color: #ffffff;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(92, 70, 51, 0.12);
+      box-shadow: 0 4px 16px rgba(92, 70, 51, 0.02);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .journal-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+      border-color: rgba(92, 70, 51, 0.25);
+    }
+    
+    .journal-img-container {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .journal-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .journal-card:hover .journal-img {
+      transform: scale(1.05);
+    }
+    
+    .journal-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: var(--forest);
+      color: var(--cream);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    
+    .journal-content {
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .journal-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--forest);
+      margin: 0 0 0.6rem;
+      line-height: 1.25;
+    }
+    
+    .journal-desc {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--ink);
+      opacity: 0.8;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    
+    .journal-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(92, 70, 51, 0.08);
+      padding-top: 1rem;
+      margin-top: auto;
+    }
+    
+    .journal-distance {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--clay);
+      font-weight: 600;
+    }
+    
+    .btn-journal-directions {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background-color: transparent;
+      border: 1px solid rgba(60, 91, 69, 0.25);
+      color: var(--forest);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-journal-directions:hover {
+      background-color: var(--forest);
+      color: var(--cream);
+      border-color: var(--forest);
+    }
+    
+    .btn-journal-directions svg {
+      width: 10px;
+      height: 10px;
+      fill: currentColor;
+    }
+    
+    /* Collapsible Accordion Directory */
+    .directory-accordion {
+      background-color: var(--cream);
+      border-radius: 20px;
+      border: 1px solid rgba(92, 70, 51, 0.12);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+      transition: border-color 0.25s ease;
+    }
+    
+    .directory-accordion:hover {
+      border-color: var(--forest);
+    }
+    
+    .accordion-trigger {
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: none;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--forest);
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+    
+    .accordion-trigger:hover {
+      background-color: rgba(60, 91, 69, 0.02);
+    }
+    
+    .accordion-content {
+      padding: 0 2rem 2rem;
+      display: none;
+      border-top: 1px solid rgba(92, 70, 51, 0.08);
+      padding-top: 1.5rem;
+    }
+    
+    .accordion-content.active {
+      display: block;
+    }
+    
+    .accordion-arrow {
+      transition: transform 0.3s ease;
+      font-size: 1rem;
+      color: var(--clay);
+    }
+    
+    .directory-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .directory-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(92, 70, 51, 0.06);
+      font-size: 0.95rem;
+    }
+    .directory-list li:last-child {
+      border-bottom: none;
+    }
+    
+    /* Callout Banner */
+    .cta-banner {
+      background-color: var(--forest);
+      color: var(--cream);
+      border-radius: 24px;
+      padding: 4rem 2.5rem;
+      text-align: center;
+      margin-top: 6rem;
+      box-shadow: 0 15px 35px rgba(60,91,69,0.15);
+      border: 1px solid rgba(251,246,236,0.1);
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/main-CFoJirnL.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-Ds_75Rjw.css">
+</head>
+<body>
+
+  <!-- Header Placeholder -->
+  <div class="header-wrapper">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo-text">Rain Forest Hotel</a>
+      
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/rooms.html" class="nav-link">Rooms</a>
+        <a href="/location.html" class="nav-link">Location</a>
+        <a href="/reviews.html" class="nav-link">Reviews</a>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="https://wa.me/60126183387" target="_blank" class="nav-whatsapp-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" style="display:none;">☰</button>
+      </div>
+    </div>
+  </header>
+  
+</div>
+
+                  <main>
+    <!-- Section 1: About-style Split Hero Layout -->
+    <section style="background-color: var(--cream);">
+      <div class="container">
+        <div class="location-hero-grid">
+          <!-- Left side: Editorial text -->
+          <div class="reveal">
+            <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--clay); font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 1rem;">Prime Location</span>
+            <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem); color: var(--forest); margin: 0 0 1.5rem; line-height: 1.1;">Explore the Neighborhood</h1>
+            <p style="font-family: var(--font-body); font-size: 1.15rem; line-height: 1.7; color: var(--ink); opacity: 0.9; font-weight: 300; margin: 0;">
+              We are located at 122, Jalan Petaling, right in the heart of Kuala Lumpur's vibrant Chinatown. Step outside our doors directly into a world of bustling street food, historical temples, and hip hidden bars.
+            </p>
+          </div>
+          <!-- Right side: Chinatown Portrait Cover -->
+          <div class="reveal">
+            <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80" alt="Chinatown Market Kuala Lumpur" class="location-hero-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: What's near you (6 Attraction Highlights with Pictures) -->
+    <section class="section-padding" style="background-color: var(--cream); padding-top: 2rem;">
+      <div class="container">
+        
+        <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--forest); margin-bottom: 3.5rem; text-align: center;">What's near you</h2>
+        
+        <div class="journal-grid">
+          
+          <!-- Highlight 1: Petaling Street -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Chinatown</span>
+              <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=600&q=80" alt="Petaling Street market gate" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Petaling Street Market</h3>
+              <p class="journal-desc">Kuala Lumpur's legendary market street, bursting with local vendors, lanterns, and hidden heritage cafes. Sits directly outside our doors.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">Right outside</span>
+                <a href="https://maps.google.com/?q=Petaling+Street" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Highlight 2: Yook Woo Hin -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Coffee & Dining</span>
+              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80" alt="Hainanese Coffee and toast" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Restoran Yook Woo Hin</h3>
+              <p class="journal-desc">A beloved heritage coffee shop located right next door. Famous for its authentic Hainanese coffee, toasted bun, and historical Chinatown atmosphere.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">2 m away</span>
+                <a href="https://maps.google.com/?q=Restoran+Yook+Woo+Hin" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Highlight 3: Pasar Seni Hub -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Transit Hub</span>
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Pasar Seni MRT Station" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Pasar Seni MRT & LRT</h3>
+              <p class="journal-desc">Your gateway to Kuala Lumpur. Links you directly to KL Sentral, the Petronas Twin Towers, TRX financial hub, and shopping stops within minutes.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">250 m away</span>
+                <a href="https://maps.google.com/?q=Pasar+Seni+MRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Highlight 4: Merdeka Square -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Heritage</span>
+              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=600&q=80" alt="Merdeka Square Moorish buildings" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Merdeka Square</h3>
+              <p class="journal-desc">The historic independence square surrounded by Moorish heritage architectures, government offices, and the Sultan Abdul Samad building.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.1 km away</span>
+                <a href="https://maps.google.com/?q=Merdeka+Square+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Highlight 5: Twin Towers -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Iconic Landmark</span>
+              <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80" alt="Petronas Twin Towers" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Petronas Twin Towers</h3>
+              <p class="journal-desc">The world's tallest twin towers. An engineering marvel and iconic skyline feature, easily reachable by a direct LRT ride from Pasar Seni.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">2.9 km away</span>
+                <a href="https://maps.google.com/?q=Petronas+Twin+Towers" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Highlight 6: Islamic Arts Museum -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Art & Culture</span>
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Islamic Arts Museum domes" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Islamic Arts Museum</h3>
+              <p class="journal-desc">Southeast Asia's largest museum of Islamic art, housing rare global artifacts, tapestries, and miniature models of the world's grandest mosques.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.5 km away</span>
+                <a href="https://maps.google.com/?q=Islamic+Arts+Museum+Malaysia" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section 3: Dropdowns Accordions Directory for Transit, Airports, Facilities -->
+        <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--forest); margin-top: 5rem; margin-bottom: 2rem; text-align: center;">Transit & Airport Directory</h2>
+        
+        <div style="max-width: 850px; margin: 0 auto;">
+          
+          <!-- Accordion 1: Public Transit Stations -->
+          <div class="directory-accordion">
+            <button class="accordion-trigger">
+              Transit Stations Near Hotel
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="accordion-content">
+              <ul class="directory-list">
+                <li>
+                  <span class="location-name">Pasar Seni MRT Station</span>
+                  <div class="location-right-info">
+                    <span class="location-distance">250 m</span>
+                    <a href="https://maps.google.com/?q=Pasar+Seni+MRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Pasar Seni LRT Station</span>
+                  <div class="location-right-info">
+                    <span class="location-distance">350 m</span>
+                    <a href="https://maps.google.com/?q=Pasar+Seni+LRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Maharajalela Monorail Station</span>
+                  <div class="location-right-info">
+                    <span class="location-distance">500 m</span>
+                    <a href="https://maps.google.com/?q=Maharajalela+Monorail" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Merdeka MRT Station</span>
+                  <div class="location-right-info">
+                    <span class="location-distance">650 m</span>
+                    <a href="https://maps.google.com/?q=Merdeka+MRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Accordion 2: Airports & Train Routes -->
+          <div class="directory-accordion">
+            <button class="accordion-trigger">
+              Airport Routes & Directions
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="accordion-content">
+              <ul class="directory-list">
+                <li>
+                  <span class="location-name">Sultan Abdul Aziz Shah Airport (SZB)</span>
+                  <div class="location-right-info">
+                    <span class="location-distance">22 km</span>
+                    <a href="https://maps.google.com/?q=Sultan+Abdul+Aziz+Shah+Airport" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Kuala Lumpur Intl Airport (KLIA/KLIA2)</span>
+                  <div class="location-right-info">
+                    <span class="location-distance">51 km</span>
+                    <a href="https://maps.google.com/?q=Kuala+Lumpur+International+Airport" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+              </ul>
+              <p style="font-size: 0.95rem; font-family: var(--font-body); font-weight: 300; line-height: 1.7; color: var(--ink); opacity: 0.85; margin-top: 1.25rem; border-top: 1px dashed rgba(92,70,51,0.15); padding-top: 1rem;">
+                <strong>Transit Recommendation:</strong> Take the KLIA Ekspres train directly from KLIA to KL Sentral, transfer to the Kelana Jaya LRT line for exactly one stop to Pasar Seni, and walk 4 minutes to Petaling Street.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Accordion 3: Hotel Facilities & Amenities -->
+          <div class="directory-accordion">
+            <button class="accordion-trigger">
+              Hotel Facilities & Amenities
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="accordion-content">
+              <p style="font-weight: 600; color: var(--forest); font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.75rem;">Most Popular</p>
+              <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; font-size: 0.875rem; font-family: var(--font-body); padding: 0; list-style: none; color: var(--ink); opacity: 0.9;">
+                <li>✓ Free High-Speed WiFi</li>
+                <li>✓ Non-Smoking Rooms</li>
+                <li>✓ Cozy Shared Lounge</li>
+                <li>✓ Full Air Conditioning</li>
+                <li>✓ Courtyard Garden</li>
+                <li>✓ Daily Housekeeping</li>
+              </ul>
+              
+              <p style="font-weight: 600; color: var(--forest); font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.75rem;">Additional Facilities</p>
+              <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.6rem; font-size: 0.85rem; font-family: var(--font-body); padding: 0; list-style: none; color: var(--ink); opacity: 0.8;">
+                <li>✓ En-suite hot showers</li>
+                <li>✓ Hairdryers & Towels</li>
+                <li>✓ Slippers & drying racks</li>
+                <li>✓ Luggage storage</li>
+                <li>✓ 24-Hour front desk</li>
+                <li>✓ Express check-in/out</li>
+                <li>✓ 24h CCTV security</li>
+              </ul>
+              <div style="background-color: var(--rattan); padding: 1rem 1.25rem; border-radius: 12px; border-left: 4px solid var(--clay); font-size: 0.85rem; font-family: var(--font-body); color: var(--ink); margin-top: 1.5rem;">
+                Note: No on-site parking is available. Safe public parking lots are situated along nearby Chinatown lanes.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section 4: Direct Assistance Callout Banner -->
+        <div class="cta-banner reveal">
+          <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--cream); margin: 0 0 1rem; line-height: 1.2;">Need assistance coordinating your arrival?</h2>
+          <p style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 300; max-width: 600px; margin: 0 auto 2rem; line-height: 1.6; color: var(--cream); opacity: 0.9;">
+            Our front desk team is happy to help you with directions, local transit queries, or taxi coordinates. Chat with us on WhatsApp!
+          </p>
+          <a href="https://wa.me/60126183387" target="_blank" class="nav-whatsapp-btn" style="display: inline-flex; justify-content: center; padding: 1rem 2.25rem; font-size: 0.95rem; font-weight: 600; background-color: #25D366; color: white; border: none; box-shadow: 0 10px 20px rgba(37,211,102,0.25);">
+            Chat with Front Desk
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+  <script>
+    // Accordion interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      const triggers = document.querySelectorAll('.accordion-trigger');
+      
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const content = trigger.nextElementSibling;
+          const arrow = trigger.querySelector('.accordion-arrow');
+          
+          content.classList.toggle('active');
+          
+          if (content.classList.contains('active')) {
+            arrow.style.transform = 'rotate(180deg)';
+          } else {
+            arrow.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+      
+      // Auto open first accordion
+      if (triggers.length > 0) {
+        triggers[0].click();
+      }
+    });
+  </script>
+  
+  <script>
+    // Accordion interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      const triggers = document.querySelectorAll('.accordion-trigger');
+      
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const content = trigger.nextElementSibling;
+          const arrow = trigger.querySelector('.accordion-arrow');
+          
+          content.classList.toggle('active');
+          
+          if (content.classList.contains('active')) {
+            arrow.style.transform = 'rotate(180deg)';
+          } else {
+            arrow.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+      
+      // Auto open first accordion
+      if (triggers.length > 0) {
+        triggers[0].click();
+      }
+    });
+  </script>
+  
+  <script>
+    // Accordion interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      const triggers = document.querySelectorAll('.accordion-trigger');
+      
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const content = trigger.nextElementSibling;
+          const arrow = trigger.querySelector('.accordion-arrow');
+          
+          content.classList.toggle('active');
+          
+          if (content.classList.contains('active')) {
+            arrow.style.transform = 'rotate(180deg)';
+          } else {
+            arrow.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+      
+      // Auto open first accordion
+      if (triggers.length > 0) {
+        triggers[0].click();
+      }
+    });
+  </script>
+
+  <footer style="background-color: var(--ink); color: var(--cream); padding: 4rem 0 2rem; margin-top: auto;">
+    <div class="container">
+      <div style="text-align: center; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
+        <p>&copy; 2026 Rain Forest Hotel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  
+</body>
+</html>
