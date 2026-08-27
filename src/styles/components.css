@@ -790,15 +790,30 @@
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
   transform: scale(0.96);
   opacity: 0.85;
+  background-color: var(--white) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
   border: none !important;
-  box-shadow: none !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.carousel-slide .room-card img {
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.carousel-slide .room-card .room-price {
+  color: var(--forest) !important;
+}
+
+.carousel-slide .room-card h3 {
+  color: var(--ink) !important;
 }
 
 .carousel-slide.active .room-card {
   transform: scale(1.02);
   opacity: 1;
   border: none !important;
-  box-shadow: none !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* ==========================================================================
@@ -1134,4 +1149,64 @@
   color: var(--cream);
   padding: 12rem 0 5rem;
   text-align: center;
+}
+
+/* Selling Points Grid & Cards (Landing Page Mockup) */
+.selling-points-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-top: 6rem;
+  border-top: 1px solid rgba(250, 249, 246, 0.15);
+  padding-top: 5rem;
+  align-items: start;
+}
+
+.selling-points-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.coords-outline-card {
+  border: 1px solid rgba(250, 249, 246, 0.15);
+  padding: 2.25rem;
+  background: transparent;
+  border-radius: 0px;
+  transition: all 0.25s ease;
+}
+
+.coords-outline-card:hover {
+  border-color: rgba(250, 249, 246, 0.4);
+  background-color: rgba(250, 249, 246, 0.02);
+}
+
+.coords-outline-card h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--clay);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.coords-outline-card p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--cream);
+  opacity: 0.85;
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px) {
+  .selling-points-grid {
+    grid-template-columns: 1fr 1.2fr !important;
+    gap: 6rem !important;
+  }
+  .selling-points-cards {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
 }
