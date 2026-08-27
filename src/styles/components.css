@@ -310,18 +310,18 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: var(--forest);
-  color: var(--cream);
-  padding: 0.4rem 0.8rem;
+  background-color: #D4FF00; /* Vibrant neon yellow-green */
+  color: #1A251E; /* Deep charcoal for high contrast readability */
+  padding: 0.45rem 0.85rem;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   font-weight: 700;
   border-radius: 4px;
   z-index: 5;
-  border: 1px solid rgba(250, 249, 246, 0.15);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border: 1px solid #D4FF00;
+  box-shadow: 0 4px 15px rgba(212, 255, 0, 0.35);
 }
 
 .room-card-img {
@@ -743,7 +743,7 @@
 .carousel-container {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: visible; /* Prevent absolute side buttons from being clipped */
   padding: 2rem 0;
 }
 
@@ -1335,11 +1335,20 @@
 }
 
 .carousel-side-btn.prev {
-  left: 1.5rem;
+  left: 0.5rem;
 }
 
 .carousel-side-btn.next {
-  right: 1.5rem;
+  right: 0.5rem;
+}
+
+@media (min-width: 1280px) {
+  .carousel-side-btn.prev {
+    left: -4.5rem;
+  }
+  .carousel-side-btn.next {
+    right: -4.5rem;
+  }
 }
 
 @media (max-width: 768px) {
