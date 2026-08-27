@@ -285,9 +285,7 @@
 .room-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2px; /* Fine line border gaps */
-  background-color: var(--rattan);
-  border: 2px solid var(--rattan);
+  gap: 2.5rem; /* Generous clean gaps between cards */
 }
 
 .room-card {
@@ -847,7 +845,7 @@
   z-index: 10;
   padding: 0 1.5rem;
   max-width: 1000px;
-  margin-top: 4rem; /* Shift upward slightly */
+  margin-top: 15rem;
 }
 
 .hero-title-redesign {
