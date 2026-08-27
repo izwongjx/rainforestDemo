@@ -1,6 +1,6 @@
 /* ==========================================================================
    Rain Forest Hotel - Components & Layout Styles
-   Design Style: Editorial Forest Sanctuary (Warm Minimalist & Elegant Serif)
+   Design Style: Option 2 - Modern Cabin (Architectural, Minimal & Grid)
    ========================================================================== */
 
 /* ==========================================================================
@@ -17,17 +17,17 @@
   justify-content: center;
   background-color: var(--forest);
   color: var(--cream);
-  padding: 0.95rem 2.2rem;
+  padding: 1rem 2.2rem;
   border: 1px solid var(--forest);
-  border-radius: 0px; /* Sharp editorial look */
+  border-radius: 0px; /* Sharp corners */
   font-family: var(--font-body);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: none;
 }
 
@@ -48,16 +48,16 @@
   justify-content: center;
   background-color: transparent;
   color: var(--forest);
-  padding: 0.95rem 2.2rem;
-  border: 1px solid rgba(45, 62, 50, 0.3);
+  padding: 1rem 2.2rem;
+  border: 1px solid var(--forest);
   border-radius: 0px;
   font-family: var(--font-body);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-ghost:hover,
@@ -75,12 +75,14 @@
   justify-content: center;
   background-color: transparent;
   color: var(--ink);
-  padding: 0.6rem 1.25rem;
-  border: 1px solid rgba(31, 36, 33, 0.2);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--rattan);
   border-radius: 0px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   transition: all 0.2s ease;
   cursor: pointer;
   text-decoration: none;
@@ -89,6 +91,7 @@
 .btn-secondary:hover {
   background-color: var(--ink);
   color: var(--cream);
+  border-color: var(--ink);
 }
 
 /* ==========================================================================
@@ -97,70 +100,61 @@
 
 .header-wrapper {
   position: fixed;
-  top: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 92%;
-  max-width: 1200px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
   z-index: 1000;
   display: flex;
 }
 
 .site-header {
   flex: 1;
-  padding: 1rem 2rem;
-  background: transparent;
+  padding: 1.25rem 3rem;
+  background-color: rgba(250, 249, 246, 0.96);
+  border-bottom: 1px solid var(--rattan);
   position: relative;
   transition: all 0.3s ease;
 }
 
 .site-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgba(245, 242, 235, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(45, 62, 50, 0.08);
-  border-radius: 0px; /* Sharp minimal header bar */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  z-index: -1;
+  display: none; /* No floating glass look */
 }
 
 .header-inner {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
 .logo-text {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--ink);
   text-decoration: none;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  justify-self: center;
+  gap: 2.5rem;
 }
 
 .site-header .nav-link {
   position: relative;
   font-family: var(--font-body);
   color: var(--ink);
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-decoration: none;
   transition: color 0.2s ease;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .site-header .nav-link:hover {
@@ -170,35 +164,32 @@
 
 .site-header .nav-link.active {
   opacity: 1;
-  font-weight: 600;
 }
 
 .site-header .nav-link.active::after {
   content: "";
   position: absolute;
-  bottom: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 1px;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
   background-color: var(--forest);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  justify-self: end;
+  gap: 1.5rem;
 }
 
-/* WhatsApp Nav Pill */
+/* WhatsApp Nav Button */
 .nav-whatsapp-btn {
-  background-color: #2D3E32; /* Moss instead of bright green */
+  background-color: var(--forest);
   color: var(--cream);
-  padding: 0.5rem 1.25rem;
+  padding: 0.6rem 1.25rem;
   border-radius: 0px;
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -206,11 +197,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: opacity 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .nav-whatsapp-btn:hover {
-  opacity: 0.9;
+  background-color: var(--clay);
 }
 
 .nav-whatsapp-btn svg {
@@ -233,10 +224,7 @@
     display: none;
   }
   .site-header {
-    padding: 0.9rem 1.25rem;
-  }
-  .logo-text {
-    font-size: 1.15rem;
+    padding: 1rem 1.5rem;
   }
   .mobile-menu-btn {
     display: block;
@@ -244,13 +232,15 @@
 }
 
 /* ==========================================================================
-   Room Cards (Editorial Style)
+   Room Cards (Structured Grid Style)
    ========================================================================== */
 
 .room-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 3rem;
+  gap: 2px; /* Fine line border gaps */
+  background-color: var(--rattan);
+  border: 2px solid var(--rattan);
 }
 
 .room-card {
@@ -258,34 +248,16 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  border-radius: 0px; /* Sharp corners */
+  border-radius: 0px;
   position: relative;
   background-color: var(--white);
-  border: 1px solid rgba(45, 62, 50, 0.08);
+  border: none;
   box-shadow: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.room-badge {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: var(--forest);
-  color: var(--cream);
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 0.45rem 1rem;
-  border-radius: 0px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  z-index: 1;
+  transition: transform 0.3s ease;
 }
 
 .room-card:hover {
-  border-color: var(--forest);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(45, 62, 50, 0.05);
+  transform: translateY(-2px);
 }
 
 .room-card-img {
@@ -293,15 +265,10 @@
   height: 240px;
   object-fit: cover;
   border-radius: 0px;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.room-card:hover .room-card-img {
-  transform: scale(1.03);
 }
 
 .room-card-content {
-  padding: 2rem;
+  padding: 2.25rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -309,18 +276,19 @@
 
 .room-price {
   font-family: var(--font-mono);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--forest);
-  letter-spacing: -0.02em;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clay);
 }
 
 .room-card h3 {
-  font-size: 1.35rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
   color: var(--ink);
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 /* ==========================================================================
@@ -329,7 +297,7 @@
 
 .booking-bar-wrapper {
   position: absolute;
-  bottom: -35px;
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -340,19 +308,20 @@
 .booking-bar {
   background-color: var(--white);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 10px 40px rgba(42, 38, 33, 0.06);
+  padding: 0;
+  box-shadow: 0 10px 30px rgba(30, 30, 30, 0.05);
   border-radius: 0px;
-  border: 1px solid rgba(45, 62, 50, 0.08);
+  border: 1px solid var(--rattan);
 }
 
 .booking-field {
   display: flex;
   flex-direction: column;
-  padding: 0 1.5rem;
-  border-right: 1px solid rgba(45, 62, 50, 0.1);
+  justify-content: center;
+  padding: 1.25rem 2rem;
+  border-right: 1px solid var(--rattan);
   flex: 1;
 }
 
@@ -361,11 +330,11 @@
 }
 
 .booking-label {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--forest-light);
+  letter-spacing: 0.1em;
+  color: var(--forest);
   margin-bottom: 0.25rem;
   font-weight: 600;
 }
@@ -374,37 +343,47 @@
   background: transparent;
   border: none;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--ink);
   outline: none;
   width: 100%;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .booking-btn-container {
-  padding-left: 1.5rem;
+  display: flex;
+  align-items: stretch;
+}
+
+.booking-btn-container .btn-booking {
+  border: none;
+  padding: 0 3rem;
+  height: 100%;
 }
 
 @media (max-width: 991px) {
   .booking-bar {
     flex-direction: column;
-    padding: 0;
   }
   .booking-field {
     border-right: none;
-    border-bottom: 1px solid rgba(45, 62, 50, 0.1);
-    padding: 1.25rem;
-    width: 100%;
+    border-bottom: 1px solid var(--rattan);
+    padding: 1.25rem 2rem;
   }
   .booking-field:last-of-type {
     border-bottom: none;
   }
   .booking-btn-container {
     width: 100%;
-    padding: 1.25rem;
+  }
+  .booking-btn-container .btn-booking {
+    width: 100%;
+    padding: 1.25rem 2rem;
   }
   .booking-bar-wrapper {
-    bottom: -180px;
+    bottom: -220px;
   }
 }
 
@@ -421,35 +400,33 @@
 
 @media (min-width: 992px) {
   .intro-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
     gap: 6rem;
   }
 }
 
-/* Neighborhood location cards - premium list style */
+/* Neighborhood structured grid */
 .neighborhood-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
   margin-top: 3rem;
 }
 
 .neighborhood-grid .location-card {
   background: var(--white);
-  border: 1px solid rgba(45, 62, 50, 0.06);
+  border: 1px solid var(--rattan);
   border-radius: 0px;
-  padding: 2rem;
+  padding: 2.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 180px;
-  transition: all 0.3s ease;
+  min-height: 200px;
+  transition: border-color 0.2s ease;
 }
 
 .neighborhood-grid .location-card:hover {
   border-color: var(--forest);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(45, 62, 50, 0.04);
 }
 
 .location-card-header {
@@ -460,10 +437,10 @@
 }
 
 .location-badge {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--clay);
   font-weight: 600;
 }
@@ -477,31 +454,34 @@
 
 .location-title {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--ink);
-  line-height: 1.3;
+  line-height: 1.25;
   margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 .location-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(45, 62, 50, 0.08);
+  border-top: 1px solid var(--rattan);
   padding-top: 1rem;
-  font-size: 0.8rem;
-  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
 }
 
 .location-distance {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--forest);
 }
 
 .location-time {
   color: var(--ink);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* ==========================================================================
@@ -519,9 +499,9 @@
 .media-thumb {
   position: relative;
   width: 100%;
-  padding-bottom: 125%; /* 4:5 editorial aspect ratio */
-  background: transparent;
-  border: none;
+  padding-bottom: 125%;
+  background: var(--white);
+  border: 1px solid var(--rattan);
   cursor: pointer;
   border-radius: 0px;
   overflow: hidden;
@@ -531,11 +511,11 @@
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s ease;
 }
 
 .media-thumb:hover .media-thumb-img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .play-icon {
@@ -545,21 +525,21 @@
   transform: translate(-50%, -50%);
   width: 44px;
   height: 44px;
-  background: rgba(245, 242, 235, 0.9);
+  background: var(--white);
   color: var(--forest);
+  border: 1px solid var(--rattan);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 12px rgba(45, 62, 50, 0.1);
+  font-size: 1rem;
   transition: all 0.2s ease;
 }
 
 .media-thumb:hover .play-icon {
   background: var(--forest);
   color: var(--cream);
-  transform: translate(-50%, -50%) scale(1.05);
+  border-color: var(--forest);
 }
 
 /* ==========================================================================
@@ -569,7 +549,7 @@
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(31, 36, 33, 0.95);
+  background: rgba(30, 30, 30, 0.95);
   z-index: 2000;
   display: none;
   align-items: center;
@@ -601,7 +581,7 @@
 
 .modal-video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
 }
 
@@ -611,28 +591,32 @@
 }
 
 /* ==========================================================================
-   FAQ Accordion (Line-based minimalist style)
+   FAQ Accordion (Structured Block Style)
    ========================================================================== */
 
 .faq-accordion {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .faq-item {
-  background: transparent;
-  border-bottom: 1px solid rgba(45, 62, 50, 0.15);
+  background: var(--white);
+  border: 1px solid var(--rattan);
   overflow: hidden;
+  border-radius: 0px;
 }
 
 .faq-item summary {
-  padding: 1.5rem 0.5rem;
+  padding: 1.5rem 2rem;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--ink);
-  font-weight: 400;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
   cursor: pointer;
   list-style: none;
   position: relative;
@@ -647,23 +631,21 @@
 
 .faq-item summary::after {
   content: '+';
-  font-family: var(--font-body);
-  font-size: 1.25rem;
-  color: var(--clay);
-  transition: transform 0.3s ease;
-  font-weight: 300;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--forest);
+  transition: transform 0.2s ease;
 }
 
 .faq-item[open] summary::after {
-  transform: rotate(45deg);
+  content: '−';
 }
 
 .faq-content {
-  padding: 0.5rem 0.5rem 2rem 0.5rem;
+  padding: 0 2rem 2rem 2rem;
   color: var(--ink);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
-  opacity: 0.85;
 }
 
 /* ==========================================================================
@@ -713,7 +695,7 @@
   color: var(--forest);
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 0px; /* Blocky controls */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -734,16 +716,16 @@
 
 /* Carousel Effects */
 .carousel-slide .room-card {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease, opacity 0.5s ease !important;
-  transform: scale(0.95);
-  filter: grayscale(20%) opacity(0.85);
-  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
+  transform: scale(0.96);
+  opacity: 0.85;
+  border: 1px solid var(--rattan);
 }
 
 .carousel-slide.active .room-card {
   transform: scale(1.02);
-  filter: grayscale(0%) opacity(1);
-  border-color: var(--forest);
+  opacity: 1;
+  border: 1px solid var(--forest);
 }
 
 /* ==========================================================================
@@ -752,8 +734,8 @@
 
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(15px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .reveal.active {
@@ -785,7 +767,7 @@
 .hero-overlay {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(to bottom, rgba(31, 36, 33, 0.45) 0%, rgba(245, 242, 235, 0.8) 100%);
+  background: linear-gradient(to bottom, rgba(30, 30, 30, 0.5) 0%, rgba(250, 249, 246, 0.85) 100%);
   z-index: 1;
 }
 
@@ -808,12 +790,15 @@
 }
 
 .hero-badge-redesign {
-  font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
   color: var(--clay);
+  border: 1px solid var(--rattan);
+  background-color: var(--white);
+  padding: 0.45rem 1.25rem;
   margin-bottom: 1.5rem;
   display: inline-block;
 }
@@ -821,12 +806,13 @@
 .hero-main-title-redesign {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 5.5vw, 5.5rem);
-  font-weight: 400; /* Refined editorial weight */
+  font-weight: 800; /* Crisp geometric bold headings */
   color: var(--cream);
   max-width: 1200px;
   padding: 0 1rem;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
 .hero-subtitle-redesign {
@@ -834,7 +820,7 @@
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   color: var(--cream);
   margin-bottom: 0;
-  font-weight: 400;
+  font-weight: 500;
   opacity: 0.95;
   letter-spacing: 0.02em;
 }
@@ -888,7 +874,7 @@
   position: relative;
   border-radius: 0px;
   overflow: hidden;
-  border: 1px solid rgba(45, 62, 50, 0.08);
+  border: 1px solid var(--rattan);
   transition: all 0.3s ease;
   cursor: pointer;
 }
@@ -904,7 +890,7 @@
   background-color: var(--white);
   padding: 2.25rem 2rem;
   border-radius: 0px;
-  border: 1px solid rgba(45, 62, 50, 0.08);
+  border: 1px solid var(--rattan);
   position: sticky;
   top: 120px;
   box-shadow: none;
@@ -918,25 +904,25 @@
 
 .form-label {
   display: block;
-  font-family: var(--font-body);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
   font-size: 0.7rem;
-  color: var(--forest-light);
+  color: var(--forest);
 }
 
 .form-input {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid rgba(45, 62, 50, 0.25);
+  border: 1px solid var(--rattan);
   border-radius: 0px;
   font-family: var(--font-body);
   font-size: 0.95rem;
   background-color: var(--cream);
   color: var(--ink);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .form-input:focus {
@@ -947,7 +933,7 @@
 .stepper-container {
   display: flex;
   align-items: center;
-  border: 1px solid rgba(45, 62, 50, 0.25);
+  border: 1px solid var(--rattan);
   border-radius: 0px;
   background-color: var(--cream);
   overflow: hidden;
@@ -959,7 +945,7 @@
   padding: 0.75rem 1.2rem;
   cursor: pointer;
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--forest);
   transition: opacity 0.2s ease;
 }
@@ -995,7 +981,7 @@
   font-size: 0.95rem;
   font-family: var(--font-body);
   color: var(--ink);
-  font-weight: 300;
+  font-weight: 500;
 }
 .amenities-list li svg {
   width: 18px;
@@ -1010,10 +996,10 @@
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  border-radius: 0px; /* Sharp corners */
+  border-radius: 0px;
   margin: 2rem 0;
   box-shadow: none;
-  border: 1px solid rgba(45, 62, 50, 0.08);
+  border: 1px solid var(--rattan);
 }
 .video-wrapper iframe {
   position: absolute;
@@ -1028,8 +1014,10 @@
   font-family: var(--font-body);
   font-size: 1.15rem;
   line-height: 1.8;
-  color: var(--forest-light);
-  font-weight: 500;
+  color: var(--forest);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
 }
 .room-description {
@@ -1037,8 +1025,8 @@
   font-size: 1.05rem;
   line-height: 1.8;
   color: var(--ink);
-  opacity: 0.85;
-  font-weight: 300;
+  opacity: 0.9;
+  font-weight: 400;
 }
 
 /* Mobile sticky CTA */
@@ -1050,8 +1038,8 @@
     width: 100%;
     background-color: var(--cream);
     padding: 1.25rem 2rem;
-    box-shadow: 0 -8px 24px rgba(45, 62, 50, 0.04);
-    border-top: 1px solid rgba(45, 62, 50, 0.08);
+    box-shadow: 0 -4px 15px rgba(30, 30, 30, 0.05);
+    border-top: 1px solid var(--rattan);
     z-index: 99;
     display: flex;
     justify-content: space-between;
@@ -1074,4 +1062,3 @@
   padding: 12rem 0 5rem;
   text-align: center;
 }
-

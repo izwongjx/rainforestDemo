@@ -3,16 +3,16 @@
 
 :root {
   /* Colors */
-  --cream: #F5F2EB;       /* Soft oat cream */
+  --cream: #FAF9F6;       /* Ash white background */
   --forest: #2D3E32;      /* Muted damp moss/forest green */
   --forest-light: #4A5F50;/* Soft sage green */
-  --clay: #A67C52;        /* Warm brass/gold accent */
-  --rattan: #E6E1D8;      /* Soft sand/rattan gray-cream */
-  --ink: #1F2421;         /* Deep near-black forest shadow */
+  --clay: #8C6239;        /* Warm cedar wood accent */
+  --rattan: #E5E0D8;      /* Fine line grid/border color */
+  --ink: #1E1E1E;         /* Structured charcoal black text */
   --white: #FFFFFF;
 
   /* Typography */
-  --font-display: 'Fraunces', serif;
+  --font-display: 'Inter', sans-serif; /* Geometric modern headings */
   --font-body: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
@@ -47,19 +47,20 @@ main {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 400; /* Refined editorial serif headings */
+  font-weight: 700; /* Crisp geometric bold headings */
   line-height: 1.15;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  text-transform: uppercase; /* Modern architectural look */
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-h2 { font-size: clamp(2rem, 4vw, 3rem); }
-h3 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 500; }
+h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); letter-spacing: -0.04em; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.03em; }
+h3 { font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 600; text-transform: uppercase; }
 
 p {
   margin-bottom: 1.25rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 a {
