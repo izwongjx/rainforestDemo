@@ -193,12 +193,23 @@ function initCarousel() {
     track.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
   });
 
-  // Translate vertical mouse wheel scrolling into horizontal carousel snapping
+  // Translate vertical mouse wheel scrolling into smooth horizontal card snap navigation
+  let wheelCooldown = false;
   track.addEventListener('wheel', (e) => {
     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault();
-      track.style.scrollBehavior = 'smooth';
-      track.scrollLeft += e.deltaY;
+      e.preventDefault(); // Lock page scroll while on the carousel to let user scroll cards
+      
+      if (!wheelCooldown) {
+        if (e.deltaY > 20) {
+          nextBtn.click();
+          wheelCooldown = true;
+          setTimeout(() => { wheelCooldown = false; }, 600); // match transition duration
+        } else if (e.deltaY < -20) {
+          prevBtn.click();
+          wheelCooldown = true;
+          setTimeout(() => { wheelCooldown = false; }, 600);
+        }
+      }
     }
   }, { passive: false });
 }
