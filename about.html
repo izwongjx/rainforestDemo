@@ -25,20 +25,18 @@
       width: 100%;
       height: 450px;
       object-fit: cover;
-      border-radius: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border-radius: 0px; /* Sharp corners */
+      box-shadow: none;
     }
     
     .intro-quote-badge {
       display: inline-block;
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       color: var(--clay);
-      border: 1px solid rgba(92, 70, 51, 0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 9999px;
+      font-weight: 600;
       margin-bottom: 1.5rem;
     }
     
@@ -56,18 +54,18 @@
     .history-card {
       background-color: var(--cream);
       padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      border-radius: 0px; /* Sharp corners */
+      box-shadow: none;
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      border: 1px solid rgba(92, 70, 51, 0.05);
+      border: 1px solid rgba(45, 62, 50, 0.08);
     }
     
     .history-era {
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--clay);
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -98,9 +96,9 @@
     
     .value-card {
       padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid rgba(60, 91, 69, 0.1);
-      background-color: rgba(251, 246, 236, 0.4);
+      border-radius: 0px; /* Sharp corners */
+      border: 1px solid rgba(45, 62, 50, 0.08);
+      background-color: rgba(245, 242, 235, 0.4);
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
@@ -134,14 +132,14 @@
       color: var(--cream);
       text-align: center;
       padding: 5rem 2rem;
-      border-radius: 24px;
+      border-radius: 0px; /* Sharp corners */
       margin: 4rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      box-shadow: none;
     }
     
     .accent-quote-text {
@@ -154,10 +152,10 @@
     }
     
     .accent-quote-author {
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       color: var(--rattan);
       font-weight: 600;
     }

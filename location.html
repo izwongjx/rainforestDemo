@@ -27,9 +27,9 @@
       width: 100%;
       height: 380px;
       object-fit: cover;
-      border-radius: 24px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-      border: 1px solid rgba(92, 70, 51, 0.12);
+      border-radius: 0px; /* Sharp editorial look */
+      box-shadow: none;
+      border: 1px solid rgba(45, 62, 50, 0.08);
     }
     
     /* Travel Journal Card Grid */
@@ -56,20 +56,20 @@
     
     .journal-card {
       background-color: #ffffff;
-      border-radius: 24px;
+      border-radius: 0px; /* Sharp corners */
       overflow: hidden;
-      border: 1px solid rgba(92, 70, 51, 0.12);
-      box-shadow: 0 4px 16px rgba(92, 70, 51, 0.02);
+      border: 1px solid rgba(45, 62, 50, 0.08);
+      box-shadow: none;
       display: flex;
       flex-direction: column;
       height: 100%;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .journal-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
-      border-color: rgba(92, 70, 51, 0.25);
+      border-color: var(--forest);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(45, 62, 50, 0.04);
     }
     
     .journal-img-container {
@@ -87,7 +87,7 @@
     }
     
     .journal-card:hover .journal-img {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
     
     .journal-badge {
@@ -96,13 +96,13 @@
       left: 1rem;
       background-color: var(--forest);
       color: var(--cream);
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 0.65rem;
-      font-weight: 700;
-      padding: 0.35rem 0.8rem;
-      border-radius: 9999px;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 0px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.12em;
       z-index: 2;
     }
     
@@ -136,7 +136,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(92, 70, 51, 0.08);
+      border-top: 1px solid rgba(45, 62, 50, 0.08);
       padding-top: 1rem;
       margin-top: auto;
     }
@@ -153,13 +153,13 @@
       align-items: center;
       gap: 0.4rem;
       background-color: transparent;
-      border: 1px solid rgba(60, 91, 69, 0.25);
+      border: 1px solid rgba(45, 62, 50, 0.2);
       color: var(--forest);
       font-family: var(--font-body);
       font-size: 0.75rem;
       font-weight: 600;
-      padding: 0.4rem 0.9rem;
-      border-radius: 9999px;
+      padding: 0.45rem 1rem;
+      border-radius: 0px; /* Sharp corners */
       text-decoration: none;
       transition: all 0.2s ease;
     }
@@ -178,12 +178,12 @@
     
     /* Collapsible Accordion Directory */
     .directory-accordion {
-      background-color: var(--cream);
-      border-radius: 20px;
-      border: 1px solid rgba(92, 70, 51, 0.12);
+      background-color: var(--white);
+      border-radius: 0px; /* Sharp corners */
+      border: 1px solid rgba(45, 62, 50, 0.08);
       margin-bottom: 1.5rem;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+      box-shadow: none;
       transition: border-color 0.25s ease;
     }
     
@@ -208,13 +208,13 @@
     }
     
     .accordion-trigger:hover {
-      background-color: rgba(60, 91, 69, 0.02);
+      background-color: rgba(45, 62, 50, 0.02);
     }
     
     .accordion-content {
       padding: 0 2rem 2rem;
       display: none;
-      border-top: 1px solid rgba(92, 70, 51, 0.08);
+      border-top: 1px solid rgba(45, 62, 50, 0.08);
       padding-top: 1.5rem;
     }
     
@@ -239,7 +239,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(92, 70, 51, 0.06);
+      border-bottom: 1px solid rgba(45, 62, 50, 0.06);
       font-size: 0.95rem;
     }
     .directory-list li:last-child {
@@ -250,12 +250,12 @@
     .cta-banner {
       background-color: var(--forest);
       color: var(--cream);
-      border-radius: 24px;
+      border-radius: 0px; /* Sharp corners */
       padding: 4rem 2.5rem;
       text-align: center;
       margin-top: 6rem;
-      box-shadow: 0 15px 35px rgba(60,91,69,0.15);
-      border: 1px solid rgba(251,246,236,0.1);
+      box-shadow: none;
+      border: 1px solid rgba(245, 242, 235, 0.1);
     }
   </style>
 </head>
