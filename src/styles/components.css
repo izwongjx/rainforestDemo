@@ -9,7 +9,6 @@
 
 /* Premium Wood/Forest Button */
 .btn-whatsapp,
-.hero-btn-primary,
 .btn-booking,
 .btn-discover {
   display: inline-flex;
@@ -32,7 +31,6 @@
 }
 
 .btn-whatsapp:hover,
-.hero-btn-primary:hover,
 .btn-booking:hover,
 .btn-discover:hover {
   background-color: transparent;
@@ -41,7 +39,6 @@
 
 /* Secondary Ghost Button */
 .btn-ghost,
-.hero-btn-secondary,
 .btn-view-details {
   display: inline-flex;
   align-items: center;
@@ -61,11 +58,61 @@
 }
 
 .btn-ghost:hover,
-.hero-btn-secondary:hover,
 .btn-view-details:hover {
   background-color: var(--forest);
   color: var(--cream);
   border-color: var(--forest);
+}
+
+/* Hero Button - Primary (High Contrast) */
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cream);
+  color: var(--forest);
+  padding: 1rem 2.2rem;
+  border: 1px solid var(--cream);
+  border-radius: 0px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-btn-primary:hover {
+  background-color: transparent;
+  color: var(--cream);
+  border-color: var(--cream);
+}
+
+/* Hero Button - Secondary (High Contrast Ghost) */
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--cream);
+  padding: 1rem 2.2rem;
+  border: 1px solid rgba(250, 249, 246, 0.5);
+  border-radius: 0px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-btn-secondary:hover {
+  background-color: var(--cream);
+  color: var(--forest);
+  border-color: var(--cream);
 }
 
 /* Subtle Link Button */
@@ -800,7 +847,7 @@
   z-index: 10;
   padding: 0 1.5rem;
   max-width: 1000px;
-  margin-top: 15rem;
+  margin-top: 4rem; /* Shift upward slightly */
 }
 
 .hero-title-redesign {
