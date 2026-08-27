@@ -285,7 +285,9 @@
 .room-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem; /* Generous clean gaps between cards */
+  gap: 2px; /* Fine line border gaps */
+  background-color: var(--rattan);
+  border: 2px solid var(--rattan);
 }
 
 .room-card {
@@ -788,13 +790,15 @@
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
   transform: scale(0.96);
   opacity: 0.85;
-  border: 1px solid var(--rattan);
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .carousel-slide.active .room-card {
   transform: scale(1.02);
   opacity: 1;
-  border: 1px solid var(--forest);
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* ==========================================================================
