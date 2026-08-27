@@ -1224,9 +1224,9 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  margin-top: 6rem;
-  border-top: 1px solid rgba(250, 249, 246, 0.15);
-  padding-top: 5rem;
+  margin-top: 4rem;
+  border-top: 1px solid var(--rattan);
+  padding-top: 3.5rem;
   align-items: start;
 }
 
@@ -1237,7 +1237,7 @@
 }
 
 .coords-outline-card {
-  border: 1px solid rgba(250, 249, 246, 0.15);
+  border: 1px solid var(--rattan);
   padding: 2.25rem;
   background: transparent;
   border-radius: 0px;
@@ -1245,8 +1245,8 @@
 }
 
 .coords-outline-card:hover {
-  border-color: rgba(250, 249, 246, 0.4);
-  background-color: rgba(250, 249, 246, 0.02);
+  border-color: var(--forest);
+  background-color: rgba(60, 91, 69, 0.02);
 }
 
 .coords-outline-card h4 {
@@ -1263,8 +1263,8 @@
   font-family: var(--font-body);
   font-size: 0.85rem;
   line-height: 1.6;
-  color: var(--cream);
-  opacity: 0.85;
+  color: var(--ink);
+  opacity: 0.8;
   margin-bottom: 0;
 }
 
@@ -1276,5 +1276,53 @@
   .selling-points-cards {
     grid-template-columns: 1fr 1fr !important;
     gap: 2rem !important;
+  }
+}
+
+/* Absolute Side Navigation Arrows */
+.carousel-side-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(60, 91, 69, 0.05);
+  border: 1px solid rgba(60, 91, 69, 0.2);
+  color: var(--forest);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 20;
+}
+
+.carousel-side-btn:hover {
+  background: var(--forest);
+  color: var(--white);
+  border-color: var(--forest);
+}
+
+.carousel-side-btn.prev {
+  left: 0rem;
+}
+
+.carousel-side-btn.next {
+  right: 0rem;
+}
+
+@media (max-width: 768px) {
+  .carousel-side-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  .carousel-side-btn.prev {
+    left: 0.25rem;
+  }
+  .carousel-side-btn.next {
+    right: 0.25rem;
   }
 }
