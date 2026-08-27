@@ -405,6 +405,30 @@
   }
 }
 
+.section-divider-coords {
+  width: 100%;
+  border-top: 1px solid var(--rattan);
+  border-bottom: 1px solid var(--rattan);
+  padding: 1.5rem 0; /* More padding */
+  text-align: center;
+  background-color: var(--cream);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  margin-top: -1px; /* Avoid pixel gaps */
+}
+
+.coords-text {
+  font-family: var(--font-mono);
+  font-size: 0.95rem; /* Larger font size */
+  font-weight: 700;   /* Extra bold look */
+  letter-spacing: 0.25em; /* Generous letter spacing */
+  color: var(--clay);
+  text-transform: uppercase;
+}
+
 /* Neighborhood structured grid */
 .neighborhood-grid {
   display: grid;
