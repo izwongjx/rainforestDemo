@@ -192,6 +192,15 @@ function initCarousel() {
     track.style.scrollBehavior = 'smooth';
     track.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
   });
+
+  // Translate vertical mouse wheel scrolling into horizontal carousel snapping
+  track.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      track.style.scrollBehavior = 'smooth';
+      track.scrollLeft += e.deltaY;
+    }
+  }, { passive: false });
 }
 
 function initLightbox() {

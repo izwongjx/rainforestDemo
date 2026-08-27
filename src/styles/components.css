@@ -1236,16 +1236,28 @@
 }
 
 .coords-outline-card {
+  position: relative;
   border: 1px solid var(--rattan);
-  padding: 2.25rem;
+  padding: 3.5rem 2.25rem 2.25rem 2.25rem;
   background: transparent;
   border-radius: 0px;
   transition: all 0.25s ease;
 }
 
 .coords-outline-card:hover {
-  border-color: var(--forest);
-  background-color: rgba(60, 91, 69, 0.02);
+  border-color: var(--clay) !important;
+  background-color: rgba(166, 124, 82, 0.03) !important;
+}
+
+.coords-outline-card .card-num {
+  position: absolute;
+  top: 1.5rem;
+  left: 2.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--clay);
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
 .coords-outline-card h4 {
@@ -1253,7 +1265,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--clay);
+  color: var(--forest);
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
@@ -1305,11 +1317,20 @@
 }
 
 .carousel-side-btn.prev {
-  left: 0rem;
+  left: 0.5rem;
 }
 
 .carousel-side-btn.next {
-  right: 0rem;
+  right: 0.5rem;
+}
+
+@media (min-width: 1280px) {
+  .carousel-side-btn.prev {
+    left: -3.5rem;
+  }
+  .carousel-side-btn.next {
+    right: -3.5rem;
+  }
 }
 
 @media (max-width: 768px) {
