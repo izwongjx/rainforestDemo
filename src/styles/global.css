@@ -12,7 +12,7 @@
   --white: #FFFFFF;
 
   /* Typography */
-  --font-display: 'Inter', sans-serif; /* Geometric modern headings */
+  --font-display: 'Fraunces', serif; /* Elegant serif display headings */
   --font-body: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
@@ -47,16 +47,15 @@ main {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 700; /* Crisp geometric bold headings */
-  line-height: 1.15;
+  font-weight: 500; /* Elegant serif display weight */
+  line-height: 1.2;
   margin-bottom: 1rem;
-  letter-spacing: -0.03em;
-  text-transform: uppercase; /* Modern architectural look */
+  letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); letter-spacing: -0.04em; }
-h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.03em; }
-h3 { font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 600; text-transform: uppercase; }
+h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; }
+h3 { font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 500; }
 
 p {
   margin-bottom: 1.25rem;
