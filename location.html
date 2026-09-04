@@ -7,29 +7,105 @@
   <link rel="stylesheet" href="/src/styles/global.css" />
   <link rel="stylesheet" href="/src/styles/components.css" />
   <style>
-    .location-hero-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: center;
-      padding-top: 10rem;
-      padding-bottom: 3.5rem;
-    }
-    
-    @media (min-width: 992px) {
-      .location-hero-grid {
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 5rem;
-      }
-    }
-    
-    .location-hero-img {
+    .location-hero-map {
+      position: relative;
       width: 100%;
-      height: 380px;
+      height: 75vh;
+      min-height: 650px;
+      background-color: var(--cream);
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+      overflow: hidden; /* Prevent map background from bleeding into next section */
+    }
+    
+    .map-background {
+      position: absolute;
+      top: -100px; /* Hide the Google Maps place info box */
+      left: 0;
+      width: 100%;
+      height: calc(100% + 150px);
+      z-index: 0;
+      background-color: var(--cream);
+    }
+    
+    .map-background iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(30%) contrast(1.05) opacity(0.95);
+    }
+    
+    .hero-layout-centered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem;
+    }
+    
+    .hero-floating-card {
+      background-color: var(--forest);
+      color: var(--cream);
+      width: 100%;
+      max-width: 1000px;
+      border: 4px solid var(--rattan);
+      box-shadow: 0 30px 60px rgba(16, 24, 18, 0.4);
+      border-radius: 4px;
+      display: flex;
+      position: relative;
+    }
+    
+    .hero-floating-card::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px; right: 8px; bottom: 8px;
+      border: 1px solid rgba(230, 224, 212, 0.25);
+      pointer-events: none;
+      z-index: 5;
+    }
+    
+    .card-content-side {
+      flex: 1 1 55%;
+      padding: 4rem 3.5rem;
+      text-align: left;
+      z-index: 2;
+    }
+    
+    .card-image-side {
+      flex: 1 1 45%;
+      position: relative;
+      border-left: 1px solid rgba(230, 224, 212, 0.2);
+    }
+    
+    .card-image-side img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 0px; /* Sharp editorial look */
-      box-shadow: none;
-      border: 1px solid rgba(45, 62, 50, 0.08);
+      padding: 8px 8px 8px 0; /* Fit inside the inner border */
+    }
+    
+    @media (max-width: 992px) {
+      .hero-floating-card {
+        flex-direction: column;
+        max-width: 600px;
+      }
+      .card-content-side {
+        padding: 3rem 2rem;
+      }
+      .card-image-side {
+        height: 300px;
+        border-left: none;
+        border-top: 1px solid rgba(230, 224, 212, 0.2);
+      }
+      .card-image-side img {
+        padding: 0 8px 8px 8px;
+      }
     }
     
     /* Travel Journal Card Grid */
@@ -58,7 +134,7 @@
       background-color: #ffffff;
       border-radius: 0px; /* Sharp corners */
       overflow: hidden;
-      border: 1px solid rgba(45, 62, 50, 0.08);
+      border: 1px solid var(--forest);
       box-shadow: none;
       display: flex;
       flex-direction: column;
@@ -238,12 +314,33 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 0;
+      padding: 1.25rem 0;
       border-bottom: 1px solid rgba(45, 62, 50, 0.06);
       font-size: 0.95rem;
     }
     .directory-list li:last-child {
       border-bottom: none;
+    }
+    
+    .location-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--forest);
+      font-weight: 600;
+    }
+    
+    .location-right-info {
+      display: flex;
+      align-items: center;
+      gap: 2rem; /* Creates clean spacing between distance and button */
+    }
+    
+    .location-distance {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--clay);
+      font-weight: 700;
+      letter-spacing: 0.05em;
     }
     
     /* Callout Banner */
@@ -280,7 +377,7 @@
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
-        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" style="display:none;">☰</button>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
       </div>
     </div>
   </header>
@@ -288,31 +385,41 @@
 </div>
 
                   <main>
-    <!-- Section 1: About-style Split Hero Layout -->
-    <section style="background-color: var(--cream);">
-      <div class="container">
-        <div class="location-hero-grid">
-          <!-- Left side: Editorial text -->
-          <div class="reveal">
-            <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--clay); font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 1rem;">Prime Location</span>
-            <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem); color: var(--forest); margin: 0 0 1.5rem; line-height: 1.1;">Explore the Neighborhood</h1>
-            <p style="font-family: var(--font-body); font-size: 1.15rem; line-height: 1.7; color: var(--ink); opacity: 0.9; font-weight: 300; margin: 0;">
-              We are located at 122, Jalan Petaling, right in the heart of Kuala Lumpur's vibrant Chinatown. Step outside our doors directly into a world of bustling street food, historical temples, and hip hidden bars.
+    <!-- Section 1: Foresty Map Background Hero -->
+    <section class="location-hero-map">
+      <div class="map-background">
+        <iframe src="https://maps.google.com/maps?q=Rain+Forest+Hotel,+122,+Jalan+Petaling,+Kuala+Lumpur&t=&z=17&ie=UTF8&iwloc=&output=embed" loading="lazy" aria-hidden="true" tabindex="-1" style="pointer-events: none;"></iframe>
+      </div>
+      <div class="container hero-layout-centered">
+        
+        <!-- Centered Split Card -->
+        <div class="hero-floating-card reveal">
+          
+          <div class="card-content-side">
+            <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--rattan); font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 0.75rem;">Prime Location</span>
+            <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); color: var(--cream); margin: 0 0 1rem; line-height: 1.15;">Explore the Neighborhood</h1>
+            <p style="font-family: var(--font-display); font-size: 1.15rem; line-height: 1.6; color: var(--cream); opacity: 0.95; font-weight: 400; margin-bottom: 1.75rem;">
+              Located at 122, Jalan Petaling, right in the heart of Kuala Lumpur's vibrant Chinatown. Step outside our doors directly into a world of bustling street food, historical temples, and hip hidden bars.
             </p>
+            <a href="https://www.google.com/maps/place/Rain+Forest+Hotel/@3.1418857,101.6954398,17z/data=!3m1!4b1!4m9!3m8!1s0x31cc49d067477349:0xccd902779e736366!5m2!4m1!1i2!8m2!3d3.1418803!4d101.6980147!16s%2Fg%2F1ygbbfxh6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="nav-whatsapp-btn" style="display: inline-flex; justify-content: center; padding: 0.9rem 1.75rem; font-size: 0.95rem; font-weight: 600; background-color: var(--rattan); color: var(--forest); border: none;">
+              Open in Maps
+            </a>
           </div>
-          <!-- Right side: Chinatown Portrait Cover -->
-          <div class="reveal">
-            <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80" alt="Chinatown Market Kuala Lumpur" class="location-hero-img" />
+
+          <div class="card-image-side">
+            <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=600&q=80" alt="Chinatown Kuala Lumpur" />
           </div>
+
         </div>
+
       </div>
     </section>
 
     <!-- Section 2: What's near you (6 Attraction Highlights with Pictures) -->
-    <section class="section-padding" style="background-color: var(--cream); padding-top: 2rem;">
+    <section class="section-padding" style="background-color: var(--cream); padding-top: 7rem;">
       <div class="container">
         
-        <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--forest); margin-bottom: 3.5rem; text-align: center;">What's near you</h2>
+        <h2 style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--forest); margin-bottom: 4rem; text-align: center;">What's near you</h2>
         
         <div class="journal-grid">
           
@@ -630,5 +737,10 @@
   <script type="module" src="/src/js/main.js"></script>
 
   
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/60126183387" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 </body>
 </html>

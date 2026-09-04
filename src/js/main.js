@@ -8,6 +8,16 @@ export function initMobileNav() {
       header.classList.toggle('menu-open');
       const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
       mobileBtn.setAttribute('aria-expanded', !isExpanded);
+      mobileBtn.textContent = isExpanded ? '☰' : '✕';
+    });
+
+    // Close menu when a nav link is clicked
+    document.querySelectorAll('.nav-links .nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        header.classList.remove('menu-open');
+        mobileBtn.setAttribute('aria-expanded', false);
+        mobileBtn.textContent = '☰';
+      });
     });
   }
 
@@ -193,25 +203,7 @@ function initCarousel() {
     track.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
   });
 
-  // Translate vertical mouse wheel scrolling into smooth horizontal card snap navigation
-  let wheelCooldown = false;
-  track.addEventListener('wheel', (e) => {
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault(); // Lock page scroll while on the carousel to let user scroll cards
-      
-      if (!wheelCooldown) {
-        if (e.deltaY > 20) {
-          nextBtn.click();
-          wheelCooldown = true;
-          setTimeout(() => { wheelCooldown = false; }, 600); // match transition duration
-        } else if (e.deltaY < -20) {
-          prevBtn.click();
-          wheelCooldown = true;
-          setTimeout(() => { wheelCooldown = false; }, 600);
-        }
-      }
-    }
-  }, { passive: false });
+  // Wheel scrolling behavior has been removed so vertical scrolling is uninterrupted
 }
 
 function initLightbox() {

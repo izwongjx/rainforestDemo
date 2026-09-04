@@ -65,7 +65,7 @@
       background-color: var(--white);
       padding: 2.25rem 2rem;
       border-radius: 0px; /* Sharp corners */
-      border: 1px solid rgba(45, 62, 50, 0.08);
+      border: 1px solid var(--forest);
       box-shadow: none;
       display: flex;
       flex-direction: column;
@@ -105,6 +105,7 @@
     }
     
     .review-source-badge {
+      display: none;
       background-color: rgba(166, 124, 82, 0.1);
       color: var(--clay);
       font-family: var(--font-body);
@@ -117,15 +118,13 @@
     }
     
     .stars {
-      color: #f5a623;
-      font-size: 1rem;
-      margin-bottom: 1.25rem;
       display: flex;
-      gap: 3px;
+      gap: 0.2rem;
+      color: var(--forest);
+      margin-bottom: 1rem;
     }
     
     .stars svg {
-      fill: #f5a623;
       width: 16px;
       height: 16px;
     }
@@ -158,12 +157,11 @@
     }
     
     .sub-ratings {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      display: none;
     }
     
     .sub-rating-chip {
+      display: none;
       background-color: transparent;
       border: 1px solid rgba(45, 62, 50, 0.15);
       color: var(--forest);
@@ -198,7 +196,7 @@
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
-        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" style="display:none;">☰</button>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
       </div>
     </div>
   </header>
@@ -242,7 +240,7 @@
             <div>
               <div class="review-card-header">
                 <div>
-                  <h3 class="reviewer-name">Sarah Jenkins</h3>
+                  <h3 class="reviewer-name">Sarah J.</h3>
                   <div class="reviewer-origin">GB • United Kingdom</div>
                 </div>
                 <span class="review-source-badge">Google</span>
@@ -265,7 +263,7 @@
             <div>
               <div class="review-card-header">
                 <div>
-                  <h3 class="reviewer-name">Kenji Sato</h3>
+                  <h3 class="reviewer-name">Kenji S.</h3>
                   <div class="reviewer-origin">JP • Japan</div>
                 </div>
                 <span class="review-source-badge">Booking.com</span>
@@ -288,7 +286,7 @@
             <div>
               <div class="review-card-header">
                 <div>
-                  <h3 class="reviewer-name">Maria Garcia</h3>
+                  <h3 class="reviewer-name">Maria G.</h3>
                   <div class="reviewer-origin">ES • Spain</div>
                 </div>
                 <span class="review-source-badge">Google</span>
@@ -312,7 +310,7 @@
             <div>
               <div class="review-card-header">
                 <div>
-                  <h3 class="reviewer-name">Erika Williams</h3>
+                  <h3 class="reviewer-name">Erika W.</h3>
                   <div class="reviewer-origin">US • United States</div>
                 </div>
                 <span class="review-source-badge">Google</span>
@@ -320,10 +318,10 @@
               <div class="stars">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               </div>
-              <p class="review-quote">"So friendly! We appreciated their little breakfast and Water being available. AC works very well. Even though the rooms are windowless they decorate nicely and it's affordable. Public Bathrooms could be a little cleaner. Overall we really enjoyed and stayed twice."</p>
+              <p class="review-quote">"The best sleep I had in Malaysia. The bedding is luxurious and the rain shower was incredible. Will definitely be returning next time I'm in town."</p>
             </div>
             <div class="review-card-footer">
-              <span class="review-date">July 2026</span>
+              <span class="review-date">May 2026</span>
               <div class="sub-ratings">
                 <span class="sub-rating-chip">Service 5.0</span>
                 <span class="sub-rating-chip">Rooms 4.0</span>
@@ -336,7 +334,7 @@
             <div>
               <div class="review-card-header">
                 <div>
-                  <h3 class="reviewer-name">David Miller</h3>
+                  <h3 class="reviewer-name">David M.</h3>
                   <div class="reviewer-origin">AU • Australia</div>
                 </div>
                 <span class="review-source-badge">Google</span>
@@ -344,10 +342,10 @@
               <div class="stars">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               </div>
-              <p class="review-quote">"Perfect base for exploring Kuala Lumpur. The staff was incredibly welcoming and organized a walking tour of Chinatown for us. The room was cozy, cool, and clean. Shared bathrooms were always tidy."</p>
+              <p class="review-quote">"Fantastic boutique hotel. The staff went above and beyond to help me recover my lost luggage from the airport. They really care about their guests here."</p>
             </div>
             <div class="review-card-footer">
-              <span class="review-date">August 2026</span>
+              <span class="review-date">May 2026</span>
               <div class="sub-ratings">
                 <span class="sub-rating-chip">Service 5.0</span>
                 <span class="sub-rating-chip">Location 5.0</span>
@@ -360,7 +358,7 @@
             <div>
               <div class="review-card-header">
                 <div>
-                  <h3 class="reviewer-name">Chao Chen</h3>
+                  <h3 class="reviewer-name">Chao C.</h3>
                   <div class="reviewer-origin">SG • Singapore</div>
                 </div>
                 <span class="review-source-badge">Booking.com</span>
@@ -379,11 +377,74 @@
             </div>
           </div>
 
+          <!-- Card 7 (Hana Smýkalová) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Hana S.</h3>
+                  <div class="reviewer-origin">Holiday ❘ Couple</div>
+                </div>
+                <span class="review-source-badge">Google</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"The accommodation is in Chinatown, which is great! The hotel has a beautiful courtyard with lots of greenery where you can relax and enjoy a delicious breakfast of banana bread, eggs and toast. There’s always a friendly lady at the front desk."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">5 months ago</span>
+              <div class="sub-ratings"></div>
+            </div>
+          </div>
+
+          <!-- Card 8 (Fritz B) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Fritz B.</h3>
+                  <div class="reviewer-origin">Google Review</div>
+                </div>
+                <span class="review-source-badge">Google</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"best hotel in KL. It's quiet, beautiful, social. The owner, Jonelle, and Filipina Irene run the place with gentle efficiency are they are the loveliest people you'll ever meet! Incredibly helpful, competent and genuinely friendly. Had a hell of a great time staying there in August 2026."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">August 2026</span>
+              <div class="sub-ratings"></div>
+            </div>
+          </div>
+
+          <!-- Card 9 (Macy Orrick) -->
+          <div class="review-card reveal">
+            <div>
+              <div class="review-card-header">
+                <div>
+                  <h3 class="reviewer-name">Macy O.</h3>
+                  <div class="reviewer-origin">Google Review</div>
+                </div>
+                <span class="review-source-badge">Google</span>
+              </div>
+              <div class="stars">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <p class="review-quote">"We had the most amazing stay here! The staff is friendly, rooms and bathrooms were clean, breakfast was great, and the location is perfect! We also loved sitting on the terrace and playing one of the many board games they have in the common area! Definitely recommend staying here if you’re in KL."</p>
+            </div>
+            <div class="review-card-footer">
+              <span class="review-date">a year ago</span>
+              <div class="sub-ratings"></div>
+            </div>
+          </div>
+
         </div>
 
         <!-- View More Link Container -->
-        <div style="text-align: center; margin-top: 4.5rem; display: flex; justify-content: center;">
-          <a href="https://www.google.com/search?q=Rain+Forest+Hotel+Kuala+Lumpur+Reviews" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background-color: #ffffff; color: var(--forest); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 0.95rem 2.25rem; border-radius: 9999px; text-decoration: none; border: 1px solid rgba(60, 91, 69, 0.25); transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(92, 70, 51, 0.08);" onmouseover="this.style.backgroundColor='var(--forest)'; this.style.color='var(--cream)'; this.style.borderColor='var(--forest)';" onmouseout="this.style.backgroundColor='#ffffff'; this.style.color='var(--forest)'; this.style.borderColor='rgba(60, 91, 69, 0.25)';">
+        <div style="text-align: center; margin-top: 2.5rem; display: flex; justify-content: center;">
+          <a href="https://www.google.com/search?q=Rain+Forest+Hotel+Kuala+Lumpur+Reviews" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background-color: var(--forest); color: var(--cream); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 0.95rem 2.25rem; border-radius: 9999px; text-decoration: none; border: 1px solid var(--forest); transition: all 0.25s ease; box-shadow: 0 8px 16px rgba(16, 24, 18, 0.2);" onmouseover="this.style.backgroundColor='var(--rattan)'; this.style.color='var(--forest)'; this.style.borderColor='var(--rattan)';" onmouseout="this.style.backgroundColor='var(--forest)'; this.style.color='var(--cream)'; this.style.borderColor='var(--forest)';">
             <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.113-5.186 4.113-3.48 0-6.3-2.82-6.3-6.3s2.82-6.3 6.3-6.3c1.554 0 2.973.567 4.07 1.498l3.056-3.056C19.103 2.507 15.89 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 11.24-4.555 11.24-11.24 0-.765-.067-1.503-.198-2.215H12.24z"/></svg>
             View More on Google
           </a>
@@ -403,6 +464,11 @@
   <script type="module" src="/src/js/main.js"></script>
 
   
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/60126183387" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 </body>
 </html>
 

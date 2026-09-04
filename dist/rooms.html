@@ -72,13 +72,19 @@
     
     @media (min-width: 768px) {
       .rooms-hero-grid {
-        grid-template-columns: 1.2fr 1fr;
+        grid-template-columns: 1fr 1.2fr;
         gap: 6rem;
+      }
+      .rooms-hero-grid > div:nth-child(1) {
+        order: 2;
+      }
+      .rooms-hero-grid > div:nth-child(2) {
+        order: 1;
       }
     }
   </style>
-  <script type="module" crossorigin src="/assets/main-B1hNQjr5.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-BZQVo85s.css">
+  <script type="module" crossorigin src="/assets/main-BpG2InhP.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-BREQu1j1.css">
 </head>
 <body>
 
@@ -101,7 +107,7 @@
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
-        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" style="display:none;">☰</button>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
       </div>
     </div>
   </header>
@@ -109,35 +115,309 @@
 </div>
 
     <main>
-    <!-- Section 1: Split Hero Header -->
-    <section class="section-padding" style="background-color: var(--cream); padding-top: 12rem;">
-      <div class="container">
-        <div class="rooms-hero-grid">
-          <div class="reveal">
-            <span class="intro-badge">Chinatown Basecamp</span>
-            <h1 style="font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4rem); color: var(--forest); margin-bottom: 2rem; line-height: 1.1;">
-              The Spaces.
-            </h1>
-            <p style="font-family: var(--font-body); font-size: 1.1rem; line-height: 1.7; color: var(--ink); margin-bottom: 1.5rem; font-weight: 300;">
-              Simple, clean, and exceptionally quiet. We designed our rooms to strip away the dynamic algorithm rates and corporate bloat, giving you an honest, comfortable sleep in the center of Chinatown.
-            </p>
-            <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.7; color: var(--clay); font-weight: 300; margin-bottom: 0;">
-              All our private rooms feature robust air conditioning, fresh linens, and instant access to our peaceful green courtyard. Pick the space that fits your trip best.
-            </p>
+    <style>
+      .rooms-full-float-hero {
+        position: relative;
+        background-color: var(--cream);
+        padding-bottom: 6rem;
+      }
+      
+      .full-float-img {
+        width: 100%;
+        height: 75vh;
+        min-height: 500px;
+        max-height: 800px;
+        object-fit: cover;
+        display: block;
+      }
+      
+      .full-float-card-container {
+        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      
+      .full-float-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        padding: 3rem 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.5);
+        max-width: 650px;
+        margin-top: -5rem;
+        position: relative;
+        z-index: 10;
+      }
+      
+      .full-float-card h1 {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 7vw, 5rem);
+        color: var(--ink);
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+      }
+      
+      .full-float-card p {
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--ink);
+        opacity: 0.9;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-right-accent {
+        display: none;
+      }
+
+      @media (min-width: 992px) {
+        .full-float-card-container {
+          padding: 0 4rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+        
+        .full-float-card {
+          margin-top: -8rem;
+          padding: 4rem 3.5rem;
+        }
+
+        .hero-right-accent {
+          display: flex;
+          gap: 3rem;
+          padding-bottom: 2rem;
+          padding-right: 2rem;
+        }
+        
+        .hero-accent-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        .hero-accent-number {
+          font-family: var(--font-display);
+          font-size: 2.75rem;
+          color: var(--forest);
+          line-height: 1;
+        }
+        
+        .hero-accent-label {
+          font-family: var(--font-mono);
+          text-transform: uppercase;
+          font-size: 0.7rem;
+          letter-spacing: 0.1em;
+          color: var(--clay);
+          font-weight: 600;
+        }
+      }
+    </style>
+
+    <section class="rooms-full-float-hero">
+      <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=2000&q=80" alt="Boutique hotel room" class="full-float-img reveal" />
+      
+      <div class="full-float-card-container">
+        <div class="full-float-card reveal" style="transition-delay: 0.2s;">
+          <h1>Stay With Us.</h1>
+          <p>
+            Simple, clean, and exceptionally quiet. We designed our rooms to strip away the dynamic algorithm rates and corporate bloat, giving you an honest, comfortable sleep in the center of Chinatown.
+          </p>
+          <p style="font-size: 0.95rem; margin-bottom: 0; opacity: 0.7;">
+            All our private rooms feature robust air conditioning, fresh linens, and instant access to our peaceful green courtyard. Pick the space that fits your trip best.
+          </p>
+        </div>
+
+        <div class="hero-right-accent reveal" style="transition-delay: 0.4s;">
+          <div class="hero-accent-item">
+            <span class="hero-accent-number">08</span>
+            <span class="hero-accent-label">Private Rooms</span>
           </div>
-          <div class="reveal">
-            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Boutique hotel room bed detail" class="rooms-hero-img" />
+          <div class="hero-accent-item">
+            <span class="hero-accent-number">24</span>
+            <span class="hero-accent-label">Hour Access</span>
+          </div>
+          <div class="hero-accent-item">
+            <span class="hero-accent-number">01</span>
+            <span class="hero-accent-label">Green Courtyard</span>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Section 2: Rooms Catalog Grid -->
+    </section>    <!-- Section 2: Rooms Catalog Grid -->
     <section class="section-padding" style="background-color: var(--cream); padding-top: 2rem;">
       <div class="container">
+        
+        <style>
+          .room-filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+          }
+          
+          .room-filter-btn {
+            background: transparent;
+            border: 1px solid rgba(140, 114, 87, 0.5); /* clay semi */
+            color: var(--forest);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+          
+          .room-filter-btn:hover, .room-filter-btn.active {
+            background: var(--forest);
+            color: var(--cream);
+            border-color: var(--forest);
+          }
+        </style>
+        
+        <div class="room-filter-container">
+          <button class="room-filter-btn active" data-filter="all">All Spaces</button>
+          <button class="room-filter-btn" data-filter="single">Single</button>
+          <button class="room-filter-btn" data-filter="double">Double</button>
+          <button class="room-filter-btn" data-filter="twin">Twin</button>
+        </div>
+
+        <style>
+          /* Override default grid to match the requested editorial layout */
+          .rooms-page-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+          }
+
+          @media (min-width: 992px) {
+            .rooms-page-grid {
+              grid-template-columns: repeat(3, 1fr);
+              gap: 4rem 2.5rem;
+            }
+
+            /* Base styling for all cards (Standard vertical stack) */
+            .rooms-page-grid .room-card {
+              height: 100%;
+              background: var(--white);
+              box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+              border-radius: 12px;
+              display: flex; 
+              flex-direction: column;
+              position: relative;
+              overflow: hidden;
+            }
+            
+            .rooms-page-grid .room-card .room-card-img {
+              width: 100%;
+              height: 240px; 
+              object-fit: cover;
+              border-radius: 12px 12px 0 0;
+            }
+            
+            .rooms-page-grid .room-card .room-card-content {
+              padding: 2rem;
+              display: block; 
+              background: var(--white);
+              flex: 1; /* Stretch to fill height */
+              position: static;
+              width: auto;
+              max-width: none;
+              box-shadow: none;
+            }
+
+            /* FIRST ROW CARDS (Card 1 spans 2 cols, Card 2 spans 1 col) */
+            .rooms-page-grid .room-card:first-child {
+              grid-column: span 2;
+            }
+            
+            /* Make the image heights identical for the first row so their white boxes perfectly align */
+            .rooms-page-grid .room-card:nth-child(1) .room-card-img,
+            .rooms-page-grid .room-card:nth-child(2) .room-card-img {
+              height: 380px;
+            }
+            
+            .rooms-page-grid .room-card:first-child .room-card-content {
+              /* Reset back to normal flex behavior */
+              position: static;
+              width: auto;
+              max-width: none;
+              background: transparent;
+              padding: 2.5rem;
+              box-shadow: none;
+              border-radius: 0;
+            }
+          }
+
+          /* General layout overrides for the mock aesthetic */
+          .room-card-content h3 {
+            font-size: 1.5rem !important;
+            color: var(--forest) !important;
+            margin-bottom: 0.5rem !important;
+          }
+
+          /* Force the header row to stack instead of space-between to match mock */
+          .room-card-content > div:first-child {
+            display: block !important;
+          }
+          
+          .room-card-content > div:first-child > div {
+            text-align: left !important;
+            margin-top: 1.5rem;
+          }
+          
+          .room-price {
+            font-size: 1.1rem !important;
+            color: var(--ink) !important;
+            display: inline-block !important;
+            font-family: var(--font-body) !important;
+            font-weight: 500 !important;
+          }
+          .room-price::before {
+            content: 'Price: ';
+            font-weight: 400;
+          }
+          
+          .room-price + span {
+            display: inline-block !important;
+            text-transform: lowercase !important;
+            font-family: var(--font-body) !important;
+            font-size: 1rem !important;
+            color: var(--ink) !important;
+            font-weight: 400 !important;
+            letter-spacing: 0 !important;
+            margin-top: 0 !important;
+          }
+
+          .btn-discover {
+            display: inline-block !important;
+            background: var(--forest);
+            color: var(--white);
+            padding: 0.8rem 2.5rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 2px;
+            margin-top: 1.5rem;
+            transition: all 0.2s ease;
+          }
+          .btn-discover:hover {
+            background: var(--ink);
+          }
+        </style>
+
         <div class="rooms-page-grid">
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="single">
             <div class="room-badge">Popular Choice</div>
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Single Room with Shared Bathroom" class="room-card-img" />
             <div class="room-card-content">
@@ -168,7 +448,7 @@
             </div>
           </div>
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="double">
             
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Standard Double Room" class="room-card-img" />
             <div class="room-card-content">
@@ -188,8 +468,10 @@
               </div>
 
               <!-- Amenities Row (Light & Spaced) -->
-              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
-                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; color: var(--clay); opacity: 0.8;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Free High-Speed WiFi</title><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Air Conditioning</title><path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Comfortable Bed</title><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>
               </div>
               
               <!-- Discover Button -->
@@ -199,7 +481,7 @@
             </div>
           </div>
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="twin">
             
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Standard Twin Room" class="room-card-img" />
             <div class="room-card-content">
@@ -219,8 +501,10 @@
               </div>
 
               <!-- Amenities Row (Light & Spaced) -->
-              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
-                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; color: var(--clay); opacity: 0.8;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Free High-Speed WiFi</title><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Air Conditioning</title><path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Comfortable Bed</title><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>
               </div>
               
               <!-- Discover Button -->
@@ -230,7 +514,7 @@
             </div>
           </div>
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="double">
             
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 4" class="room-card-img" />
             <div class="room-card-content">
@@ -250,8 +534,10 @@
               </div>
 
               <!-- Amenities Row (Light & Spaced) -->
-              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
-                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; color: var(--clay); opacity: 0.8;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Free High-Speed WiFi</title><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Air Conditioning</title><path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Comfortable Bed</title><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>
               </div>
               
               <!-- Discover Button -->
@@ -261,7 +547,7 @@
             </div>
           </div>
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="double">
             
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 5" class="room-card-img" />
             <div class="room-card-content">
@@ -281,8 +567,10 @@
               </div>
 
               <!-- Amenities Row (Light & Spaced) -->
-              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
-                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; color: var(--clay); opacity: 0.8;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Free High-Speed WiFi</title><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Air Conditioning</title><path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Comfortable Bed</title><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>
               </div>
               
               <!-- Discover Button -->
@@ -292,7 +580,7 @@
             </div>
           </div>
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="twin">
             
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 6" class="room-card-img" />
             <div class="room-card-content">
@@ -312,8 +600,10 @@
               </div>
 
               <!-- Amenities Row (Light & Spaced) -->
-              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
-                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; color: var(--clay); opacity: 0.8;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Free High-Speed WiFi</title><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Air Conditioning</title><path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Comfortable Bed</title><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>
               </div>
               
               <!-- Discover Button -->
@@ -323,7 +613,7 @@
             </div>
           </div>
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="double">
             
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 7" class="room-card-img" />
             <div class="room-card-content">
@@ -343,8 +633,10 @@
               </div>
 
               <!-- Amenities Row (Light & Spaced) -->
-              <div style="font-size: 0.75rem; color: var(--ink); font-family: var(--font-body); margin-bottom: 1.5rem; font-weight: 300; opacity: 0.75; letter-spacing: 0.02em;">
-                Free WiFi &nbsp;•&nbsp; Air Conditioning &nbsp;•&nbsp; En-suite Bath
+              <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; color: var(--clay); opacity: 0.8;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Free High-Speed WiFi</title><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Air Conditioning</title><path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Comfortable Bed</title><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 18h20"/></svg>
               </div>
               
               <!-- Discover Button -->
@@ -354,7 +646,7 @@
             </div>
           </div>
 
-          <div class="room-card reveal">
+          <div class="room-card reveal" data-category="twin">
             
             <img src="https://placehold.co/600x400/3C5B45/FBF6EC?text=Room+Photo" alt="Room 8" class="room-card-img" />
             <div class="room-card-content">
@@ -384,18 +676,115 @@
               </div>
             </div>
           </div>
-</div>
+        </div>
+        
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.room-filter-btn');
+            const roomCards = document.querySelectorAll('.rooms-page-grid .room-card');
+            
+            filterBtns.forEach(btn => {
+              btn.addEventListener('click', () => {
+                // Update active state
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter cards
+                const filter = btn.getAttribute('data-filter');
+                
+                roomCards.forEach(card => {
+                  if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'flex'; // our room cards use flex
+                  } else {
+                    card.style.display = 'none';
+                  }
+                });
+              });
+            });
+          });
+        </script>
+
 
         <!-- Section 3: Direct Booking Callout Banner -->
-        <div class="direct-booking-banner reveal">
-          <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.2em; color: var(--rattan); font-size: 0.75rem; font-weight: 600;">Direct Booking</span>
-          <h2>Reserve Your Stay Instantly</h2>
-          <p>We manage all bookings directly via WhatsApp to keep our costs down, cut out hidden third-party fees, and ensure you get the absolute best local rate.</p>
-          <div>
-            <a href="https://wa.me/60126183387" target="_blank" class="nav-whatsapp-btn" style="padding: 0.9rem 2.25rem; font-size: 1rem; font-weight: 600; box-shadow: 0 10px 20px rgba(37,211,102,0.2);">
-              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Chat on WhatsApp
-            </a>
+        <style>
+          .custom-booking-banner {
+            background-color: var(--ink) !important;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 6rem auto 2rem;
+            max-width: 1200px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            padding: 6rem 2rem !important;
+            text-align: center;
+          }
+          
+          .custom-booking-banner h2 {
+            color: var(--white) !important;
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
+            margin-bottom: 1.5rem !important;
+            line-height: 1.1;
+          }
+          
+          .custom-booking-banner p {
+            color: rgba(255,255,255,0.8) !important;
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+          }
+          
+          .whatsapp-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background-color: #25D366;
+            color: white;
+            padding: 1.25rem 3.5rem;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+          }
+          
+          .whatsapp-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+            color: white;
+          }
+          
+          .custom-booking-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 50%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(140, 114, 87, 0.15) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+          }
+        </style>
+
+        <div class="direct-booking-banner custom-booking-banner reveal">
+          <div style="position: relative; z-index: 1;">
+            <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.2em; color: var(--rattan); font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 1.5rem;">Direct Booking</span>
+            <h2>Reserve Your Stay Instantly</h2>
+            <p>We manage all bookings directly via WhatsApp to keep our costs down, cut out hidden third-party fees, and ensure you get the absolute best local rate.</p>
+            <div>
+              <a href="https://wa.me/60126183387" target="_blank" class="whatsapp-action-btn">
+                <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; fill: currentColor;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Chat on WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
@@ -432,6 +821,11 @@
 
 
   
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/60126183387" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 </body>
 </html>
 
