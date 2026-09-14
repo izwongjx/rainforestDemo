@@ -3,31 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Location | Rain Forest Hotel</title>
+  <title>Location | Rain Forest Hotel</title>
   <style>
-    .location-hero-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: center;
-      padding-top: 10rem;
-      padding-bottom: 3.5rem;
-    }
-    
-    @media (min-width: 992px) {
-      .location-hero-grid {
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 5rem;
-      }
-    }
-    
-    .location-hero-img {
+    .location-hero-map {
+      position: relative;
       width: 100%;
-      height: 380px;
+      height: 75vh;
+      min-height: 650px;
+      background-color: var(--cream);
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+      overflow: hidden; /* Prevent map background from bleeding into next section */
+    }
+    
+    .map-background {
+      position: absolute;
+      top: -100px; /* Hide the Google Maps place info box */
+      left: 0;
+      width: 100%;
+      height: calc(100% + 150px);
+      z-index: 0;
+      background-color: var(--cream);
+    }
+    
+    .map-background iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(30%) contrast(1.05) opacity(0.95);
+    }
+    
+    .hero-layout-centered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem;
+    }
+    
+    .hero-floating-card {
+      background-color: var(--forest);
+      color: var(--cream);
+      width: 100%;
+      max-width: 1000px;
+      border: 4px solid var(--rattan);
+      box-shadow: 0 30px 60px rgba(16, 24, 18, 0.4);
+      border-radius: 4px;
+      display: flex;
+      position: relative;
+    }
+    
+    .hero-floating-card::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px; right: 8px; bottom: 8px;
+      border: 1px solid rgba(230, 224, 212, 0.25);
+      pointer-events: none;
+      z-index: 5;
+    }
+    
+    .card-content-side {
+      flex: 1 1 55%;
+      padding: 4rem 3.5rem;
+      text-align: left;
+      z-index: 2;
+    }
+    
+    .card-image-side {
+      flex: 1 1 45%;
+      position: relative;
+      border-left: 1px solid rgba(230, 224, 212, 0.2);
+    }
+    
+    .card-image-side img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 0px; /* Sharp editorial look */
-      box-shadow: none;
-      border: 1px solid rgba(45, 62, 50, 0.08);
+      padding: 8px 8px 8px 0; /* Fit inside the inner border */
+    }
+    
+    @media (max-width: 992px) {
+      .hero-floating-card {
+        flex-direction: column;
+        max-width: 600px;
+      }
+      .card-content-side {
+        padding: 3rem 2rem;
+      }
+      .card-image-side {
+        height: 300px;
+        border-left: none;
+        border-top: 1px solid rgba(230, 224, 212, 0.2);
+      }
+      .card-image-side img {
+        padding: 0 8px 8px 8px;
+      }
     }
     
     /* Travel Journal Card Grid */
@@ -56,7 +132,7 @@
       background-color: #ffffff;
       border-radius: 0px; /* Sharp corners */
       overflow: hidden;
-      border: 1px solid rgba(45, 62, 50, 0.08);
+      border: 1px solid var(--forest);
       box-shadow: none;
       display: flex;
       flex-direction: column;
@@ -236,12 +312,33 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 0;
+      padding: 1.25rem 0;
       border-bottom: 1px solid rgba(45, 62, 50, 0.06);
       font-size: 0.95rem;
     }
     .directory-list li:last-child {
       border-bottom: none;
+    }
+    
+    .location-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--forest);
+      font-weight: 600;
+    }
+    
+    .location-right-info {
+      display: flex;
+      align-items: center;
+      gap: 2rem; /* Creates clean spacing between distance and button */
+    }
+    
+    .location-distance {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--clay);
+      font-weight: 700;
+      letter-spacing: 0.05em;
     }
     
     /* Callout Banner */
@@ -256,8 +353,8 @@
       border: 1px solid rgba(245, 242, 235, 0.1);
     }
   </style>
-  <script type="module" crossorigin src="/assets/main-BpG2InhP.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-BREQu1j1.css">
+  <script type="module" crossorigin src="/assets/main-DSrdKljy.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-CZV0Bp8w.css">
 </head>
 <body>
 
@@ -265,7 +362,10 @@
   <div class="header-wrapper">
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="logo-text">Rain Forest Hotel</a>
+      <a href="/" class="logo-wrapper">
+        <img src="/logo.png" alt="Rain Forest Hotel" class="site-logo-img" />
+        <span class="logo-text">Rain Forest Hotel</span>
+      </a>
       
       <nav class="nav-links">
         <a href="/" class="nav-link">Home</a>
@@ -273,6 +373,7 @@
         <a href="/rooms.html" class="nav-link">Rooms</a>
         <a href="/location.html" class="nav-link">Location</a>
         <a href="/reviews.html" class="nav-link">Reviews</a>
+        <a href="https://wa.me/60126183387" class="nav-link mobile-only-link" target="_blank">WhatsApp</a>
       </nav>
       
       <div class="header-actions">
@@ -288,107 +389,355 @@
 </div>
 
                   <main>
-    <!-- Section 1: About-style Split Hero Layout -->
-    <section style="background-color: var(--cream);">
-      <div class="container">
-        <div class="location-hero-grid">
-          <!-- Left side: Editorial text -->
-          <div class="reveal">
-            <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--clay); font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 1rem;">Prime Location</span>
-            <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem); color: var(--forest); margin: 0 0 1.5rem; line-height: 1.1;">Explore the Neighborhood</h1>
-            <p style="font-family: var(--font-body); font-size: 1.15rem; line-height: 1.7; color: var(--ink); opacity: 0.9; font-weight: 300; margin: 0;">
-              We are located at 122, Jalan Petaling, right in the heart of Kuala Lumpur's vibrant Chinatown. Step outside our doors directly into a world of bustling street food, historical temples, and hip hidden bars.
+    <!-- Section 1: Foresty Map Background Hero -->
+    <section class="location-hero-map">
+      <div class="map-background">
+        <iframe src="https://maps.google.com/maps?q=Rain+Forest+Hotel,+122,+Jalan+Petaling,+Kuala+Lumpur&t=&z=17&ie=UTF8&iwloc=&output=embed" loading="lazy" aria-hidden="true" tabindex="-1" style="pointer-events: none;"></iframe>
+      </div>
+      <div class="container hero-layout-centered">
+        
+        <!-- Centered Split Card -->
+        <div class="hero-floating-card reveal">
+          
+          <div class="card-content-side">
+            <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--rattan); font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 0.75rem;">Prime Location</span>
+            <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); color: var(--cream); margin: 0 0 1rem; line-height: 1.15;">Explore the Neighborhood</h1>
+            <p style="font-family: var(--font-display); font-size: 1.15rem; line-height: 1.6; color: var(--cream); opacity: 0.95; font-weight: 400; margin-bottom: 1.75rem;">
+              Located at 122, Jalan Petaling, right in the heart of Kuala Lumpur's vibrant Chinatown. Step outside our doors directly into a world of bustling street food, historical temples, and hip hidden bars.
             </p>
+            <a href="https://www.google.com/maps/place/Rain+Forest+Hotel/@3.1418857,101.6954398,17z/data=!3m1!4b1!4m9!3m8!1s0x31cc49d067477349:0xccd902779e736366!5m2!4m1!1i2!8m2!3d3.1418803!4d101.6980147!16s%2Fg%2F1ygbbfxh6!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="nav-whatsapp-btn" style="display: inline-flex; justify-content: center; padding: 0.9rem 1.75rem; font-size: 0.95rem; font-weight: 600; background-color: var(--rattan); color: var(--forest); border: none;">
+              Open in Maps
+            </a>
           </div>
-          <!-- Right side: Chinatown Portrait Cover -->
-          <div class="reveal">
-            <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80" alt="Chinatown Market Kuala Lumpur" class="location-hero-img" />
+
+          <div class="card-image-side">
+            <img src="/images/hotel/Reception Closeup.JPG" alt="Rain Forest Hotel Reception" />
           </div>
+
         </div>
+
       </div>
     </section>
 
-    <!-- Section 2: What's near you (6 Attraction Highlights with Pictures) -->
-    <section class="section-padding" style="background-color: var(--cream); padding-top: 2rem;">
+    <!-- Section 2: What's near you (Category Filter: Food vs Sights) -->
+    <section class="section-padding" style="background-color: var(--cream); padding-top: 5rem;">
       <div class="container">
         
-        <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--forest); margin-bottom: 3.5rem; text-align: center;">What's near you</h2>
-        
-        <div class="journal-grid">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">
+          <h2 style="font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; color: var(--forest); margin-bottom: 1.5rem;">What's Near You</h2>
           
-          <!-- Highlight 1: Petaling Street -->
-          <div class="journal-card reveal">
+          <!-- Segmented Filter Control -->
+          <!-- Clean category tabs: Food & Sights -->
+          <div class="filter-pills-container" style="display: inline-flex; background-color: rgba(45, 62, 50, 0.08); padding: 5px; border-radius: 50px; border: 1px solid rgba(45, 62, 50, 0.12);">
+            <button class="category-tab-btn active" data-target="food" style="font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; padding: 0.65rem 1.6rem; border-radius: 50px; border: none; background-color: var(--forest); color: var(--cream); cursor: pointer; transition: all 0.25s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.12); display: inline-flex; align-items: center; gap: 0.5rem;">
+              <span>🍲</span> Local Food & Eats
+            </button>
+            <button class="category-tab-btn" data-target="sights" style="font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; padding: 0.65rem 1.6rem; border-radius: 50px; border: none; background-color: transparent; color: var(--forest); cursor: pointer; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+              <span>🏛️</span> Sightseeing & Sights
+            </button>
+          </div>
+        </div>
+
+        <!-- Custom Right-Aligned Popup Cuisine Dropdown (Direct child of .container for true right-edge alignment) -->
+        <div id="food-subfilter" style="margin-bottom: 2rem; display: flex; justify-content: flex-end; align-items: center; width: 100%;">
+          <div class="custom-dropdown-wrapper" id="custom-cuisine-wrapper">
+            <button id="custom-cuisine-trigger" class="custom-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false">
+              <span>Filter: <strong id="selected-cuisine-label">All Eats</strong></span>
+              <svg class="dropdown-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            
+            <div id="custom-cuisine-menu" class="custom-dropdown-menu">
+              <div class="custom-dropdown-item active" data-value="all">
+                <span>All Eats</span>
+                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+              <div class="custom-dropdown-item" data-value="noodles">
+                <span>🍜 Noodles & Laksa</span>
+                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+              <div class="custom-dropdown-item" data-value="rice">
+                <span>🍚 Rice & Roast</span>
+                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+              <div class="custom-dropdown-item" data-value="dimsum">
+                <span>🥟 Dim Sum & Bites</span>
+                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+              <div class="custom-dropdown-item" data-value="kopitiam">
+                <span>☕ Kopitiam & Breakfast</span>
+                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+              <div class="custom-dropdown-item" data-value="heritage">
+                <span>🌙 Night Markets</span>
+                <svg class="check-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Food Grid (Active by default, 15 Locations) -->
+        <div id="grid-food" class="journal-grid category-grid">
+          
+          <!-- Food Card 1: Ho Kow -->
+          <div class="journal-card reveal" data-foodtype="kopitiam">
             <div class="journal-img-container">
-              <span class="journal-badge">Chinatown</span>
-              <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=600&q=80" alt="Petaling Street market gate" class="journal-img" />
+              <span class="journal-badge">Traditional Kopitiam</span>
+              <img src="/images/local eats/ho-kow-hainam-kopitiam/hokou (1).avif" alt="Ho Kow Hainam Kopitiam" class="journal-img" />
             </div>
             <div class="journal-content">
-              <h3 class="journal-title">Petaling Street Market</h3>
-              <p class="journal-desc">Kuala Lumpur's legendary market street, bursting with local vendors, lanterns, and hidden heritage cafes. Sits directly outside our doors.</p>
+              <h3 class="journal-title">Ho Kow Hainam Kopitiam</h3>
+              <p class="journal-desc"><strong>Hainanese Coffee & Toast</strong> — A 1956 heritage coffee house famous for traditional kaya butter toast, soft-boiled eggs, and authentic Hainan kopi ☕.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">3 min walk</span>
+                <a href="https://maps.google.com/?q=Ho+Kow+Hainam+Kopitiam" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 2: Nam Heong -->
+          <div class="journal-card reveal" data-foodtype="rice">
+            <div class="journal-img-container">
+              <span class="journal-badge">Poached & Roast Chicken Rice</span>
+              <img src="/images/local eats/nam-heong-chicken-rice/do7y-hero.jpg" alt="Nam Heong Chicken Rice" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Nam Heong Chicken Rice</h3>
+              <p class="journal-desc"><strong>Hainanese Chicken Rice & Dim Sum</strong> — Serving tender poached white chicken, roasted chicken over fragrant rice, and fresh egg tarts since 1938.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1 min walk</span>
+                <a href="https://maps.google.com/?q=Nam+Heong+Chicken+Rice,+Jalan+Sultan" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 3: Lai Foong Lala Noodles -->
+          <div class="journal-card reveal" data-foodtype="noodles">
+            <div class="journal-img-container">
+              <span class="journal-badge">Michelin Clam Noodles</span>
+              <img src="/images/local eats/lai-foong-lala-noodles/aa7025c891ce442eaa39b2168994c5c4_IMG_8580.jpg" alt="Lai Foong Lala Noodles" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Lai Foong Lala Noodles</h3>
+              <p class="journal-desc"><strong>Spicy Ginger Clam Noodle Soup</strong> — Famous for its rich Chinese rice wine & ginger herbal broth packed with fresh lala clams and rice vermicelli.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">2 min walk</span>
+                <a href="https://maps.google.com/?q=Lai+Foong+Lala+Noodles,+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 4: Soong Kee Beef Noodles -->
+          <div class="journal-card reveal" data-foodtype="noodles">
+            <div class="journal-img-container">
+              <span class="journal-badge">KL Beef Noodles</span>
+              <img src="/images/local eats/soong-kee-beef-noodles/Soong-Kee-Beef-Ball-noodle-malaysia-founder-history-001.jpg" alt="Soong Kee Beef Noodles" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Soong Kee Beef Noodles</h3>
+              <p class="journal-desc"><strong>Minced Beef Noodle Soup</strong> — Legendary 1945 noodle stall serving savory minced beef sauce over egg noodles with clear beef ball soup.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">3 min walk</span>
+                <a href="https://maps.google.com/?q=Soong+Kee+Beef+Noodle" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 5: Madras Lane Curry Mee -->
+          <div class="journal-card reveal" data-foodtype="noodles">
+            <div class="journal-img-container">
+              <span class="journal-badge">Hawker Curry Noodle</span>
+              <img src="/images/local eats/madras-lane-curry-mee/90789bffefededab5209872e0db0665004c37f14.jpeg" alt="Madras Lane Curry Mee" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Madras Lane Curry Mee</h3>
+              <p class="journal-desc"><strong>Rich Coconut Curry Laksa</strong> — Tucked in a famous hawker alley, serving rich coconut curry broth loaded with cockles, eggplant, and tofu puffs.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">3 min walk</span>
+                <a href="https://maps.google.com/?q=Madras+Lane+Curry+Laksa" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 6: Asam Laksa Petaling Street -->
+          <div class="journal-card reveal" data-foodtype="noodles">
+            <div class="journal-img-container">
+              <span class="journal-badge">Penang Sour & Spicy Soup</span>
+              <img src="/images/local eats/asam-laksa-petaling-street/kwong_wah_ice_kacang_kane_chong_02-1024x768.jpeg" alt="Asam Laksa Petaling Street" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Asam Laksa Petaling Street</h3>
+              <p class="journal-desc"><strong>Tangy Fish Noodle Soup (Asam Laksa)</strong> — Famous Penang-style sour tamarind fish broth with thick rice noodles, mint, and shredded mackerel.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">2 min walk</span>
+                <a href="https://maps.google.com/?q=Asam+Laksa+Petaling+Street" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 7: Madras Lane Yong Tau Foo -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="dimsum" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Stuffed Tofu & Veggies</span>
+              <img src="/images/local eats/madras-lane-yong-tau-foo/madras-lane-yong-tau-fu-1.jpg" alt="Madras Lane Yong Tau Foo" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Madras Lane Yong Tau Foo</h3>
+              <p class="journal-desc"><strong>Handmade Stuffed Yong Tau Foo</strong> — Fresh vegetables, chili, and tofu stuffed with savory fish paste, served fried or in warm soup broth.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">3 min walk</span>
+                <a href="https://maps.google.com/?q=Madras+Lane+Yong+Tau+Foo" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 8: Petaling Street Pork Noodles -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="noodles" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Savory Pork Soup</span>
+              <img src="/images/local eats/petaling-street-pork-noodles/205116.jpg" alt="Petaling Street Pork Noodles" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Petaling Street Pork Noodles</h3>
+              <p class="journal-desc"><strong>Petaling St Pork Noodle Soup</strong> — Hearty bowl of noodles in rich pork bone broth with minced pork, sliced meat, and crispy lard.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">2 min walk</span>
+                <a href="https://maps.google.com/?q=Petaling+Street+Pork+Noodles" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 9: Tuck Kee Dim Sum -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="dimsum" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Steamed Buns & Dumplings</span>
+              <img src="/images/local eats/tuck-kee-dim-sum/dim-sum-spread-scaled-1.jpeg" alt="Tuck Kee Dim Sum" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Tuck Kee Dim Sum</h3>
+              <p class="journal-desc"><strong>Handmade Dim Sum & Soft Paus</strong> — Traditional Chinese breakfast featuring fluffy steamed pork buns, siew mai, and lotus paste pau.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">4 min walk</span>
+                <a href="https://maps.google.com/?q=Tuck+Kee+Dim+Sum" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 10: Precious Old China -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="heritage" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Nyonya Heritage Cuisine</span>
+              <img src="/images/local eats/precious-old-china/cover_Old China - Cover 1_e40660.png" alt="Precious Old China" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Precious Old China</h3>
+              <p class="journal-desc"><strong>Peranakan Nyonya Dining</strong> — Antique Nyonya restaurant inside Central Market. Serves authentic Baba-Nyonya Malay-Chinese fusion dishes.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">4 min walk</span>
+                <a href="https://maps.google.com/?q=Precious+Old+China" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 11: Pik Wah Bar & Cafe -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="heritage" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Modern Heritage Dining</span>
+              <img src="/images/local eats/pik-wah-bar-cafe/caption.jpg" alt="Pik Wah Bar & Cafe" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Pik Wah Bar & Cafe</h3>
+              <p class="journal-desc"><strong>Asian Fusion Dining & Bar</strong> — Charming restaurant hidden inside Chinatown serving modern Cantonese dishes, craft drinks, and coffee.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">5 min walk</span>
+                <a href="https://maps.google.com/?q=Pik+Wah+Bar+and+Cafe" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 12: Gerai Makanan Sai Kee -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="rice" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Claypot Chicken Rice</span>
+              <img src="/images/local eats/gerai-makanan-sai-kee/unnamed.webp" alt="Gerai Makanan Sai Kee" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Gerai Makanan Sai Kee</h3>
+              <p class="journal-desc"><strong>Smoky Claypot Rice & Hawker Dishes</strong> — Classic street-style rice cooked over charcoal in clay pots with salted fish, chicken, and sweet soy sauce.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">4 min walk</span>
+                <a href="https://maps.google.com/?q=Gerai+Makanan+Sai+Kee" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 13: Cing Kei Ipoh Kway Teow -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="noodles" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Ipoh Flat Rice Noodles</span>
+              <img src="/images/local eats/cing-kei-ipoh-kway-teow/images.jpg" alt="Cing Kei Ipoh Chicken/Prawn Kway Teow Mee" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Cing Kei Ipoh Chicken/Prawn Kway Teow</h3>
+              <p class="journal-desc"><strong>Shredded Chicken & Prawn Noodle Soup</strong> — Silky smooth Ipoh flat rice noodles (Kway Teow) in sweet prawn & chicken bone broth.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">3 min walk</span>
+                <a href="https://maps.google.com/?q=Cing+Kei+Ipoh+Chicken+Prawn+Kway+Teow" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 14: Petaling Street Apek's Apam -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="kopitiam" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Heritage Street Snack</span>
+              <img src="/images/local eats/petaling-street-apeks-apam/images (1).jpg" alt="Petaling Street Apek's Apam" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Petaling Street Apek's Apam</h3>
+              <p class="journal-desc"><strong>Traditional Crispy Pancakes (Apam Balik)</strong> — Iconic street cart making fluffy, golden charcoal-grilled pancakes filled with crushed peanuts & corn.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1 min walk</span>
+                <a href="https://maps.google.com/?q=Petaling+Street+Apek+Apam" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Food Card 15: Petaling Street Night Market -->
+          <div class="journal-card reveal food-card-extra" data-foodtype="heritage" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Hawker Night Market</span>
+              <img src="/images/local eats/petaling-street-night-market/66117a0d-petaling-street-at-night-7.jpg" alt="Petaling Street Night Market" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Petaling Street Night Market</h3>
+              <p class="journal-desc"><strong>Open-Air Evening Food Stalls</strong> — Vibrant evening market street bursting with grilled satay, roasted duck, fruit juices, and local street snacks.</p>
               <div class="journal-footer">
                 <span class="journal-distance">Right outside</span>
-                <a href="https://maps.google.com/?q=Petaling+Street" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                <a href="https://maps.google.com/?q=Petaling+Street+Night+Market" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
               </div>
             </div>
           </div>
-          
-          <!-- Highlight 2: Yook Woo Hin -->
-          <div class="journal-card reveal">
-            <div class="journal-img-container">
-              <span class="journal-badge">Coffee & Dining</span>
-              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80" alt="Hainanese Coffee and toast" class="journal-img" />
-            </div>
-            <div class="journal-content">
-              <h3 class="journal-title">Restoran Yook Woo Hin</h3>
-              <p class="journal-desc">A beloved heritage coffee shop located right next door. Famous for its authentic Hainanese coffee, toasted bun, and historical Chinatown atmosphere.</p>
-              <div class="journal-footer">
-                <span class="journal-distance">2 m away</span>
-                <a href="https://maps.google.com/?q=Restoran+Yook+Woo+Hin" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Highlight 3: Pasar Seni Hub -->
-          <div class="journal-card reveal">
-            <div class="journal-img-container">
-              <span class="journal-badge">Transit Hub</span>
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Pasar Seni MRT Station" class="journal-img" />
-            </div>
-            <div class="journal-content">
-              <h3 class="journal-title">Pasar Seni MRT & LRT</h3>
-              <p class="journal-desc">Your gateway to Kuala Lumpur. Links you directly to KL Sentral, the Petronas Twin Towers, TRX financial hub, and shopping stops within minutes.</p>
-              <div class="journal-footer">
-                <span class="journal-distance">250 m away</span>
-                <a href="https://maps.google.com/?q=Pasar+Seni+MRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Highlight 4: Merdeka Square -->
-          <div class="journal-card reveal">
-            <div class="journal-img-container">
-              <span class="journal-badge">Heritage</span>
-              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=600&q=80" alt="Merdeka Square Moorish buildings" class="journal-img" />
-            </div>
-            <div class="journal-content">
-              <h3 class="journal-title">Merdeka Square</h3>
-              <p class="journal-desc">The historic independence square surrounded by Moorish heritage architectures, government offices, and the Sultan Abdul Samad building.</p>
-              <div class="journal-footer">
-                <span class="journal-distance">1.1 km away</span>
-                <a href="https://maps.google.com/?q=Merdeka+Square+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Highlight 5: Twin Towers -->
+
+        </div>
+
+        <!-- Load More Button for Food Grid -->
+        <div id="food-load-more-wrapper" style="text-align: center; margin-top: 2.25rem; margin-bottom: 2rem;">
+          <button id="btn-load-more-food" class="btn-load-more-eats">
+            Load More Local Eats ↓
+          </button>
+        </div>
+
+        <!-- Sights Grid (Hidden initially) -->
+        <div id="grid-sights" class="journal-grid category-grid" style="display: none;">
+          <!-- Sights Card 1: Petronas Twin Towers -->
           <div class="journal-card reveal">
             <div class="journal-img-container">
               <span class="journal-badge">Iconic Landmark</span>
-              <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80" alt="Petronas Twin Towers" class="journal-img" />
+              <img src="/images/sightseeing attractions/petronas-twin-towers/petronas-twin-towers.jpg" alt="Petronas Twin Towers" class="journal-img" />
             </div>
             <div class="journal-content">
               <h3 class="journal-title">Petronas Twin Towers</h3>
-              <p class="journal-desc">The world's tallest twin towers. An engineering marvel and iconic skyline feature, easily reachable by a direct LRT ride from Pasar Seni.</p>
+              <p class="journal-desc">Iconic 88-story twin skyscrapers and global landmark of Kuala Lumpur. Features skybridge views, Suria KLCC shopping, and lush KLCC park.</p>
               <div class="journal-footer">
                 <span class="journal-distance">2.9 km away</span>
                 <a href="https://maps.google.com/?q=Petronas+Twin+Towers" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
@@ -396,33 +745,443 @@
             </div>
           </div>
           
-          <!-- Highlight 6: Islamic Arts Museum -->
+          <!-- Sights Card 2: Batu Caves -->
           <div class="journal-card reveal">
             <div class="journal-img-container">
-              <span class="journal-badge">Art & Culture</span>
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Islamic Arts Museum domes" class="journal-img" />
+              <span class="journal-badge">Cultural Site</span>
+              <img src="/images/sightseeing attractions/batu-caves/batu-caves.jpg" alt="Batu Caves golden statue" class="journal-img" />
             </div>
             <div class="journal-content">
-              <h3 class="journal-title">Islamic Arts Museum</h3>
-              <p class="journal-desc">Southeast Asia's largest museum of Islamic art, housing rare global artifacts, tapestries, and miniature models of the world's grandest mosques.</p>
+              <h3 class="journal-title">Batu Caves</h3>
+              <p class="journal-desc">World-famous limestone hill featuring sacred Hindu shrines, colorful 272-step staircase, and the giant golden statue of Lord Murugan.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">13 km away</span>
+                <a href="https://maps.google.com/?q=Batu+Caves" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sights Card 3: Bukit Bintang -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Shopping & Nightlife</span>
+              <img src="/images/sightseeing attractions/bukit-bintang/bukit-bintang.jpg" alt="Bukit Bintang district" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Bukit Bintang</h3>
+              <p class="journal-desc">Kuala Lumpur's premier shopping and entertainment district. Home to luxury malls, Pavilion KL, Lot 10, and vibrant nightlife cafes.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.8 km away</span>
+                <a href="https://maps.google.com/?q=Bukit+Bintang+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sights Card 4: Chinatown / Petaling Street -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Chinatown</span>
+              <img src="/images/sightseeing attractions/chinatown-petaling-street/chinatown-petaling-street.jpg" alt="Petaling Street market gate" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Chinatown / Petaling Street</h3>
+              <p class="journal-desc">Lively cultural heritage street market bursting with street food, souvenirs, traditional tea houses, and heritage cafes right outside our doors.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">Right outside</span>
+                <a href="https://maps.google.com/?q=Petaling+Street" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sights Card 5: Central Market -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Heritage & Art</span>
+              <img src="/images/sightseeing attractions/central-market/central-market.jpg" alt="Central Market Kuala Lumpur" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Central Market (Pasar Seni)</h3>
+              <p class="journal-desc">Historic 1930s Art Deco heritage center showcasing Malaysian handicrafts, batik, souvenirs, art galleries, and local cultural performances.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">250 m away</span>
+                <a href="https://maps.google.com/?q=Central+Market+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 6: Merdeka Square -->
+          <div class="journal-card reveal">
+            <div class="journal-img-container">
+              <span class="journal-badge">Independence Landmark</span>
+              <img src="/images/sightseeing attractions/merdeka-square-sultan-abdul-samad/merdeka-square-sultan-abdul-samad.jpg" alt="Merdeka Square" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Merdeka Square & Sultan Abdul Samad</h3>
+              <p class="journal-desc">The historic independence square surrounded by Moorish heritage architectures, clock tower, government offices, and scenic manicured lawns.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.1 km away</span>
+                <a href="https://maps.google.com/?q=Merdeka+Square+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 7: Kwai Chai Hong -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Heritage Lane</span>
+              <img src="/images/sightseeing attractions/kwai-chai-hong/kwai-chai-hong.avif" alt="Kwai Chai Hong" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Kwai Chai Hong</h3>
+              <p class="journal-desc">Restored 1920s Chinatown alleyway with vibrant street art murals depicting 1960s local life, wooden red bridges, and hidden speakeasy bars.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">300 m away</span>
+                <a href="https://maps.google.com/?q=Kwai+Chai+Hong" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 8: Sri Maha Mariamman Temple -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Historic Temple</span>
+              <img src="/images/sightseeing attractions/sri-maha-mariamman-temple/sri-maha-mariamman-temple.jpg" alt="Sri Maha Mariamman Temple" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Sri Maha Mariamman Temple</h3>
+              <p class="journal-desc">Founded in 1873, KL's oldest Hindu temple featuring a magnificent 5-tier Raja Gopuram tower adorned with intricate South Indian deity carvings.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">150 m away</span>
+                <a href="https://maps.google.com/?q=Sri+Maha+Mariamman+Temple+KL" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 9: River of Life -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Waterfront Promenade</span>
+              <img src="/images/sightseeing attractions/river-of-life/river-of-life.webp" alt="River of Life" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">River of Life</h3>
+              <p class="journal-desc">Stunning riverfront promenade where the Gombak and Klang rivers meet. Nightly blue light mist shows and illuminated heritage mosque backdrop.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">800 m away</span>
+                <a href="https://maps.google.com/?q=River+of+Life+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 10: KL Tower -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Observation Tower</span>
+              <img src="/images/sightseeing attractions/kl-tower/kl-tower.avif" alt="KL Tower" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">KL Tower (Menara KL)</h3>
+              <p class="journal-desc">421-meter telecommunication tower offering 360-degree open-air sky deck panoramas over the city skyline and surrounding natural forest.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.8 km away</span>
+                <a href="https://maps.google.com/?q=KL+Tower" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 11: Jalan Alor Food Street -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Night Street Food</span>
+              <img src="/images/sightseeing attractions/jalan-alor/jalan-alor.jpg" alt="Jalan Alor" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Jalan Alor Food Street</h3>
+              <p class="journal-desc">KL's most famous open-air hawker street bursting after sunset with charcoal grilled chicken wings, seafood, durian stalls, and satay.</p>
               <div class="journal-footer">
                 <span class="journal-distance">1.5 km away</span>
+                <a href="https://maps.google.com/?q=Jalan+Alor+Food+Street" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 12: National Mosque -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">National Architecture</span>
+              <img src="/images/sightseeing attractions/national-mosque/national-mosque.webp" alt="National Mosque" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">National Mosque of Malaysia</h3>
+              <p class="journal-desc">Striking 15,000-capacity modernist mosque featuring an 18-pointed star main roof symbolizing Malaysia's 13 states and Islamic pillars.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.2 km away</span>
+                <a href="https://maps.google.com/?q=National+Mosque+of+Malaysia" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 13: Islamic Arts Museum -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Museum & Gallery</span>
+              <img src="/images/sightseeing attractions/islamic-arts-museum/islamic-arts-museum.webp" alt="Islamic Arts Museum" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Islamic Arts Museum Malaysia</h3>
+              <p class="journal-desc">Largest Islamic art museum in Southeast Asia, housing over 7,000 artifacts, intricate scale models of global mosques, jewelry, and manuscripts.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.3 km away</span>
                 <a href="https://maps.google.com/?q=Islamic+Arts+Museum+Malaysia" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 14: KL Forest Eco Park -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Rainforest Canopy</span>
+              <img src="/images/sightseeing attractions/kl-forest-eco-park/kl-forest-eco-park.webp" alt="KL Forest Eco Park" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">KL Forest Eco Park</h3>
+              <p class="journal-desc">One of Malaysia's oldest permanent forest reserves right in the heart of KL, featuring elevated canopy walk bridges suspended among lush trees.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">1.6 km away</span>
+                <a href="https://maps.google.com/?q=KL+Forest+Eco+Park" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sights Card 15: Perdana Botanical Garden -->
+          <div class="journal-card reveal sight-card-extra" style="display: none;">
+            <div class="journal-img-container">
+              <span class="journal-badge">Botanical Park</span>
+              <img src="/images/sightseeing attractions/perdana-botanical-garden/perdana-botanical-garden.webp" alt="Perdana Botanical Garden" class="journal-img" />
+            </div>
+            <div class="journal-content">
+              <h3 class="journal-title">Perdana Botanical Garden</h3>
+              <p class="journal-desc">Sprawling 92-hectare heritage park featuring tropical botanical collections, orchid garden, sunken gardens, and peaceful walking trails.</p>
+              <div class="journal-footer">
+                <span class="journal-distance">2.0 km away</span>
+                <a href="https://maps.google.com/?q=Perdana+Botanical+Garden" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
               </div>
             </div>
           </div>
 
         </div>
 
-        <!-- Section 3: Dropdowns Accordions Directory for Transit, Airports, Facilities -->
-        <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--forest); margin-top: 5rem; margin-bottom: 2rem; text-align: center;">Transit & Airport Directory</h2>
+        <!-- Load More Button for Sights Grid -->
+        <div id="sights-load-more-wrapper" style="text-align: center; margin-top: 2.25rem; margin-bottom: 2rem; display: none;">
+          <button id="btn-load-more-sights" class="btn-load-more-eats">
+            Load More Sightseeing ↓
+          </button>
+        </div>
+
+        <!-- Section 3: Dropdowns Accordions Directory for Transit, Food, and Remaining Attractions -->
+        <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--forest); margin-top: 6rem; margin-bottom: 2.5rem; text-align: center;">Location & Neighborhood Directory</h2>
         
         <div style="max-width: 850px; margin: 0 auto;">
-          
-          <!-- Accordion 1: Public Transit Stations -->
+
+          <!-- Accordion 1: Nearby Attractions (6 Locations) -->
           <div class="directory-accordion">
             <button class="accordion-trigger">
-              Transit Stations Near Hotel
+              Nearby Attractions
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="accordion-content">
+              <ul class="directory-list">
+                <li>
+                  <span class="location-name">Kwai Chai Hong</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Kwai+Chai+Hong" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Sri Maha Mariamman Temple</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Sri+Maha+Mariamman+Temple+KL" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Merdeka Square</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Merdeka+Square+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Sultan Abdul Samad Building</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Sultan+Abdul+Samad+Building" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">River of Life</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=River+of+Life+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">KL Tower</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=KL+Tower" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Accordion 2: Cuisines Near Me (15 Local Eats) -->
+          <div class="directory-accordion">
+            <button class="accordion-trigger">
+              Cuisines & Eats Directory
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="accordion-content">
+              <ul class="directory-list">
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Ho Kow Hainam Kopitiam</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Hainanese Coffee, Kaya Toast & Soft-Boiled Eggs ☕</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Ho+Kow+Hainam+Kopitiam" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Nam Heong Chicken Rice</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Hainanese Poached & Roasted Chicken Rice</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Nam+Heong+Chicken+Rice,+Jalan+Sultan" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Lai Foong Lala Noodles</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Spicy Rice Wine & Ginger Clam Noodle Soup</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Lai+Foong+Lala+Noodles,+Kuala+Lumpur" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Soong Kee Beef Noodles</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Minced Beef & Beef Ball Noodle Soup</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Soong+Kee+Beef+Noodle" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Madras Lane Curry Mee</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Rich Coconut Curry Laksa Noodle Soup</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Madras+Lane+Curry+Laksa" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Asam Laksa Petaling Street</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Tangy Tamarind Fish Noodle Soup (Penang Style)</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Asam+Laksa+Petaling+Street" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Madras Lane Yong Tau Foo</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Handmade Vegetables & Tofu Stuffed with Fish Paste</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Madras+Lane+Yong+Tau+Foo" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Petaling Street Pork Noodles</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Savory Pork Bone Noodle Soup with Minced Meat</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Petaling+Street+Pork+Noodles" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Tuck Kee Dim Sum</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Handmade Steamed Dumplings & Soft Fluffy Buns</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Tuck+Kee+Dim+Sum" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Precious Old China</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Classic Peranakan Baba-Nyonya Fusion Dining</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Precious+Old+China" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Pik Wah Bar & Cafe</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Modern Cantonese Asian Fusion & Heritage Cocktails</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Pik+Wah+Bar+and+Cafe" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Gerai Makanan Sai Kee</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Smoky Claypot Charcoal Chicken Rice</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Gerai+Makanan+Sai+Kee" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Cing Kei Ipoh Chicken/Prawn Kway Teow</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Silky Flat Rice Noodles in Prawn Broth</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Cing+Kei+Ipoh+Chicken+Prawn+Kway+Teow" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Petaling Street Apek's Apam</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Traditional Charcoal Grilled Peanut Pancake</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Petaling+Street+Apek+Apam" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <span class="location-name" style="display: block;">Petaling Street Night Market</span>
+                    <span style="font-size: 0.85rem; color: var(--ink); opacity: 0.8; font-family: var(--font-body);">Vibrant Open-Air Street Food & Hawker Stalls</span>
+                  </div>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Petaling+Street+Night+Market" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Accordion 3: Public Transit & Transportation (8 Stations) -->
+          <div class="directory-accordion">
+            <button class="accordion-trigger">
+              Public Transit & Transportation
               <span class="accordion-arrow">▼</span>
             </button>
             <div class="accordion-content">
@@ -430,95 +1189,134 @@
                 <li>
                   <span class="location-name">Pasar Seni MRT Station</span>
                   <div class="location-right-info">
-                    <span class="location-distance">250 m</span>
                     <a href="https://maps.google.com/?q=Pasar+Seni+MRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
                   </div>
                 </li>
                 <li>
                   <span class="location-name">Pasar Seni LRT Station</span>
                   <div class="location-right-info">
-                    <span class="location-distance">350 m</span>
                     <a href="https://maps.google.com/?q=Pasar+Seni+LRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
-                  </div>
-                </li>
-                <li>
-                  <span class="location-name">Maharajalela Monorail Station</span>
-                  <div class="location-right-info">
-                    <span class="location-distance">500 m</span>
-                    <a href="https://maps.google.com/?q=Maharajalela+Monorail" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
                   </div>
                 </li>
                 <li>
                   <span class="location-name">Merdeka MRT Station</span>
                   <div class="location-right-info">
-                    <span class="location-distance">650 m</span>
                     <a href="https://maps.google.com/?q=Merdeka+MRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
                   </div>
                 </li>
+                <li>
+                  <span class="location-name">Masjid Jamek LRT Station</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Masjid+Jamek+LRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Plaza Rakyat LRT Station</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Plaza+Rakyat+LRT" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">Kuala Lumpur KTM Station</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=Kuala+Lumpur+KTM+Station" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">KL Sentral</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=KL+Sentral" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
+                <li>
+                  <span class="location-name">KL Sentral ETS Station</span>
+                  <div class="location-right-info">
+                    <a href="https://maps.google.com/?q=KL+Sentral+ETS+Station" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
-          
-          <!-- Accordion 2: Airports & Train Routes -->
-          <div class="directory-accordion">
-            <button class="accordion-trigger">
-              Airport Routes & Directions
-              <span class="accordion-arrow">▼</span>
-            </button>
-            <div class="accordion-content">
-              <ul class="directory-list">
-                <li>
-                  <span class="location-name">Sultan Abdul Aziz Shah Airport (SZB)</span>
-                  <div class="location-right-info">
-                    <span class="location-distance">22 km</span>
-                    <a href="https://maps.google.com/?q=Sultan+Abdul+Aziz+Shah+Airport" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
-                  </div>
-                </li>
-                <li>
-                  <span class="location-name">Kuala Lumpur Intl Airport (KLIA/KLIA2)</span>
-                  <div class="location-right-info">
-                    <span class="location-distance">51 km</span>
-                    <a href="https://maps.google.com/?q=Kuala+Lumpur+International+Airport" target="_blank" class="btn-journal-directions"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg> Directions</a>
-                  </div>
-                </li>
-              </ul>
-              <p style="font-size: 0.95rem; font-family: var(--font-body); font-weight: 300; line-height: 1.7; color: var(--ink); opacity: 0.85; margin-top: 1.25rem; border-top: 1px dashed rgba(92,70,51,0.15); padding-top: 1rem;">
-                <strong>Transit Recommendation:</strong> Take the KLIA Ekspres train directly from KLIA to KL Sentral, transfer to the Kelana Jaya LRT line for exactly one stop to Pasar Seni, and walk 4 minutes to Petaling Street.
+
+          <!-- Airport Transfer Step-by-Step Guide -->
+          <div class="airport-guide-card reveal" style="margin-top: 3.5rem; background: #ffffff; border: 1px solid rgba(45, 62, 50, 0.12); border-radius: 16px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--clay); font-weight: 700; display: block; margin-bottom: 0.5rem;">✈️ Transit Guide</span>
+              <h3 style="font-family: var(--font-display); font-size: 1.75rem; color: var(--forest); margin: 0 0 0.5rem;">How to Arrive from KLIA Airport (T1 / T2)</h3>
+              <p style="font-size: 0.9rem; color: var(--ink); opacity: 0.85; max-width: 580px; margin: 0 auto; line-height: 1.5;">
+                Follow this simple step-by-step train connection to reach Rain Forest Hotel smoothly in ~40 minutes.
               </p>
             </div>
-          </div>
-          
-          <!-- Accordion 3: Hotel Facilities & Amenities -->
-          <div class="directory-accordion">
-            <button class="accordion-trigger">
-              Hotel Facilities & Amenities
-              <span class="accordion-arrow">▼</span>
-            </button>
-            <div class="accordion-content">
-              <p style="font-weight: 600; color: var(--forest); font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.75rem;">Most Popular</p>
-              <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; font-size: 0.875rem; font-family: var(--font-body); padding: 0; list-style: none; color: var(--ink); opacity: 0.9;">
-                <li>✓ Free High-Speed WiFi</li>
-                <li>✓ Non-Smoking Rooms</li>
-                <li>✓ Cozy Shared Lounge</li>
-                <li>✓ Full Air Conditioning</li>
-                <li>✓ Courtyard Garden</li>
-                <li>✓ Daily Housekeeping</li>
-              </ul>
+
+            <!-- Visual Flow Timeline -->
+            <div class="airport-steps-wrapper" style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 700px; margin: 0 auto;">
               
-              <p style="font-weight: 600; color: var(--forest); font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.75rem;">Additional Facilities</p>
-              <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.6rem; font-size: 0.85rem; font-family: var(--font-body); padding: 0; list-style: none; color: var(--ink); opacity: 0.8;">
-                <li>✓ En-suite hot showers</li>
-                <li>✓ Hairdryers & Towels</li>
-                <li>✓ Slippers & drying racks</li>
-                <li>✓ Luggage storage</li>
-                <li>✓ 24-Hour front desk</li>
-                <li>✓ Express check-in/out</li>
-                <li>✓ 24h CCTV security</li>
-              </ul>
-              <div style="background-color: var(--rattan); padding: 1rem 1.25rem; border-radius: 12px; border-left: 4px solid var(--clay); font-size: 0.85rem; font-family: var(--font-body); color: var(--ink); margin-top: 1.5rem;">
-                Note: No on-site parking is available. Safe public parking lots are situated along nearby Chinatown lanes.
+              <!-- Step 1 -->
+              <div style="display: flex; align-items: flex-start; gap: 1.25rem; background: var(--cream); padding: 1.25rem 1.5rem; border-radius: 12px; border: 1px solid rgba(45, 62, 50, 0.08);">
+                <div style="background: var(--forest); color: var(--cream); font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  01
+                </div>
+                <div style="flex-grow: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+                    <strong style="font-family: var(--font-display); font-size: 1.1rem; color: var(--forest);">KLIA T1 / T2 Airport</strong>
+                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--clay); background: rgba(184, 115, 51, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px;">⚡ KLIA Ekspres</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--ink); margin: 0; line-height: 1.4; opacity: 0.9;">
+                    Board the non-stop <strong>KLIA Ekspres</strong> train from Terminal 1 or Terminal 2 straight to KL Sentral (~28 mins).
+                  </p>
+                </div>
               </div>
+
+              <!-- Direction Arrow -->
+              <div style="text-align: center; margin: -0.5rem 0; color: var(--clay); font-size: 1.25rem;">↓</div>
+
+              <!-- Step 2 -->
+              <div style="display: flex; align-items: flex-start; gap: 1.25rem; background: var(--cream); padding: 1.25rem 1.5rem; border-radius: 12px; border: 1px solid rgba(45, 62, 50, 0.08);">
+                <div style="background: var(--forest); color: var(--cream); font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  02
+                </div>
+                <div style="flex-grow: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+                    <strong style="font-family: var(--font-display); font-size: 1.1rem; color: var(--forest);">KL Sentral Station</strong>
+                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--forest); background: rgba(45, 62, 50, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px;">🚈 LRT Kelana Jaya Line (1 Stop)</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--ink); margin: 0; line-height: 1.4; opacity: 0.9;">
+                    Transfer to the <strong>LRT Kelana Jaya Line</strong> (heading towards Gombak) and ride just <strong>1 stop</strong> to Pasar Seni.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Direction Arrow -->
+              <div style="text-align: center; margin: -0.5rem 0; color: var(--clay); font-size: 1.25rem;">↓</div>
+
+              <!-- Step 3 -->
+              <div style="display: flex; align-items: flex-start; gap: 1.25rem; background: var(--cream); padding: 1.25rem 1.5rem; border-radius: 12px; border: 1px solid rgba(45, 62, 50, 0.08);">
+                <div style="background: var(--forest); color: var(--cream); font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  03
+                </div>
+                <div style="flex-grow: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+                    <strong style="font-family: var(--font-display); font-size: 1.1rem; color: var(--forest);">Pasar Seni Station (MRT / LRT)</strong>
+                    <span style="font-size: 0.8rem; font-weight: 600; color: var(--clay); background: rgba(184, 115, 51, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px;">🚶 Short Walk</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--ink); margin: 0; line-height: 1.4; opacity: 0.9;">
+                    Exit via Pasar Seni Station (Exit A / Petaling St exit). Walk ~2 minutes (200m) directly down Petaling Street.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Destination Arrival Card -->
+              <div style="display: flex; align-items: center; gap: 1rem; background: var(--forest); color: var(--cream); padding: 1.25rem 1.5rem; border-radius: 12px; margin-top: 0.5rem;">
+                <div style="font-size: 1.5rem;">🏨</div>
+                <div>
+                  <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--cream); margin: 0 0 0.2rem;">Welcome to Rain Forest Hotel</h4>
+                  <span style="font-size: 0.85rem; opacity: 0.9; font-family: var(--font-body);">122, Jalan Petaling, Chinatown, Kuala Lumpur</span>
+                </div>
+              </div>
+
             </div>
+
           </div>
 
         </div>
@@ -538,95 +1336,279 @@
     </section>
   </main>
   
-  <script>
-    // Accordion interaction
-    document.addEventListener('DOMContentLoaded', () => {
-      const triggers = document.querySelectorAll('.accordion-trigger');
-      
-      triggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const content = trigger.nextElementSibling;
-          const arrow = trigger.querySelector('.accordion-arrow');
-          
-          content.classList.toggle('active');
-          
-          if (content.classList.contains('active')) {
-            arrow.style.transform = 'rotate(180deg)';
-          } else {
-            arrow.style.transform = 'rotate(0deg)';
-          }
-        });
-      });
-      
-      // Auto open first accordion
-      if (triggers.length > 0) {
-        triggers[0].click();
+  <style>
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
       }
-    });
-  </script>
-  
-  <script>
-    // Accordion interaction
-    document.addEventListener('DOMContentLoaded', () => {
-      const triggers = document.querySelectorAll('.accordion-trigger');
-      
-      triggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const content = trigger.nextElementSibling;
-          const arrow = trigger.querySelector('.accordion-arrow');
-          
-          content.classList.toggle('active');
-          
-          if (content.classList.contains('active')) {
-            arrow.style.transform = 'rotate(180deg)';
-          } else {
-            arrow.style.transform = 'rotate(0deg)';
-          }
-        });
-      });
-      
-      // Auto open first accordion
-      if (triggers.length > 0) {
-        triggers[0].click();
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-    });
-  </script>
-  
-  <script>
-    // Accordion interaction
-    document.addEventListener('DOMContentLoaded', () => {
-      const triggers = document.querySelectorAll('.accordion-trigger');
-      
-      triggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const content = trigger.nextElementSibling;
-          const arrow = trigger.querySelector('.accordion-arrow');
-          
-          content.classList.toggle('active');
-          
-          if (content.classList.contains('active')) {
-            arrow.style.transform = 'rotate(180deg)';
-          } else {
-            arrow.style.transform = 'rotate(0deg)';
-          }
-        });
-      });
-      
-      // Auto open first accordion
-      if (triggers.length > 0) {
-        triggers[0].click();
-      }
-    });
-  </script>
+    }
 
+    .reveal-smooth-card {
+      animation: fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+
+  <script>
+    function bindCategoryTabs() {
+      const tabBtns = document.querySelectorAll('.category-tab-btn');
+      const foodGrid = document.getElementById('grid-food');
+      const sightsGrid = document.getElementById('grid-sights');
+      const foodSubfilter = document.getElementById('food-subfilter');
+      const foodLoadMore = document.getElementById('food-load-more-wrapper');
+      const sightsLoadMore = document.getElementById('sights-load-more-wrapper');
+
+      tabBtns.forEach(btn => {
+        btn.onclick = (e) => {
+          e.preventDefault();
+          const target = btn.getAttribute('data-target');
+          tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.backgroundColor = 'transparent';
+            b.style.color = 'var(--forest)';
+            b.style.boxShadow = 'none';
+          });
+          btn.classList.add('active');
+          btn.style.backgroundColor = 'var(--forest)';
+          btn.style.color = 'var(--cream)';
+          btn.style.boxShadow = '0 2px 6px rgba(0,0,0,0.12)';
+
+          if (target === 'food') {
+            if (foodGrid) foodGrid.style.display = 'grid';
+            if (sightsGrid) sightsGrid.style.display = 'none';
+            if (foodSubfilter) foodSubfilter.style.display = 'flex';
+            if (foodLoadMore && foodLoadMore.getAttribute('data-all-loaded') !== 'true') {
+              foodLoadMore.style.display = 'block';
+            }
+            if (sightsLoadMore) sightsLoadMore.style.display = 'none';
+          } else {
+            if (foodGrid) foodGrid.style.display = 'none';
+            if (sightsGrid) sightsGrid.style.display = 'grid';
+            if (foodSubfilter) foodSubfilter.style.display = 'none';
+            if (foodLoadMore) foodLoadMore.style.display = 'none';
+            if (sightsLoadMore && sightsLoadMore.getAttribute('data-all-loaded') !== 'true') {
+              sightsLoadMore.style.display = 'block';
+            }
+          }
+        };
+      });
+    }
+
+    function bindFoodSubfilters() {
+      const wrapper = document.getElementById('custom-cuisine-wrapper');
+      const trigger = document.getElementById('custom-cuisine-trigger');
+      const label = document.getElementById('selected-cuisine-label');
+      const items = document.querySelectorAll('.custom-dropdown-item');
+      const allFoodCards = Array.from(document.querySelectorAll('#grid-food .journal-card'));
+      const foodLoadMore = document.getElementById('food-load-more-wrapper');
+      
+      if (!trigger || !wrapper || !items.length) return;
+
+      trigger.onclick = (e) => {
+        e.stopPropagation();
+        const isOpen = wrapper.classList.contains('open');
+        wrapper.classList.toggle('open', !isOpen);
+        trigger.setAttribute('aria-expanded', !isOpen);
+      };
+
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          wrapper.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      items.forEach(item => {
+        item.onclick = (e) => {
+          e.stopPropagation();
+          const value = item.getAttribute('data-value');
+          const rawText = item.querySelector('span').textContent;
+          // Clean emoji prefix for trigger label
+          const cleanLabel = rawText.replace(/^[^\w\s]+/, '').trim();
+          
+          items.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          if (label) label.textContent = cleanLabel;
+          
+          wrapper.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+
+          if (value === 'all') {
+            allFoodCards.forEach(card => {
+              if (card.classList.contains('food-card-extra')) {
+                if (foodLoadMore && foodLoadMore.getAttribute('data-all-loaded') === 'true') {
+                  card.style.display = 'flex';
+                } else {
+                  card.style.display = 'none';
+                }
+              } else {
+                card.style.display = 'flex';
+              }
+            });
+            if (foodLoadMore && foodLoadMore.getAttribute('data-all-loaded') !== 'true') {
+              foodLoadMore.style.display = 'block';
+            }
+          } else {
+            let animIndex = 0;
+            allFoodCards.forEach(card => {
+              const cardType = card.getAttribute('data-foodtype');
+              if (cardType === value) {
+                card.style.display = 'flex';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `opacity 0.5s ease ${animIndex * 0.07}s, transform 0.5s ease ${animIndex * 0.07}s`;
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                  });
+                });
+                animIndex++;
+              } else {
+                card.style.display = 'none';
+              }
+            });
+            if (foodLoadMore) foodLoadMore.style.display = 'none';
+          }
+        };
+      });
+    }
+
+    function bindLoadMoreFood() {
+      const loadMoreBtn = document.getElementById('btn-load-more-food');
+      const loadMoreWrapper = document.getElementById('food-load-more-wrapper');
+      if (!loadMoreBtn || !loadMoreWrapper) return;
+
+      const extraCards = Array.from(document.querySelectorAll('#grid-food .food-card-extra'));
+      let visibleCount = 0;
+      const BATCH_SIZE = 6;
+
+      loadMoreBtn.onclick = (e) => {
+        e.preventDefault();
+        const nextBatch = extraCards.slice(visibleCount, visibleCount + BATCH_SIZE);
+        
+        nextBatch.forEach((card, idx) => {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(28px)';
+          card.style.transition = `opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s`;
+          
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          });
+        });
+        visibleCount += nextBatch.length;
+
+        if (visibleCount >= extraCards.length) {
+          loadMoreWrapper.style.display = 'none';
+          loadMoreWrapper.setAttribute('data-all-loaded', 'true');
+        }
+      };
+    }
+
+    function bindLoadMoreSights() {
+      const loadMoreBtn = document.getElementById('btn-load-more-sights');
+      const loadMoreWrapper = document.getElementById('sights-load-more-wrapper');
+      if (!loadMoreBtn || !loadMoreWrapper) return;
+
+      const extraCards = Array.from(document.querySelectorAll('#grid-sights .sight-card-extra'));
+      let visibleCount = 0;
+      const BATCH_SIZE = 6;
+
+      loadMoreBtn.onclick = (e) => {
+        e.preventDefault();
+        const nextBatch = extraCards.slice(visibleCount, visibleCount + BATCH_SIZE);
+        
+        nextBatch.forEach((card, idx) => {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(28px)';
+          card.style.transition = `opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s`;
+          
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          });
+        });
+        visibleCount += nextBatch.length;
+
+        if (visibleCount >= extraCards.length) {
+          loadMoreWrapper.style.display = 'none';
+          loadMoreWrapper.setAttribute('data-all-loaded', 'true');
+        }
+      };
+    }
+
+    function bindAccordions() {
+      const triggers = document.querySelectorAll('.accordion-trigger');
+      triggers.forEach(trigger => {
+        trigger.onclick = (e) => {
+          e.preventDefault();
+          const content = trigger.nextElementSibling;
+          const arrow = trigger.querySelector('.accordion-arrow');
+          if (content) {
+            content.classList.toggle('active');
+            const isActive = content.classList.contains('active');
+            if (arrow) {
+              arrow.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+          }
+        };
+      });
+      // Accordions start closed by default as requested
+    }
+
+    function initLocationPage() {
+      bindCategoryTabs();
+      bindFoodSubfilters();
+      bindLoadMoreFood();
+      bindLoadMoreSights();
+      bindAccordions();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLocationPage);
+    } else {
+      initLocationPage();
+    }
+  </script>
+  
   <footer style="background-color: var(--ink); color: var(--cream); padding: 4rem 0 2rem; margin-top: auto;">
     <div class="container">
-      <div style="text-align: center; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <div>
+          <h3 style="color: var(--cream); font-size: 1.5rem; margin-bottom: 1rem;">Rain Forest Hotel</h3>
+          <p>122, Jalan Petaling<br>50000 Kuala Lumpur<br>Malaysia</p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Contact</h4>
+          <p>WhatsApp: <a href="https://wa.me/60126183387" style="color: var(--forest);">+60 12-618 3387</a></p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Links</h4>
+          <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><a href="/rooms.html">Rooms</a></li>
+            <li><a href="/location.html">Location</a></li>
+            <li><a href="/reviews.html">Reviews</a></li>
+            <li><a href="/contact.html">Contact & Policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid rgba(251, 246, 236,0.2); padding-top: 2rem; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
         <p>&copy; 2026 Rain Forest Hotel. All rights reserved.</p>
       </div>
     </div>
   </footer>
-
+
 
   
 

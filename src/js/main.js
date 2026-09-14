@@ -96,114 +96,146 @@ function initCarousel() {
   if (!track || !prevBtn || !nextBtn || !indicator) return;
 
   const originalSlides = Array.from(track.querySelectorAll('.carousel-slide'));
-  const totalOriginalSlides = originalSlides.length;
+  const totalOriginalSlides = originalSlides.length; // 4
 
-  // Clone slides to create infinite effect
-  // Clone last 2 and put at start
-  const firstClone1 = originalSlides[totalOriginalSlides - 2].cloneNode(true);
-  const firstClone2 = originalSlides[totalOriginalSlides - 1].cloneNode(true);
-  firstClone1.classList.add('clone');
-  firstClone2.classList.add('clone');
-  
-  // Clone first 3 and put at end
-  const lastClone1 = originalSlides[0].cloneNode(true);
-  const lastClone2 = originalSlides[1].cloneNode(true);
-  const lastClone3 = originalSlides[2].cloneNode(true);
-  lastClone1.classList.add('clone');
-  lastClone2.classList.add('clone');
-  lastClone3.classList.add('clone');
+  // Clone entire set of original slides for head & tail to allow infinite scrolling
+  const headClones = originalSlides.map(s => {
+    const clone = s.cloneNode(true);
+    clone.classList.add('clone');
+    return clone;
+  });
 
-  track.insertBefore(firstClone2, originalSlides[0]);
-  track.insertBefore(firstClone1, firstClone2);
-  
-  track.appendChild(lastClone1);
-  track.appendChild(lastClone2);
-  track.appendChild(lastClone3);
+  const tailClones = originalSlides.map(s => {
+    const clone = s.cloneNode(true);
+    clone.classList.add('clone');
+    return clone;
+  });
+
+  // Prepend headClones before original slides
+  headClones.forEach(clone => {
+    track.insertBefore(clone, originalSlides[0]);
+  });
+
+  // Append tailClones after original slides
+  tailClones.forEach(clone => {
+    track.appendChild(clone);
+  });
 
   const allSlides = Array.from(track.querySelectorAll('.carousel-slide'));
+  const offset = totalOriginalSlides; // 4 head clones prepended -> real slides start at index 4
 
-  function getSlideWidth() {
-    return allSlides[0].offsetWidth + 24; // 1.5rem gap = 24px
+  function getSlideCenterScroll(index) {
+    const targetSlide = allSlides[index];
+    if (!targetSlide) return 0;
+    const slideCenter = targetSlide.offsetLeft + (targetSlide.offsetWidth / 2);
+    return slideCenter - (track.clientWidth / 2);
   }
 
-  // Center the real first slide on load
-  setTimeout(() => {
-    track.style.scrollBehavior = 'auto';
-    track.scrollLeft = getSlideWidth() * 2; // Jump past the 2 prepended clones
-    updateCarouselState();
-  }, 100);
-
-  function updateCarouselState() {
+  function getClosestIndex() {
     const trackCenter = track.scrollLeft + (track.clientWidth / 2);
-    
     let closestIndex = 0;
     let minDistance = Infinity;
-    
-    allSlides.forEach((slide, index) => {
+
+    allSlides.forEach((slide, idx) => {
       const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
       const distance = Math.abs(trackCenter - slideCenter);
-      
       if (distance < minDistance) {
         minDistance = distance;
-        closestIndex = index;
+        closestIndex = idx;
       }
     });
 
-    allSlides.forEach((slide, index) => {
-      if (index === closestIndex) {
+    return closestIndex;
+  }
+
+  function updateCarouselState() {
+    const activeIdx = getClosestIndex();
+
+    allSlides.forEach((slide, idx) => {
+      if (idx === activeIdx) {
         slide.classList.add('active');
+        slide.style.zIndex = '10';
       } else {
         slide.classList.remove('active');
+        slide.style.zIndex = '1';
       }
     });
-    
-    let realIndex = closestIndex - 2 + 1; 
-    if (realIndex < 1) realIndex = totalOriginalSlides + realIndex;
-    if (realIndex > totalOriginalSlides) realIndex = realIndex % totalOriginalSlides;
-    if (realIndex === 0) realIndex = totalOriginalSlides;
 
+    let realIndex = ((activeIdx - offset) % totalOriginalSlides + totalOriginalSlides) % totalOriginalSlides + 1;
     indicator.textContent = `${realIndex} / ${totalOriginalSlides}`;
   }
 
-  let isScrolling = false;
+  function scrollToSlide(index, smooth = true) {
+    track.style.scrollBehavior = smooth ? 'smooth' : 'auto';
+    track.scrollLeft = getSlideCenterScroll(index);
+    updateCarouselState();
+  }
+
+  // Set initial position to real slide 1 on load
+  setTimeout(() => {
+    scrollToSlide(offset, false);
+  }, 100);
+
+  function checkSeamlessWrap() {
+    const activeIdx = getClosestIndex();
+    
+    if (activeIdx >= offset + totalOriginalSlides) {
+      const equivalentIdx = activeIdx - totalOriginalSlides;
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = getSlideCenterScroll(equivalentIdx);
+      updateCarouselState();
+    } else if (activeIdx < offset) {
+      const equivalentIdx = activeIdx + totalOriginalSlides;
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = getSlideCenterScroll(equivalentIdx);
+      updateCarouselState();
+    }
+  }
+
+  let scrollTimeout = null;
   track.addEventListener('scroll', () => {
     updateCarouselState();
-    
-    if (!isScrolling) {
-      window.requestAnimationFrame(function checkInfinite() {
-        const slideWidth = getSlideWidth();
-        const maxScrollLeft = track.scrollWidth - track.clientWidth;
-        
-        // If we hit the left edge (clones), jump to real slides at end
-        if (track.scrollLeft <= 5) {
-          track.style.scrollBehavior = 'auto';
-          track.classList.remove('snap-enabled');
-          track.scrollLeft = slideWidth * totalOriginalSlides;
-        } 
-        // If we hit the right edge clones, jump to real slides at start
-        else if (track.scrollLeft >= maxScrollLeft - 5) {
-          track.style.scrollBehavior = 'auto';
-          track.classList.remove('snap-enabled');
-          track.scrollLeft = slideWidth * 2;
-        }
-        
-        isScrolling = false;
-      });
-      isScrolling = true;
-    }
+
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      checkSeamlessWrap();
+    }, 150);
   });
 
-  prevBtn.addEventListener('click', () => {
-    track.style.scrollBehavior = 'smooth';
-    track.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
+  track.addEventListener('scrollend', () => {
+    checkSeamlessWrap();
   });
 
   nextBtn.addEventListener('click', () => {
-    track.style.scrollBehavior = 'smooth';
-    track.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
+    const current = getClosestIndex();
+    scrollToSlide(current + 1, true);
   });
 
-  // Wheel scrolling behavior has been removed so vertical scrolling is uninterrupted
+  prevBtn.addEventListener('click', () => {
+    const current = getClosestIndex();
+    scrollToSlide(current - 1, true);
+  });
+
+  // Click on side card to center & focus it
+  allSlides.forEach((slide, index) => {
+    slide.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      const closest = getClosestIndex();
+      if (index !== closest) {
+        scrollToSlide(index, true);
+      }
+    });
+  });
+
+  // Ensure vertical mouse wheel scrolling over room cards propagates directly to the page window
+  track.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      window.scrollBy({
+        top: e.deltaY,
+        behavior: 'auto'
+      });
+    }
+  }, { passive: true });
 }
 
 function initLightbox() {
@@ -265,6 +297,28 @@ function initActiveNav() {
   });
 }
 
+export function initAccordions() {
+  const triggers = document.querySelectorAll('.accordion-trigger');
+  
+  triggers.forEach(trigger => {
+    trigger.onclick = (e) => {
+      e.preventDefault();
+      const content = trigger.nextElementSibling;
+      const arrow = trigger.querySelector('.accordion-arrow');
+      
+      if (content) {
+        content.classList.toggle('active');
+        const isActive = content.classList.contains('active');
+        if (arrow) {
+          arrow.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+      }
+    };
+  });
+  
+  // Accordions start closed by default
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initCurrencyToggle();
@@ -273,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
   initActiveNav();
   initScrollReveal();
+  initAccordions();
 });
 
 // Function to handle smooth fade transitions between pages

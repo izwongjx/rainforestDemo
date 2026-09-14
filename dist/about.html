@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us | Rain Forest Hotel</title>
+  <title>About Us | Rain Forest Hotel</title>
   <style>
     .about-hero-grid {
       display: grid;
@@ -67,30 +67,49 @@
     .values-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2px;
+      gap: 1.5rem;
       margin-top: 3rem;
-      background-color: var(--rattan);
-      border: 2px solid var(--rattan);
+      background-color: transparent;
+      border: none;
     }
     
     .value-card {
-      padding: 2.5rem;
+      padding: 2rem 2.25rem;
       background-color: var(--white);
+      border: 1px solid var(--rattan);
+      border-radius: 8px;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      transition: all 0.25s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
     
     .value-card:hover {
-      background-color: rgba(245, 242, 235, 0.6);
+      border-color: var(--forest);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(60, 91, 69, 0.06);
+    }
+    
+    .value-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .value-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--clay);
+      letter-spacing: 0.1em;
     }
     
     .value-icon {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       fill: var(--forest);
-      margin-bottom: 0.5rem;
     }
     
     .value-card h3 {
@@ -102,11 +121,11 @@
     
     .value-card p {
       font-family: var(--font-body);
-      font-size: 0.9rem;
+      font-size: 0.925rem;
       line-height: 1.6;
       margin: 0;
       color: var(--ink);
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     @media (min-width: 768px) {
@@ -124,9 +143,158 @@
         gap: 6rem;
       }
     }
+    @media (max-width: 480px) {
+      .about-hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+      }
+      .about-hero-buttons a {
+        width: 100%;
+        text-align: center;
+      }
+      .about-hero-img {
+        height: 300px;
+      }
+    }
+
+    .view-rooms-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 4rem;
+      width: 100%;
+    }
+
+    .about-hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Modern Woody Timeline Layout */
+    .timeline-wrapper {
+      position: relative;
+      max-width: 900px;
+      margin: 4rem auto 0;
+      padding: 2rem 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--clay);
+      opacity: 0.35;
+      transform: translateX(-50%);
+    }
+
+    .timeline-line::before,
+    .timeline-line::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--forest);
+      border: 2px solid var(--clay);
+    }
+
+    .timeline-line::before { top: -6px; }
+    .timeline-line::after { bottom: -6px; }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+      width: 100%;
+      display: flex;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-node {
+      position: absolute;
+      top: 2rem;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--cream);
+      border: 3px solid var(--forest);
+      box-shadow: 0 0 0 4px var(--cream);
+      z-index: 3;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-node {
+      background-color: var(--clay);
+      border-color: var(--clay);
+    }
+
+    .timeline-card {
+      background-color: var(--white);
+      border: 1px solid var(--rattan);
+      border-radius: 8px;
+      padding: 2.25rem;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(60, 91, 69, 0.04);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline-card:hover {
+      border-color: var(--forest);
+      transform: translateY(-2px);
+    }
+
+    .timeline-left {
+      justify-content: flex-start;
+    }
+
+    .timeline-left .timeline-card {
+      width: 44%;
+      text-align: right;
+    }
+
+    .timeline-right {
+      justify-content: flex-end;
+    }
+
+    .timeline-right .timeline-card {
+      width: 44%;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-line {
+        left: 20px;
+      }
+
+      .timeline-node {
+        left: 20px;
+        top: 2rem;
+      }
+
+      .timeline-left, .timeline-right {
+        justify-content: flex-start;
+      }
+
+      .timeline-left .timeline-card,
+      .timeline-right .timeline-card {
+        width: calc(100% - 48px);
+        margin-left: 48px;
+        text-align: left;
+      }
+    }
   </style>
-  <script type="module" crossorigin src="/assets/main-BpG2InhP.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-BREQu1j1.css">
+  <script type="module" crossorigin src="/assets/main-DSrdKljy.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-CZV0Bp8w.css">
 </head>
 <body>
 
@@ -134,7 +302,10 @@
   <div class="header-wrapper">
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="logo-text">Rain Forest Hotel</a>
+      <a href="/" class="logo-wrapper">
+        <img src="/logo.png" alt="Rain Forest Hotel" class="site-logo-img" />
+        <span class="logo-text">Rain Forest Hotel</span>
+      </a>
       
       <nav class="nav-links">
         <a href="/" class="nav-link">Home</a>
@@ -172,13 +343,13 @@
             <p style="font-family: var(--font-body); font-size: 0.975rem; line-height: 1.7; color: var(--ink); font-weight: 300; opacity: 0.8; margin-bottom: 2.5rem;">
               Nestled right in the vibrant heart of Chinatown on Jalan Petaling, our building has history in its walls. We adapted this classic shophouse space to prioritize what matters most: clean, quiet, and air-conditioned rooms, hot showers, and a warm courtyard to recharge after a day of sensory overload in KL.
             </p>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div class="about-hero-buttons">
               <a href="/rooms.html" class="btn-booking" style="font-size: 0.8rem;">Explore Rooms &rarr;</a>
               <a href="/contact.html" class="btn-ghost" style="font-size: 0.8rem;">Get in Touch</a>
             </div>
           </div>
           <div class="reveal">
-            <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=800&q=80" alt="Chinatown Kuala Lumpur facade" class="about-hero-img" />
+            <img src="/images/hotel/_MG_2011.jpeg" alt="Rain Forest Hotel Atmosphere" class="about-hero-img" />
           </div>
         </div>
       </div>
@@ -196,23 +367,35 @@
         <h2 class="reveal" style="text-align: center; color: var(--forest); margin-bottom: 0.5rem; font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400;">How We Got Here</h2>
         <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; font-family: var(--font-body); font-weight: 300; opacity: 0.8; line-height: 1.6;">From a 1920s shophouse to your basecamp in KL's most vibrant district.</p>
         
-        <div class="history-grid reveal">
-          <div class="history-card reveal">
-            <span class="history-era">1920s</span>
-            <h3>The Shophouse Era</h3>
-            <p>Built during KL's historic mining boom, the building operated as a traditional Chinese merchant house, featuring classic high ceilings and an open air-well to draw in cool breezes.</p>
+        <!-- Vertical Timeline Container -->
+        <div class="timeline-wrapper reveal">
+          <div class="timeline-line"></div>
+          
+          <div class="timeline-item timeline-left reveal">
+            <div class="timeline-node"></div>
+            <div class="timeline-card">
+              <span class="history-era">1920s</span>
+              <h3>The Shophouse Era</h3>
+              <p>Built during KL's historic mining boom, the building operated as a traditional Chinese merchant house, featuring classic high ceilings and an open air-well to draw in cool breezes.</p>
+            </div>
           </div>
           
-          <div class="history-card reveal">
-            <span class="history-era">2010s</span>
-            <h3>The Preservation</h3>
-            <p>We carefully renovated the space to install modern comforts (like robust AC and high-pressure plumbing) while preserving the raw clay brickwork and structural columns.</p>
+          <div class="timeline-item timeline-right reveal">
+            <div class="timeline-node"></div>
+            <div class="timeline-card">
+              <span class="history-era">2010s</span>
+              <h3>The Preservation</h3>
+              <p>We carefully renovated the space to install modern comforts (like robust AC and high-pressure plumbing) while preserving the raw clay brickwork and structural columns.</p>
+            </div>
           </div>
           
-          <div class="history-card reveal">
-            <span class="history-era">Today</span>
-            <h3>The Basecamp</h3>
-            <p>Today, we host writers, backpackers, and digital nomads from around the globe, offering a welcoming, budget-friendly refuge in the middle of Chinatown's non-stop energy.</p>
+          <div class="timeline-item timeline-left reveal">
+            <div class="timeline-node"></div>
+            <div class="timeline-card">
+              <span class="history-era">Today</span>
+              <h3>The Basecamp</h3>
+              <p>Today, we host writers, backpackers, and digital nomads from around the globe, offering a welcoming, budget-friendly refuge in the middle of Chinatown's non-stop energy.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -221,7 +404,7 @@
     <!-- Accent Quote Block -->
     <section style="background-color: var(--forest); color: var(--cream); text-align: center; padding: 5rem 2rem;">
       <div class="container reveal" style="max-width: 800px;">
-        <p style="font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.5rem); line-height: 1.3; font-style: italic; margin-bottom: 1.5rem;">"We wanted to build a place that stands for what travel used to be—personal, spontaneous, and anchored in the community."</p>
+        <p style="font-family: var(--font-display); font-size: clamp(1.1rem, 4vw, 2.5rem); line-height: 1.3; font-style: italic; margin-bottom: 1.5rem;">"We wanted to build a place that stands for what travel used to be—personal, spontaneous, and anchored in the community."</p>
         <span style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--rattan); font-weight: 600;">Founder, Rain Forest Hotel</span>
       </div>
     </section>
@@ -235,49 +418,122 @@
 
         <div class="values-grid reveal">
           <div class="value-card reveal">
-            <svg class="value-icon" viewBox="0 0 24 24">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            <h3>Chinatown Experts</h3>
-            <p>We live and breathe Jalan Petaling. Skip the tourist traps—ask us for the best local food markets, hidden speakeasies, and temple walks.</p>
+            <div class="value-header">
+              <svg class="value-icon" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span class="value-num">01</span>
+            </div>
+            <h3>Prime Chinatown Location</h3>
+            <p>Right in the heart of Kuala Lumpur's vibrant Chinatown, surrounded by authentic street food, rich culture, shopping, and effortless public transit.</p>
           </div>
 
           <div class="value-card reveal">
-            <svg class="value-icon" viewBox="0 0 24 24">
-              <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-            </svg>
-            <h3>Honest Pricing</h3>
-            <p>No sudden algorithmic pricing surges. No hidden dynamic resort fees. What you see is exactly what you pay for your stay.</p>
+            <div class="value-header">
+              <svg class="value-icon" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span class="value-num">02</span>
+            </div>
+            <h3>Personalized Hospitality</h3>
+            <p>Friendly, attentive service that makes you feel genuinely welcomed and supported throughout your stay—not just another check-in.</p>
           </div>
 
           <div class="value-card reveal">
-            <svg class="value-icon" viewBox="0 0 24 24">
-              <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
-            </svg>
-            <h3>Direct & Human</h3>
-            <p>We run all bookings directly via WhatsApp. No standard templates or bots—just real human staff confirming your room availability.</p>
+            <div class="value-header">
+              <svg class="value-icon" viewBox="0 0 24 24">
+                <path d="M17 8C8 10 59 16.17 3 21 3 21 8 10 17 8zM12 3C7 6 5 12 5 12s4-1 9-4-2-5-2-5z"/>
+              </svg>
+              <span class="value-num">03</span>
+            </div>
+            <h3>A Green Escape in the City</h3>
+            <p>Relax, enjoy your complimentary morning breakfast, or unwind after exploring the city on our charming rooftop garden terrace.</p>
           </div>
         </div>
 
-        <!-- CTA -->
-        <div class="reveal" style="text-align: center; margin-top: 4rem;">
-          <a href="/rooms.html" class="btn-booking" style="font-size: 0.85rem; padding: 1.1rem 2.5rem;">View Our Rooms &rarr;</a>
+        <!-- CTA Button nicely positioned inside Core Values section -->
+        <div class="reveal" style="display: flex; justify-content: center; margin-top: 3rem;">
+          <a href="/rooms.html" class="btn-booking" style="font-size: 0.85rem; padding: 0.9rem 2.25rem;">View Our Rooms &rarr;</a>
         </div>
       </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section style="background-color: var(--rattan); padding: 5rem 0;">
+    <!-- CTA Banner (Ready to Visit?) -->
+    <section style="background-color: var(--rattan); padding: 5rem 0; margin-top: 0;">
       <div class="container reveal" style="text-align: center; max-width: 700px;">
         <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--clay); font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.75rem;">Ready to Visit?</span>
         <h2 style="color: var(--forest); font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; margin-bottom: 1rem;">Book your stay directly with us.</h2>
         <p style="font-family: var(--font-body); font-weight: 300; opacity: 0.8; line-height: 1.6; margin-bottom: 2.5rem;">No middlemen, no booking fees. Just message us on WhatsApp and we'll confirm your room.</p>
-        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+        <div class="about-hero-buttons">
           <a href="https://wa.me/60126183387" target="_blank" class="btn-booking" style="font-size: 0.85rem;">Message on WhatsApp</a>
           <a href="/reviews.html" class="btn-ghost" style="font-size: 0.85rem;">What Guests Say</a>
         </div>
       </div>
     </section>
+
+    <!-- Interactive Easter Egg Section (Founders' Story Video Dropdown) -->
+    <section style="background-color: var(--cream); padding: 4.5rem 0 5rem; text-align: center; border-top: 1px solid rgba(45, 62, 50, 0.1);">
+      <div class="container reveal" style="max-width: 850px;">
+        <!-- Secret Trigger Button -->
+        <button id="easterEggBtn" type="button" style="background: var(--white); border: 1.5px dashed var(--clay); color: var(--forest); padding: 1rem 2.25rem; border-radius: 50px; font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.75rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+          <span style="font-size: 1.2rem;">🔑</span>
+          <span>Psst... You found a secret! Click to hear why we started Rain Forest Hotel</span>
+          <span id="easterEggArrow" style="transition: transform 0.3s ease; font-size: 0.85rem; color: var(--clay);">▼</span>
+        </button>
+
+        <!-- Hidden Video Drawer -->
+        <div id="easterEggDrawer" style="max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; opacity: 0; margin-top: 0;">
+          <div style="padding-top: 2.25rem;">
+            <!-- Story Header on Top -->
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--forest); background: rgba(45, 62, 50, 0.08); padding: 0.4rem 1.1rem; border-radius: 30px; font-weight: 600; display: inline-block; margin-bottom: 0.75rem;">🎉 Secret Unlocked!</span>
+              <h3 style="font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0 0 0.5rem; color: var(--forest); font-weight: 400;">A Conversation with the Founders</h3>
+              <p style="font-family: var(--font-body); font-size: 0.95rem; margin: 0 auto; max-width: 520px; opacity: 0.8; font-weight: 300; line-height: 1.5;">Watch the 2 owners sit down and share why they started Rain Forest Hotel.</p>
+            </div>
+            
+            <!-- Clean Centered Portrait Video Player (Edge-to-Edge, Zero Side Borders) -->
+            <div style="max-width: 360px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.18); background: #000; border: 1px solid rgba(45, 62, 50, 0.15);">
+              <video id="easterEggVideo" controls poster="/images/hotel/_MG_1709.jpeg" style="width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 9 / 16; border-radius: 20px;">
+                <source src="/images/media/hotel-tour.mp4" type="video/mp4" />
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('easterEggBtn');
+        const drawer = document.getElementById('easterEggDrawer');
+        const arrow = document.getElementById('easterEggArrow');
+        
+        if (btn && drawer) {
+          let isOpen = false;
+          btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+              drawer.style.maxHeight = '1200px';
+              drawer.style.opacity = '1';
+              drawer.style.marginTop = '1rem';
+              if (arrow) arrow.style.transform = 'rotate(180deg)';
+              btn.style.borderColor = 'var(--forest)';
+              btn.style.backgroundColor = 'rgba(45, 62, 50, 0.12)';
+            } else {
+              drawer.style.maxHeight = '0';
+              drawer.style.opacity = '0';
+              drawer.style.marginTop = '0';
+              if (arrow) arrow.style.transform = 'rotate(0deg)';
+              btn.style.borderColor = 'var(--clay)';
+              btn.style.backgroundColor = 'var(--white)';
+              const vid = document.getElementById('easterEggVideo');
+              if (vid) vid.pause();
+            }
+          });
+        }
+      });
+    </script>
   </main>
 
   <footer style="background-color: var(--ink); color: var(--cream); padding: 4rem 0 2rem; margin-top: auto;">
@@ -306,7 +562,7 @@
       </div>
     </div>
   </footer>
-
+
 
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/60126183387" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">

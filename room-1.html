@@ -13,7 +13,10 @@
   <div class="header-wrapper">
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="logo-text">Rain Forest Hotel</a>
+      <a href="/" class="logo-wrapper">
+        <img src="/logo.png" alt="Rain Forest Hotel" class="site-logo-img" />
+        <span class="logo-text">Rain Forest Hotel</span>
+      </a>
       
       <nav class="nav-links">
         <a href="/" class="nav-link">Home</a>
@@ -36,28 +39,72 @@
 </div>
 
       <main>
-    <!-- Section 1: Airbnb-style Elegant Header -->
-    <section style="background-color: var(--cream); padding-top: 10rem; padding-bottom: 2.5rem;">
+        <!-- Section 1: Room Header -->
+    <section class="room-header-section" style="background-color: var(--cream);">
       <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; border-bottom: 1px solid rgba(92, 70, 51, 0.1); padding-bottom: 1.5rem;">
+        <!-- Desktop Header Layout (Visible >= 769px) -->
+        <div class="desktop-room-header">
           <div>
-            <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.25rem); color: var(--forest); margin: 0 0 0.5rem; line-height: 1.1;">Single Room with Shared Bathroom</h1>
-            <!-- Specs Row -->
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; font-family: var(--font-body); font-size: 0.9rem; color: var(--ink); opacity: 0.85; font-weight: 300;">
+            <h1 class="desktop-room-title">Single Room with Shared Bathroom</h1>
+            <div class="desktop-room-specs">
               <span style="color: #f5a623; font-weight: 600;">★ 4.8</span>
-              <span style="color: var(--clay); font-weight: 500;">(12 reviews)</span>
+              <span style="color: var(--clay); font-weight: 500;">(20 reviews)</span>
               <span>•</span>
               <span>1 Guest</span>
               <span>•</span>
               <span>1 Single Bed</span>
               <span>•</span>
-              <span>12 m²</span>
+              <span>6 m²</span>
             </div>
           </div>
-          <div style="text-align: right;">
-            <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--clay); font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 0.25rem;">Best Rate</span>
-            <p class="room-price" data-price-myr="50" style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 600; color: var(--forest); margin: 0;">MYR 50 <span style="font-size: 1rem; font-weight: normal; font-family: var(--font-body); color: var(--ink);">/ night</span></p>
+          <div class="desktop-room-price">
+            <span class="desktop-rate-label">Rate Options</span>
+            <p class="room-price" data-price-myr="50" style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; color: var(--forest); margin: 0;">
+              MYR 50 <span class="desktop-price-unit">/ night (Weekdays)</span>
+            </p>
+            <div style="font-size: 0.75rem; color: var(--clay); font-family: var(--font-mono); margin-top: 0.25rem;">
+              Weekends: MYR 65 | Holidays: MYR 75
+            </div>
             <div class="currency-note" style="display:none; font-size: 0.75rem; color: var(--ink); margin-top: 0.25rem;"></div>
+          </div>
+        </div>
+
+        <!-- Mobile Header Layout (Visible <= 768px) -->
+        <div class="mobile-room-header">
+          <div class="room-header-top-bar">
+            <a href="/rooms.html" class="back-link">&larr; All Rooms</a>
+            <span class="rating-badge">★ 4.8 <span class="review-count">(20 reviews)</span></span>
+          </div>
+
+          <h1 class="room-title-text">Single Room with Shared Bathroom</h1>
+
+          <div class="room-specs-pills">
+            <span class="spec-pill">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              1 Guest
+            </span>
+            <span class="spec-pill">
+              <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-1.66-1.34-3-3-3z"/></svg>
+              1 Single Bed
+            </span>
+            <span class="spec-pill">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+              6 m²
+            </span>
+          </div>
+
+          <div class="room-price-row-mobile">
+            <div>
+              <span class="price-rate-label">NIGHTLY RATES</span>
+              <div class="price-amount-wrap">
+                <span class="room-price" data-price-myr="50">MYR 50</span>
+                <span class="price-period">/ night (Weekdays)</span>
+              </div>
+              <div style="font-size: 0.7rem; color: var(--clay); font-family: var(--font-mono); margin-top: 0.2rem;">
+                Weekends: MYR 65 | Holidays: MYR 75
+              </div>
+              <div class="currency-note" style="display:none;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -70,22 +117,23 @@
         <!-- 5-Photo Gallery Collage -->
         <div class="gallery-collage">
           <div class="gallery-collage-main">
-            <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80" alt="Single Room Main Picture" />
+            <img src="/images/rooms/single-room/1.jpg" alt="Single Room Main Picture" />
+            <button class="mobile-gallery-trigger-btn" onclick="document.querySelector('#galleryModal').style.display='flex'">View all photos &nearr;</button>
           </div>
           <div class="gallery-collage-grid">
             <div class="gallery-collage-item">
-              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=400&q=80" alt="Single Room Detail Picture 1" />
+              <img src="/images/rooms/single-room/2.jpg" alt="Single Room Photo 2" />
             </div>
             <div class="gallery-collage-item">
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=400&q=80" alt="Single Room Detail Picture 2" />
+              <img src="/images/rooms/single-room/3.jpg" alt="Single Room Photo 3" />
             </div>
             <div class="gallery-collage-item">
-              <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=400&q=80" alt="Chinatown Facade Picture" />
+              <img src="/images/rooms/single-room/4.jpg" alt="Single Room Photo 4" />
             </div>
             <div class="gallery-more-container">
-              <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=400&q=80" alt="Clean Bathroom Detail Picture" />
-              <div class="gallery-overlay" style="position: absolute; inset: 0; background-color: rgba(26, 37, 30, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--cream); font-family: var(--font-display); transition: background-color 0.3s ease;">
-                <span style="font-size: 2.25rem; font-weight: 600; line-height: 1;">+15</span>
+              <img src="/images/rooms/single-room/5.jpg" alt="Single Room Photo 5" />
+              <div class="gallery-overlay" onclick="document.querySelector('#galleryModal').style.display='flex'" style="position: absolute; inset: 0; background-color: rgba(26, 37, 30, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--cream); font-family: var(--font-display); transition: background-color 0.3s ease; cursor: pointer;">
+                <span style="font-size: 2.25rem; font-weight: 600; line-height: 1;">+6</span>
                 <span style="font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.5rem; font-weight: 500; opacity: 0.9;">More Photos</span>
               </div>
             </div>
@@ -97,31 +145,31 @@
           <!-- Left Column: Content -->
           <div class="room-content">
             <h2 class="reveal" style="font-family: var(--font-display); font-size: 2rem; color: var(--forest); margin-top: 0; margin-bottom: 1.5rem;">About this room</h2>
-            <p class="room-intro">Cozy single-bed room with natural wood accents and easy city access.</p>
+            <p class="room-intro">Cozy twin-bed room featuring vibrant nature mural pictures and peaceful surroundings.</p>
             <p class="room-description">
-              Designed for the solo adventurer seeking a peaceful, cost-effective refuge in the heart of Kuala Lumpur. This room strips away the unnecessary clutter, focusing on the essentials: a high-quality single bed, clean linens, quiet surroundings, and high-speed Wi-Fi to keep you connected.
+              The twin room offers robust air conditioning, tiled flooring, natural light, and a picturesque nature mural backdrop. Designed with 2 single beds (180 cm × 42 cm) and a compact room layout (42 cm × 280 cm), it is ideal for travel partners or solo guests who prefer separate single beds.
             </p>
             <p class="room-description" style="margin-top: 1rem;">
-              Guests have access to our spotless, modern shared bathrooms, which are cleaned multiple times daily and equipped with hot showers, fresh towels, and complimentary toilet paper.
+              Guests have full access to our modern, spotless shared bathroom facility equipped with hot showers, hairdryers, fresh towels, slippers, and daily housekeeping.
             </p>
             
             <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--forest); margin-top: 3.5rem; margin-bottom: 1rem;">Amenities Included</h3>
             <ul class="amenities-list">
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                Free high-speed WiFi
+                Free High-Speed WiFi
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                Air conditioning
+                Air Conditioning & Fan
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                Non-smoking room
+                Shared Bathroom (Shower & Hairdryer)
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                Fresh towels provided
+                Fresh Towels & Linen
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
@@ -129,15 +177,15 @@
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                Clothes rack & hangers
+                Daily Housekeeping
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                Shared bathroom access
+                Clothes Rack
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-                Daily housekeeping
+                Hand Sanitiser & Cleaning Products
               </li>
             </ul>
             
@@ -149,7 +197,7 @@
           
           <!-- Right Column: Booking Widget -->
           <div>
-            <div class="booking-widget-container booking-widget" data-room-name="Single Room with Shared Bathroom">
+            <div class="booking-widget-container booking-widget" data-room-name="Twin Room with Shared Bathroom">
               <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--forest); margin: 0 0 0.5rem;">Ready to book?</h3>
               <p style="font-family: var(--font-body); font-size: 0.9rem; color: var(--ink); opacity: 0.8; margin: 0 0 1.5rem; line-height: 1.4;">Check availability directly via WhatsApp. No hidden booking fees.</p>
               
@@ -167,7 +215,7 @@
                 <label class="form-label">Guests Count</label>
                 <div class="stepper-container">
                   <button class="stepper-btn stepper-minus">-</button>
-                  <input type="number" id="guest-count" class="stepper-input" value="1" min="1" max="1" readonly />
+                  <input type="number" id="guest-count" class="stepper-input" value="2" min="1" max="2" readonly />
                   <button class="stepper-btn stepper-plus">+</button>
                 </div>
               </div>
@@ -192,7 +240,7 @@
       <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink);"></div>
       <span style="font-size: 0.75rem; color: var(--ink); opacity: 0.8;">+ RM 10 tax / night</span>
     </div>
-    <a href="#" class="nav-whatsapp-btn" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;" onclick="document.querySelector('#check-in').scrollIntoView({behavior: 'smooth'}); return false;">Book Now</a>
+    <a href="#" class="nav-whatsapp-btn" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;" onclick="const w=document.querySelector('.booking-widget'); if(w){w.scrollIntoView({behavior:'smooth', block:'center'});}; return false;">Book Now</a>
   </div>
   </footer>
 
@@ -210,19 +258,18 @@
     </div>
 
     <!-- Main Image Slider Area -->
-    <div style="position: relative; flex-grow: 1; display: flex; align-items: center; justify-content: center; max-width: 1200px; width: 100%; margin: 1.5rem auto;">
-      <!-- Left Arrow -->
-      <button id="galleryPrev" style="position: absolute; left: 1rem; background: rgba(26, 37, 30, 0.6); border: 1px solid rgba(251, 246, 236, 0.2); color: var(--cream); width: 48px; height: 48px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10001; transition: background 0.2s;">&#10094;</button>
-      
+    <div style="position: relative; flex-grow: 1; display: flex; align-items: center; justify-content: center; max-width: 1200px; width: 100%; margin: 1rem auto;">
       <!-- Main Photo Frame -->
-      <div style="text-align: center; max-width: 85%; max-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <img id="galleryMainImg" src="" alt="Active Gallery Photo" style="max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid rgba(251, 246, 236, 0.1);" />
-        <!-- Index Indicator -->
-        <span id="galleryIndex" style="color: var(--rattan); font-family: var(--font-mono); font-size: 0.875rem; margin-top: 1rem; display: inline-block;">1 / 15</span>
+      <div style="text-align: center; max-width: 90%; max-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+        <img id="galleryMainImg" src="" alt="Active Gallery Photo" style="max-width: 100%; max-height: 55vh; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid rgba(251, 246, 236, 0.1);" />
+        
+        <!-- Controls Bar Below Image -->
+        <div class="gallery-modal-controls-bar">
+          <button id="galleryPrev" class="gallery-modal-btn" aria-label="Previous photo">&#10094;</button>
+          <span id="galleryIndex" style="color: var(--rattan); font-family: var(--font-mono); font-size: 0.875rem; font-weight: 600; min-width: 65px; text-align: center;">1 / 15</span>
+          <button id="galleryNext" class="gallery-modal-btn" aria-label="Next photo">&#10095;</button>
+        </div>
       </div>
-
-      <!-- Right Arrow -->
-      <button id="galleryNext" style="position: absolute; right: 1rem; background: rgba(26, 37, 30, 0.6); border: 1px solid rgba(251, 246, 236, 0.2); color: var(--cream); width: 48px; height: 48px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10001; transition: background 0.2s;">&#10095;</button>
     </div>
 
     <!-- Thumbnail Strip -->
@@ -240,12 +287,31 @@
       <div class="currency-note" style="display:none; font-size: 0.7rem; color: var(--ink);"></div>
       <span style="font-size: 0.75rem; color: var(--ink); opacity: 0.8;">+ RM 10 tax / night</span>
     </div>
-    <a href="#" class="nav-whatsapp-btn" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;" onclick="document.querySelector('#check-in').scrollIntoView({behavior: 'smooth'}); return false;">Book Now</a>
+    <a href="#" class="nav-whatsapp-btn" style="padding: 0.75rem 1.5rem; font-size: 0.85rem;" onclick="const w=document.querySelector('.booking-widget'); if(w){w.scrollIntoView({behavior:'smooth', block:'center'});}; return false;">Book Now</a>
   </div>
 
   <footer style="background-color: var(--ink); color: var(--cream); padding: 4rem 0 2rem; margin-top: auto;">
     <div class="container">
-      <div style="text-align: center; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <div>
+          <h3 style="color: var(--cream); font-size: 1.5rem; margin-bottom: 1rem;">Rain Forest Hotel</h3>
+          <p>122, Jalan Petaling<br>50000 Kuala Lumpur<br>Malaysia</p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Contact</h4>
+          <p>WhatsApp: <a href="https://wa.me/60126183387" style="color: var(--forest);">+60 12-618 3387</a></p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Links</h4>
+          <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><a href="/rooms.html">Rooms</a></li>
+            <li><a href="/location.html">Location</a></li>
+            <li><a href="/reviews.html">Reviews</a></li>
+            <li><a href="/contact.html">Contact & Policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid rgba(251, 246, 236,0.2); padding-top: 2rem; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
         <p>&copy; 2026 Rain Forest Hotel. All rights reserved.</p>
       </div>
     </div>
@@ -256,21 +322,17 @@
 
   <script>
     const galleryImages = [
-      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-154118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+      "/images/rooms/single-room/1.jpg",
+      "/images/rooms/single-room/2.jpg",
+      "/images/rooms/single-room/3.jpg",
+      "/images/rooms/single-room/4.jpg",
+      "/images/rooms/single-room/5.jpg",
+      "/images/rooms/single-room/6.jpg",
+      "/images/rooms/single-room/7.jpeg",
+      "/images/rooms/single-room/8.jpg",
+      "/images/rooms/single-room/9.jpeg",
+      "/images/rooms/single-room/10.jpeg",
+      "/images/rooms/single-room/11.jpg"
     ];
 
     let currentGalleryIndex = 0;

@@ -105,28 +105,39 @@
     }
     
     .review-source-badge {
-      display: none;
-      background-color: rgba(166, 124, 82, 0.1);
-      color: var(--clay);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
       font-family: var(--font-body);
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 0.35rem 0.8rem;
-      border-radius: 0px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
+      background-color: rgba(66, 133, 244, 0.1);
+      color: #1a73e8;
+      border: 1px solid rgba(66, 133, 244, 0.25);
+    }
+
+    .review-source-badge.badge-booking {
+      background-color: rgba(0, 53, 128, 0.08);
+      color: #003580;
+      border-color: rgba(0, 53, 128, 0.25);
     }
     
     .stars {
       display: flex;
-      gap: 0.2rem;
-      color: var(--forest);
+      gap: 0.25rem;
+      color: #F59E0B; /* Golden Amber Star Yellow */
       margin-bottom: 1rem;
     }
     
     .stars svg {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      filter: drop-shadow(0 1px 2px rgba(245, 158, 11, 0.25));
     }
     
     .review-quote {
@@ -157,21 +168,23 @@
     }
     
     .sub-ratings {
-      display: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
     }
     
     .sub-rating-chip {
-      display: none;
-      background-color: transparent;
-      border: 1px solid rgba(45, 62, 50, 0.15);
+      display: inline-block;
+      background-color: rgba(212, 163, 115, 0.12);
+      border: 1px solid rgba(212, 163, 115, 0.35);
       color: var(--forest);
       font-size: 0.7rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 0px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
       font-family: var(--font-body);
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
     }
   </style>
 </head>
@@ -181,7 +194,10 @@
   <div class="header-wrapper">
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="logo-text">Rain Forest Hotel</a>
+      <a href="/" class="logo-wrapper">
+        <img src="/logo.png" alt="Rain Forest Hotel" class="site-logo-img" />
+        <span class="logo-text">Rain Forest Hotel</span>
+      </a>
       
       <nav class="nav-links">
         <a href="/" class="nav-link">Home</a>
@@ -189,6 +205,7 @@
         <a href="/rooms.html" class="nav-link">Rooms</a>
         <a href="/location.html" class="nav-link">Location</a>
         <a href="/reviews.html" class="nav-link">Reviews</a>
+        <a href="https://wa.me/60126183387" class="nav-link mobile-only-link" target="_blank">WhatsApp</a>
       </nav>
       
       <div class="header-actions">
@@ -218,10 +235,10 @@
           <!-- Right Column: Overall Rating Block -->
           <div class="overall-rating-card reveal">
             <div style="display: flex; align-items: baseline; gap: 0.5rem;">
-              <span class="overall-score" style="font-size: 4rem;">4.8</span>
+              <span class="overall-score" style="font-size: 4rem; color: var(--cream);">4.8</span>
               <span style="font-family: var(--font-body); font-size: 1.25rem; color: var(--rattan); font-weight: 600;">/ 5</span>
             </div>
-            <div class="stars" style="margin-bottom: 0.5rem;">
+            <div class="stars" style="margin-bottom: 0.5rem; color: #F59E0B;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
             <span style="font-family: var(--font-body); font-size: 0.75rem; color: var(--cream); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.95;">778 Overall Reviews</span>
@@ -266,7 +283,7 @@
                   <h3 class="reviewer-name">Kenji S.</h3>
                   <div class="reviewer-origin">JP • Japan</div>
                 </div>
-                <span class="review-source-badge">Booking.com</span>
+                <span class="review-source-badge badge-booking">Booking.com</span>
               </div>
               <div class="stars">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -361,7 +378,7 @@
                   <h3 class="reviewer-name">Chao C.</h3>
                   <div class="reviewer-origin">SG • Singapore</div>
                 </div>
-                <span class="review-source-badge">Booking.com</span>
+                <span class="review-source-badge badge-booking">Booking.com</span>
               </div>
               <div class="stars">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -442,28 +459,368 @@
 
         </div>
 
+        <!-- Load More Reviews Button for Mobile -->
+        <div class="load-more-container">
+          <button id="loadMoreReviewsBtn" class="btn-load-more">Load More Reviews</button>
+        </div>
+
         <!-- View More Link Container -->
-        <div style="text-align: center; margin-top: 2.5rem; display: flex; justify-content: center;">
-          <a href="https://www.google.com/search?q=Rain+Forest+Hotel+Kuala+Lumpur+Reviews" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background-color: var(--forest); color: var(--cream); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 0.95rem 2.25rem; border-radius: 9999px; text-decoration: none; border: 1px solid var(--forest); transition: all 0.25s ease; box-shadow: 0 8px 16px rgba(16, 24, 18, 0.2);" onmouseover="this.style.backgroundColor='var(--rattan)'; this.style.color='var(--forest)'; this.style.borderColor='var(--rattan)';" onmouseout="this.style.backgroundColor='var(--forest)'; this.style.color='var(--cream)'; this.style.borderColor='var(--forest)';">
+        <div class="google-cta-container" style="text-align: center; margin-top: 2.5rem; display: flex; justify-content: center;">
+          <a href="https://www.google.com/search?q=Rain+Forest+Hotel+Kuala+Lumpur+Reviews" target="_blank" class="google-cta-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background-color: var(--forest); color: var(--cream); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 0.95rem 2.25rem; border-radius: 9999px; text-decoration: none; border: 1px solid var(--forest); transition: all 0.25s ease; box-shadow: 0 8px 16px rgba(16, 24, 18, 0.2);" onmouseover="this.style.backgroundColor='var(--rattan)'; this.style.color='var(--forest)'; this.style.borderColor='var(--rattan)';" onmouseout="this.style.backgroundColor='var(--forest)'; this.style.color='var(--cream)'; this.style.borderColor='var(--forest)';">
             <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.113-5.186 4.113-3.48 0-6.3-2.82-6.3-6.3s2.82-6.3 6.3-6.3c1.554 0 2.973.567 4.07 1.498l3.056-3.056C19.103 2.507 15.89 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 11.24-4.555 11.24-11.24 0-.765-.067-1.503-.198-2.215H12.24z"/></svg>
             View More on Google
           </a>
         </div>
 
       </div>
-    </section></main>
+    </section>
+
+    <!-- Hotel Photo Gallery Section -->
+    <section class="section-padding" style="background-color: var(--rattan); padding: 5rem 0;">
+      <div class="container reveal">
+        <span style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.15em; color: var(--clay); font-weight: 600; font-size: 0.8rem; display: block; text-align: center; margin-bottom: 0.75rem;">Visual Tour</span>
+        <h2 style="text-align: center; color: var(--forest); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; margin-bottom: 0.75rem;">Life at Rain Forest Hotel</h2>
+        <p style="text-align: center; max-width: 620px; margin: 0 auto 3rem; font-family: var(--font-body); font-weight: 300; opacity: 0.85; line-height: 1.6;">Explore our courtyard garden, reception lounge, heritage corridors, and inviting guest rooms.</p>
+
+        <!-- 20-Photo Grid -->
+        <style>
+          .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.25rem;
+          }
+          .gallery-item {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+            aspect-ratio: 4 / 3;
+            cursor: pointer;
+            background: var(--cream);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+          }
+          .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+          }
+          .gallery-item:hover img {
+            transform: scale(1.06);
+          }
+          .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            color: #fff;
+          }
+          .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+          }
+          .gallery-caption {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+          }
+          /* Lightbox Modal */
+          #galleryLightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(16, 24, 18, 0.92);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1.5rem;
+          }
+          #galleryLightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+          }
+          #lightboxImg {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+          }
+          #lightboxCaption {
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+          }
+          .lightbox-btn {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: background 0.2s ease;
+          }
+          .lightbox-btn:hover {
+            background: var(--forest);
+          }
+          #lightboxClose {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+          #lightboxPrev {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          #lightboxNext {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        </style>
+
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="/images/hotel/_MG_2011.jpeg" data-caption="Courtyard Garden Entrance">
+            <img src="/images/hotel/_MG_2011.jpeg" alt="Courtyard Garden Entrance" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Courtyard Garden Entrance</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/Reception Closeup.JPG" data-caption="Reception Counter & Front Desk">
+            <img src="/images/hotel/Reception Closeup.JPG" alt="Reception Counter" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Reception Counter & Front Desk</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/_MG_1709.jpeg" data-caption="Lush Courtyard Greenery">
+            <img src="/images/hotel/_MG_1709.jpeg" alt="Lush Courtyard Greenery" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Lush Courtyard Greenery</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/Lobby 1.jpg" data-caption="Lobby & Guest Lounge">
+            <img src="/images/hotel/Lobby 1.jpg" alt="Lobby Lounge" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Lobby & Guest Lounge</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/Corridor Blue.jpg" data-caption="Heritage Blue Corridor">
+            <img src="/images/hotel/Corridor Blue.jpg" alt="Heritage Blue Corridor" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Heritage Blue Corridor</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/_MG_1849.jpeg" data-caption="Hotel Architecture Detail">
+            <img src="/images/hotel/_MG_1849.jpeg" alt="Hotel Architecture Detail" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Hotel Architecture Detail</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/_MG_2030.jpeg" data-caption="Courtyard Seating Corner">
+            <img src="/images/hotel/_MG_2030.jpeg" alt="Courtyard Seating Corner" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Courtyard Seating Corner</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/_MG_2095.jpeg" data-caption="Terrace & Garden Atmosphere">
+            <img src="/images/hotel/_MG_2095.jpeg" alt="Terrace Atmosphere" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Terrace & Garden Atmosphere</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/reception counter.jpeg" data-caption="Front Desk Welcome Counter">
+            <img src="/images/hotel/reception counter.jpeg" alt="Front Desk Counter" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Front Desk Welcome Counter</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/LKP_3228a.jpg" data-caption="Garden Relax Seating">
+            <img src="/images/hotel/LKP_3228a.jpg" alt="Garden Seating" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Garden Relax Seating</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/LKP_3238a.jpg" data-caption="Lush Tropical Garden Corner">
+            <img src="/images/hotel/LKP_3238a.jpg" alt="Tropical Garden Corner" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Lush Tropical Garden Corner</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/LKP_3842a.jpg" data-caption="Heritage Staircase & Timber Details">
+            <img src="/images/hotel/LKP_3842a.jpg" alt="Heritage Staircase" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Heritage Staircase</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/IMG_0009.jpg" data-caption="Hotel Lounge View">
+            <img src="/images/hotel/IMG_0009.jpg" alt="Hotel Lounge View" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Hotel Lounge View</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/IMG_4856.jpg" data-caption="Cozy Guest Room Interior">
+            <img src="/images/hotel/IMG_4856.jpg" alt="Guest Room Interior" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Cozy Guest Room Interior</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/IMG_4857.jpg" data-caption="Comfortable Bedding & Decor">
+            <img src="/images/hotel/IMG_4857.jpg" alt="Bedding & Decor" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Comfortable Bedding & Decor</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/hotel/IMG_4876.jpg" data-caption="Warm Room Ambience">
+            <img src="/images/hotel/IMG_4876.jpg" alt="Warm Room Ambience" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Warm Room Ambience</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/rooms/deluxe-double/1.jpg" data-caption="Deluxe Double Room">
+            <img src="/images/rooms/deluxe-double/1.jpg" alt="Deluxe Double Room" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Deluxe Double Room</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/rooms/standard-double/1.jpg" data-caption="Standard Double Room">
+            <img src="/images/rooms/standard-double/1.jpg" alt="Standard Double Room" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Standard Double Room</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/rooms/standard-twin/1.jpeg" data-caption="Standard Twin Room">
+            <img src="/images/rooms/standard-twin/1.jpeg" alt="Standard Twin Room" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Standard Twin Room</span></div>
+          </div>
+          <div class="gallery-item" data-src="/images/rooms/single-room/1.jpg" data-caption="Single Eco Room">
+            <img src="/images/rooms/single-room/1.jpg" alt="Single Eco Room" loading="lazy" />
+            <div class="gallery-overlay"><span class="gallery-caption">Single Eco Room</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Gallery Lightbox Container -->
+    <div id="galleryLightbox">
+      <button id="lightboxClose" class="lightbox-btn" aria-label="Close Lightbox">✕</button>
+      <button id="lightboxPrev" class="lightbox-btn" aria-label="Previous Image">❮</button>
+      <button id="lightboxNext" class="lightbox-btn" aria-label="Next Image">❯</button>
+      <img id="lightboxImg" src="" alt="Gallery Preview" />
+      <div id="lightboxCaption"></div>
+    </div>
+  </main>
 
   <footer style="background-color: var(--ink); color: var(--cream); padding: 4rem 0 2rem; margin-top: auto;">
     <div class="container">
-      <div style="text-align: center; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <div>
+          <h3 style="color: var(--cream); font-size: 1.5rem; margin-bottom: 1rem;">Rain Forest Hotel</h3>
+          <p>122, Jalan Petaling<br>50000 Kuala Lumpur<br>Malaysia</p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Contact</h4>
+          <p>WhatsApp: <a href="https://wa.me/60126183387" style="color: var(--forest);">+60 12-618 3387</a></p>
+        </div>
+        <div>
+          <h4 style="color: var(--clay); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Links</h4>
+          <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><a href="/rooms.html">Rooms</a></li>
+            <li><a href="/location.html">Location</a></li>
+            <li><a href="/reviews.html">Reviews</a></li>
+            <li><a href="/contact.html">Contact & Policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid rgba(251, 246, 236,0.2); padding-top: 2rem; font-size: 0.875rem; color: rgba(251, 246, 236,0.6);">
         <p>&copy; 2026 Rain Forest Hotel. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script type="module" src="/src/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.review-card');
+      const loadMoreBtn = document.getElementById('loadMoreReviewsBtn');
+      const isMobile = () => window.innerWidth <= 768;
 
-  
+      function updatePagination() {
+        if (isMobile()) {
+          cards.forEach((card, index) => {
+            if (index >= 3) {
+              card.classList.add('mobile-hidden');
+            } else {
+              card.classList.remove('mobile-hidden');
+            }
+          });
+          if (loadMoreBtn) loadMoreBtn.style.display = 'inline-flex';
+        } else {
+          cards.forEach(card => card.classList.remove('mobile-hidden'));
+          if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+        }
+      }
+
+      updatePagination();
+      window.addEventListener('resize', updatePagination);
+
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+          cards.forEach(card => card.classList.remove('mobile-hidden'));
+          loadMoreBtn.style.display = 'none';
+        });
+      }
+
+      // Hotel Photo Gallery Lightbox Interactivity
+      const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+      const lightbox = document.getElementById('galleryLightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const lightboxPrev = document.getElementById('lightboxPrev');
+      const lightboxNext = document.getElementById('lightboxNext');
+      let currentGalleryIndex = 0;
+
+      function showLightbox(index) {
+        if (!galleryItems[index] || !lightbox) return;
+        currentGalleryIndex = index;
+        const item = galleryItems[index];
+        const src = item.getAttribute('data-src');
+        const caption = item.getAttribute('data-caption') || '';
+        if (lightboxImg) lightboxImg.src = src;
+        if (lightboxCaption) lightboxCaption.textContent = `${caption} (${index + 1} of ${galleryItems.length})`;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function hideLightbox() {
+        if (lightbox) lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => showLightbox(index));
+      });
+
+      if (lightboxClose) lightboxClose.addEventListener('click', hideLightbox);
+      if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+        showLightbox(currentGalleryIndex);
+      });
+      if (lightboxNext) lightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+        showLightbox(currentGalleryIndex);
+      });
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) hideLightbox();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox || !lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') hideLightbox();
+        if (e.key === 'ArrowLeft') {
+          currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+          showLightbox(currentGalleryIndex);
+        }
+        if (e.key === 'ArrowRight') {
+          currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+          showLightbox(currentGalleryIndex);
+        }
+      });
+    });
+  </script>
 
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/60126183387" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
