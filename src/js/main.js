@@ -19,6 +19,24 @@ export function initMobileNav() {
         mobileBtn.textContent = '☰';
       });
     });
+
+    // Close menu when clicking outside header
+    document.addEventListener('click', (e) => {
+      if (header.classList.contains('menu-open') && !header.contains(e.target)) {
+        header.classList.remove('menu-open');
+        mobileBtn.setAttribute('aria-expanded', false);
+        mobileBtn.textContent = '☰';
+      }
+    });
+
+    // Close menu on ESC key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && header.classList.contains('menu-open')) {
+        header.classList.remove('menu-open');
+        mobileBtn.setAttribute('aria-expanded', false);
+        mobileBtn.textContent = '☰';
+      }
+    });
   }
 
   // Header scroll state

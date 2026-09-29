@@ -365,7 +365,7 @@
 
 .room-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem; /* Clean spacious layout gaps */
 }
 
@@ -739,13 +739,18 @@
 
 .modal-close {
   position: absolute;
-  top: -40px;
+  top: -44px;
   right: 0;
   background: transparent;
   border: none;
   color: var(--cream);
   font-size: 2rem;
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-video-wrapper {
@@ -866,8 +871,8 @@
   background: transparent;
   border: 1px solid var(--forest);
   color: var(--forest);
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 0px; /* Blocky controls */
   display: flex;
   align-items: center;
@@ -1201,6 +1206,11 @@
   background: none;
   border: none;
   padding: 0.75rem 1.2rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-size: 1.15rem;
   font-weight: 600;
@@ -1587,19 +1597,23 @@
     margin-top: 0 !important;
   }
   
+  .room-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
   .neighborhood-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 1rem !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
   }
   .location-card {
-    padding: 1.25rem !important;
+    padding: 1.5rem !important;
   }
   
   .media-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 0.75rem !important;
-    overflow-x: visible !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
     padding-bottom: 0 !important;
   }
   .media-grid::-webkit-scrollbar {
@@ -1607,7 +1621,7 @@
   }
   .media-grid .media-thumb {
     min-width: auto !important;
-    height: 280px !important; /* Adjust height for 2-column mobile layout */
+    height: 320px !important;
   }
   
   .faq-item summary {
@@ -1954,7 +1968,7 @@
   }
 
   .card-content-side p {
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
     margin-bottom: 1.25rem !important;
   }
 
@@ -2047,7 +2061,7 @@
   
   .cta-banner p {
     max-width: 100% !important;
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
   }
 
   .cta-banner .nav-whatsapp-btn {
