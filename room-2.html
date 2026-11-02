@@ -52,7 +52,7 @@
               <span>•</span>
               <span>2 Guests</span>
               <span>•</span>
-              <span>1 Queen Bed</span>
+              <span>1 Queen Bed (or 2 Super Singles)</span>
               <span>•</span>
               <span>10 m²</span>
             </div>
@@ -84,7 +84,7 @@
             </span>
             <span class="spec-pill">
               <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-1.66-1.34-3-3-3z"/></svg>
-              1 Queen Bed
+              1 Queen Bed (or 2 Singles)
             </span>
             <span class="spec-pill">
               <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
@@ -144,9 +144,25 @@
           <!-- Left Column: Content -->
           <div class="room-content">
             <h2 class="reveal" style="font-family: var(--font-display); font-size: 2rem; color: var(--forest); margin-top: 0; margin-bottom: 1.5rem;">About this room</h2>
-            <p class="room-intro">Standard Queen Deluxe Room featuring a comfortable queen bed, private toilet, full multimedia entertainment, and choice of windowed (MYR 128) or no-window (MYR 118) layout.</p>
+            <p class="room-intro">Standard Queen Deluxe Room featuring a comfortable queen-size bed (or two separate super single beds upon request), private toilet, full multimedia entertainment, and choice of windowed (MYR 128) or no-window (MYR 118) layout.</p>
+            
+            <!-- Flexible Bedding Setup Callout -->
+            <div style="background: rgba(46, 82, 64, 0.05); border: 1.5px solid rgba(46, 82, 64, 0.22); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.5rem 0 2rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem;">
+                <span style="font-size: 1.35rem; line-height: 1;">🛏️</span>
+                <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--forest); margin: 0; font-weight: 600;">Flexible Bedding: 1 Queen or 2 Super Singles</h3>
+              </div>
+              <p style="font-family: var(--font-body); font-size: 0.925rem; color: var(--ink); line-height: 1.55; margin: 0 0 0.75rem;">
+                Prefer separate sleeping arrangements? While this room defaults to <strong>1 Queen-size bed</strong>, our setup uses <strong>two Super Single beds joined seamlessly together</strong>. Upon request when booking, we can arrange the room with <strong>2 separate Super Single beds</strong> at no extra cost.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.85rem; font-family: var(--font-body);">
+                <span style="background: #fff; border: 1px solid rgba(46, 82, 64, 0.25); padding: 0.35rem 0.75rem; border-radius: 6px; color: var(--forest); font-weight: 600;">✓ Option 1 (Default): 1 Queen Bed</span>
+                <span style="background: #fff; border: 1px solid rgba(140, 114, 87, 0.35); padding: 0.35rem 0.75rem; border-radius: 6px; color: var(--clay); font-weight: 600;">✓ Option 2 (On Request): 2 Separate Super Singles</span>
+              </div>
+            </div>
+
             <p class="room-description">
-              Our Standard Queen Deluxe Room offers premium privacy and convenience with a Queen-size bed, private attached bathroom, air conditioning, and a TV setup complete with a multimedia TV box for streaming YouTube, Spotify, and more. <strong>Window options:</strong> Choose our recommended <strong>With Window option (MYR 128/night)</strong> for natural light and street views, or select the <strong>Without Window option (MYR 118/night)</strong> for a quiet, budget-friendly stay.
+              Our Standard Queen Deluxe Room offers premium privacy and convenience with a Queen-size bed (or two super singles), private attached bathroom, air conditioning, and a TV setup complete with a multimedia TV box for streaming YouTube, Spotify, and more. <strong>Window options:</strong> Choose our recommended <strong>With Window option (MYR 128/night)</strong> for natural light and street views, or select the <strong>Without Window option (MYR 118/night)</strong> for a quiet, budget-friendly stay.
             </p>
             </p>
             <p class="room-description" style="margin-top: 1rem;">
@@ -191,7 +207,7 @@
             
             <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--forest); margin-top: 3.5rem; margin-bottom: 1rem;">Room Video Walkthrough</h3>
             <div class="video-wrapper">
-              <iframe src="https://www.youtube.com/embed/bgQFTWQDPbA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <iframe src="https://www.youtube.com/embed/-KwyLN3Qz1s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
           </div>
           
@@ -209,6 +225,27 @@
               <div class="form-group">
                 <label class="form-label" for="check-out">Check-out Date</label>
                 <input type="date" id="check-out" class="form-input" required />
+              </div>
+              
+              <div class="form-group" style="margin-bottom: 1.25rem;">
+                <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+                  <span>Bed Preference</span>
+                  <span style="font-size: 0.75rem; color: var(--forest); font-weight: 600; text-transform: none;">Free Option</span>
+                </label>
+                <div class="bed-option-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.35rem;">
+                  <label class="bed-pill active" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0.65rem 0.5rem; border-radius: 8px; border: 1.5px solid var(--forest); background: rgba(26, 37, 30, 0.06); font-family: var(--font-body); transition: all 0.2s;">
+                    <input type="radio" name="bed-preference" value="1 Queen Bed" checked style="display: none;" />
+                    <span style="font-size: 1.1rem; line-height: 1; margin-bottom: 0.25rem;">🛏️</span>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--forest);">1 Queen Bed</span>
+                    <span style="font-size: 0.7rem; color: var(--clay); font-weight: normal;">Default (1 Bed)</span>
+                  </label>
+                  <label class="bed-pill" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0.65rem 0.5rem; border-radius: 8px; border: 1px solid rgba(140, 114, 87, 0.4); background: #fff; font-family: var(--font-body); transition: all 0.2s;">
+                    <input type="radio" name="bed-preference" value="2 Super Single Beds" style="display: none;" />
+                    <span style="font-size: 1.1rem; line-height: 1; margin-bottom: 0.25rem;">🛏️🛏️</span>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--clay);">2 Super Singles</span>
+                    <span style="font-size: 0.7rem; color: var(--clay); font-weight: normal;">Separate Beds</span>
+                  </label>
+                </div>
               </div>
               
               <div class="form-group" style="margin-bottom: 1.5rem;">

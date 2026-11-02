@@ -28,6 +28,29 @@ export function initBookingWidget() {
      });
   }
 
+  // Bed preference toggle UI
+  const bedPills = widget.querySelectorAll('.bed-pill');
+  if (bedPills.length > 0) {
+    bedPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        bedPills.forEach(p => {
+          p.classList.remove('active');
+          p.style.borderColor = 'rgba(140, 114, 87, 0.4)';
+          p.style.background = '#fff';
+          const titleSpan = p.querySelectorAll('span')[1];
+          if (titleSpan) titleSpan.style.color = 'var(--clay)';
+        });
+        pill.classList.add('active');
+        pill.style.borderColor = 'var(--forest)';
+        pill.style.background = 'rgba(26, 37, 30, 0.06)';
+        const titleSpan = pill.querySelectorAll('span')[1];
+        if (titleSpan) titleSpan.style.color = 'var(--forest)';
+        const radio = pill.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+      });
+    });
+  }
+
   // Stepper logic
   if(btnMinus && btnPlus && inputGuests) {
       btnMinus.addEventListener('click', (e) => {
@@ -62,8 +85,11 @@ export function initBookingWidget() {
         alert('Please select check-in and check-out dates.');
         return;
       }
+
+      const bedInput = widget.querySelector('input[name="bed-preference"]:checked');
+      const bedDetails = bedInput ? ` (${bedInput.value})` : '';
       
-      const message = `Hi, I'm interested in booking ${roomName} for ${guests} guest(s) from ${checkIn} to ${checkOut}. Is it still available?`;
+      const message = `Hi, I'm interested in booking ${roomName}${bedDetails} for ${guests} guest(s) from ${checkIn} to ${checkOut}. Is it still available?`;
       const encodedMessage = encodeURIComponent(message);
       
       // WhatsApp number 0126183387 -> 60126183387
