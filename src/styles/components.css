@@ -1540,7 +1540,7 @@
     width: 100%;
   }
   .hero-redesign {
-    background-position: 70% center;
+    background-position: center center !important;
   }
   .coords-text {
     font-size: 0.75rem;
@@ -2360,4 +2360,239 @@
   max-width: 100vw !important;
   max-height: 100vh !important;
   margin: auto !important;
+}
+
+/* ==========================================================================
+   Social Section / Masonry Grid
+   ========================================================================== */
+
+.social-masonry {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .social-masonry {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .social-masonry {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+.social-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-color: var(--rattan);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(45, 62, 50, 0.08);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(45, 62, 50, 0.16);
+}
+
+.social-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-card:hover .social-img {
+  transform: scale(1.05);
+}
+
+.social-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 37, 30, 0.8) 0%, rgba(26, 37, 30, 0.2) 50%, transparent 100%);
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1rem 1.15rem;
+  color: var(--cream);
+  transition: opacity 0.3s ease;
+}
+
+.social-card:hover .social-overlay {
+  opacity: 1;
+}
+
+.social-caption {
+  font-family: var(--font-body);
+  font-size: 0.825rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.social-zoom-icon {
+  font-size: 1rem;
+  opacity: 0.85;
+  transition: transform 0.2s ease;
+}
+
+.social-card:hover .social-zoom-icon {
+  transform: scale(1.15);
+}
+
+/* ==========================================================================
+   Social Photo Lightbox Modal
+   ========================================================================== */
+
+.social-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.social-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.social-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 26, 21, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.social-modal-container {
+  position: relative;
+  z-index: 1;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-modal-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-modal-figure img {
+  max-width: 88vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+.social-modal-caption {
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-top: 1rem;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.social-modal-close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--cream);
+  font-size: 1.75rem;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.social-modal-close:hover {
+  background: var(--forest);
+  border-color: var(--forest);
+  transform: scale(1.05);
+}
+
+.social-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--cream);
+  font-size: 1.25rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.social-modal-nav:hover {
+  background: var(--forest);
+  border-color: var(--forest);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.social-modal-prev {
+  left: -58px;
+}
+
+.social-modal-next {
+  right: -58px;
+}
+
+@media (max-width: 768px) {
+  .social-modal-prev {
+    left: 8px;
+    background: rgba(26, 37, 30, 0.65);
+  }
+  .social-modal-next {
+    right: 8px;
+    background: rgba(26, 37, 30, 0.65);
+  }
+  .social-modal-close {
+    top: -42px;
+    right: 4px;
+  }
+  .social-modal-figure img {
+    max-width: 94vw;
+    max-height: 75vh;
+  }
 }

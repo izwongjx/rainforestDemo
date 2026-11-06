@@ -312,8 +312,8 @@
       overflow: hidden;
     }
   </style>
-  <script type="module" crossorigin src="/assets/main-CzHHfYWe.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-2R-1r2RQ.css">
+  <script type="module" crossorigin src="/assets/main-B1hIDvov.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-m1L8zJzL.css">
 </head>
 <body>
 
@@ -393,7 +393,7 @@
 
           <div class="reveal">
             <div class="about-hero-img-container">
-              <img src="/images/hotel/_MG_2011.jpeg" alt="Rain Forest Hotel Atmosphere" class="about-hero-img" />
+              <img src="/images/media/counter.jpg" alt="Rain Forest Hotel Atmosphere" class="about-hero-img" />
             </div>
           </div>
         </div>
@@ -573,7 +573,7 @@
         <!-- Secret Trigger Button -->
         <button id="easterEggBtn" type="button" style="background: var(--white); border: 1.5px dashed var(--clay); color: var(--forest); padding: 1rem 2.25rem; border-radius: 50px; font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.75rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
           <span style="font-size: 1.2rem;">🔑</span>
-          <span>Psst... You found a secret! Click to hear why we started Rain Forest Hotel</span>
+          <span>Psst... You found a secret! Take a full video tour of Rain Forest Hotel</span>
           <span id="easterEggArrow" style="transition: transform 0.3s ease; font-size: 0.85rem; color: var(--clay);">▼</span>
         </button>
 
@@ -583,16 +583,15 @@
             <!-- Story Header on Top -->
             <div style="text-align: center; margin-bottom: 1.5rem;">
               <span class="data-text" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--forest); background: rgba(45, 62, 50, 0.08); padding: 0.4rem 1.1rem; border-radius: 30px; font-weight: 600; display: inline-block; margin-bottom: 0.75rem;">🎉 Secret Unlocked!</span>
-              <h3 style="font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0 0 0.5rem; color: var(--forest); font-weight: 400;">A Conversation with the Founders</h3>
-              <p style="font-family: var(--font-body); font-size: 0.95rem; margin: 0 auto; max-width: 520px; opacity: 0.8; font-weight: 300; line-height: 1.5;">Watch the 2 owners sit down and share why they started Rain Forest Hotel.</p>
+              <h3 style="font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0 0 0.5rem; color: var(--forest); font-weight: 400;">Rainforest Hotel Tour</h3>
+              <p style="font-family: var(--font-body); font-size: 0.95rem; margin: 0 auto; max-width: 540px; opacity: 0.8; font-weight: 300; line-height: 1.5;">Take an exclusive look inside Rain Forest Hotel — our heritage corridors, lush courtyard, and inviting spaces in Chinatown.</p>
             </div>
             
-            <!-- Clean Centered Portrait Video Player -->
-            <div style="max-width: 360px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.18); background: #000; border: 1px solid rgba(45, 62, 50, 0.15);">
-              <video id="easterEggVideo" controls poster="/images/hotel/_MG_1709.jpeg" style="width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 9 / 16; border-radius: 20px;">
-                <source src="/images/media/hotel-tour.mp4" type="video/mp4" />
-                Your browser does not support HTML5 video.
-              </video>
+            <!-- Clean Centered Landscape Video Player -->
+            <div style="max-width: 760px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 45px rgba(0,0,0,0.16); background: #000; border: 1px solid rgba(45, 62, 50, 0.15);">
+              <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe id="easterEggIframe" src="https://www.youtube.com/embed/IxTTIlQhp6k" title="Rainforest Hotel KL Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
+              </div>
             </div>
           </div>
         </div>
@@ -607,6 +606,8 @@
         
         if (btn && drawer) {
           let isOpen = false;
+          const iframe = document.getElementById('easterEggIframe');
+          const videoSrc = 'https://www.youtube.com/embed/IxTTIlQhp6k';
           btn.addEventListener('click', () => {
             isOpen = !isOpen;
             if (isOpen) {
@@ -616,6 +617,9 @@
               if (arrow) arrow.style.transform = 'rotate(180deg)';
               btn.style.borderColor = 'var(--forest)';
               btn.style.backgroundColor = 'rgba(45, 62, 50, 0.12)';
+              if (iframe && iframe.src !== videoSrc) {
+                iframe.src = videoSrc;
+              }
             } else {
               drawer.style.maxHeight = '0';
               drawer.style.opacity = '0';
@@ -623,8 +627,9 @@
               if (arrow) arrow.style.transform = 'rotate(0deg)';
               btn.style.borderColor = 'var(--clay)';
               btn.style.backgroundColor = 'var(--white)';
-              const vid = document.getElementById('easterEggVideo');
-              if (vid) vid.pause();
+              if (iframe) {
+                iframe.src = videoSrc; // reset so it stops playing audio
+              }
             }
           });
         }

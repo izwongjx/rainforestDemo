@@ -256,6 +256,85 @@ function initCarousel() {
   }, { passive: true });
 }
 
+
+function initSocialPhotoLightbox() {
+  const modal = document.getElementById('socialPhotoModal');
+  const modalImg = document.getElementById('socialModalImg');
+  const modalCaption = document.getElementById('socialModalCaption');
+  const closeBtn = document.getElementById('closeSocialModal');
+  const prevBtn = document.getElementById('socialModalPrev');
+  const nextBtn = document.getElementById('socialModalNext');
+  const overlay = modal ? modal.querySelector('.social-modal-overlay') : null;
+  const cards = Array.from(document.querySelectorAll('.social-card'));
+
+  if (!modal || !modalImg || cards.length === 0) return;
+
+  let currentIndex = 0;
+
+  function showPhoto(index) {
+    if (index < 0) index = cards.length - 1;
+    if (index >= cards.length) index = 0;
+    currentIndex = index;
+
+    const card = cards[currentIndex];
+    const src = card.getAttribute('data-src');
+    const caption = card.getAttribute('data-caption') || '';
+
+    modalImg.src = src;
+    if (modalCaption) {
+      modalCaption.textContent = caption;
+    }
+  }
+
+  function openModal(index) {
+    showPhoto(index);
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (!modal.classList.contains('active')) {
+        modalImg.src = '';
+      }
+    }, 300);
+  }
+
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      openModal(idx);
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', closeModal);
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPhoto(currentIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPhoto(currentIndex + 1);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+    if (e.key === 'ArrowRight') showPhoto(currentIndex + 1);
+  });
+}
+
 function initLightbox() {
   const modal = document.getElementById('videoModal');
   const modalIframe = document.getElementById('modalIframe');
@@ -342,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCurrencyToggle();
   initCarousel();
   initLightbox();
+  initSocialPhotoLightbox();
   initPageTransitions();
   initActiveNav();
   initScrollReveal();
